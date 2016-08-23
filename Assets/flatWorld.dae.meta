@@ -1,0 +1,1116 @@
+fileFormatVersion: 2
+guid: 0beacdfb0d52a4b688e5c99d3b6e001f
+timeCreated: 1467184055
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: _1
+    100002: _2
+    100004: a
+    100006: a 1
+    100008: animated_chart
+    100010: animated_chart_object
+    100012: animated_chart_object 1
+    100014: arrow
+    100016: arrow.1
+    100018: arrow01
+    100020: arrow01 1
+    100022: board
+    100024: board.1
+    100026: board.2
+    100028: Boole
+    100030: cake
+    100032: Camera
+    100034: Camera 1
+    100036: Cap_1
+    100038: Cap_1 1
+    100040: Cap_1 10
+    100042: Cap_1 11
+    100044: Cap_1 12
+    100046: Cap_1 13
+    100048: Cap_1 14
+    100050: Cap_1 15
+    100052: Cap_1 16
+    100054: Cap_1 2
+    100056: Cap_1 3
+    100058: Cap_1 4
+    100060: Cap_1 5
+    100062: Cap_1 6
+    100064: Cap_1 7
+    100066: Cap_1 8
+    100068: Cap_1 9
+    100070: Cap_2
+    100072: Cap_2 1
+    100074: Cap_2 10
+    100076: Cap_2 11
+    100078: Cap_2 12
+    100080: Cap_2 13
+    100082: Cap_2 14
+    100084: Cap_2 15
+    100086: Cap_2 16
+    100088: Cap_2 2
+    100090: Cap_2 3
+    100092: Cap_2 4
+    100094: Cap_2 5
+    100096: Cap_2 6
+    100098: Cap_2 7
+    100100: Cap_2 8
+    100102: Cap_2 9
+    100104: chart
+    100106: chart.1
+    100108: chart_2
+    100110: Cloner
+    100112: Cloner 1
+    100114: Cloner 2
+    100116: Cloner 3
+    100118: Cloner 4
+    100120: Cloner.1
+    100122: Cloner.1 1
+    100124: Cloner.2
+    100126: Cloner.2 1
+    100128: Cloner.3
+    100130: Cloner.3 1
+    100132: coins
+    100134: Cube.1
+    100136: Cube.1 1
+    100138: Cube.13
+    100140: Cube.14
+    100142: Cube.15
+    100144: Cube.16
+    100146: Cube.17
+    100148: Cube.18
+    100150: Cube.19
+    100152: Cube.2
+    100154: Cube.20
+    100156: Cube.21
+    100158: Cube.3
+    100160: Cube.4
+    100162: Cube.4 1
+    100164: Cube.4 2
+    100166: Cube.4 3
+    100168: Cube.4 4
+    100170: Cube.4 5
+    100172: Cube.4 6
+    100174: Cube.4 7
+    100176: Cube.4_0
+    100178: Cube.4_1
+    100180: Cube.4_2
+    100182: Cube.4_3
+    100184: Cube.4_4
+    100186: Cube.4_5
+    100188: Cube.4_6
+    100190: Cube.4_7
+    100192: Cube.5
+    100194: Cube.5 1
+    100196: Cube.5 2
+    100198: Cube.5 3
+    100200: Cube.6
+    100202: Cube.6 1
+    100204: Cube.6 2
+    100206: Cube.6 3
+    100208: Cube.7
+    100210: Cube_0
+    100212: Cube_0 1
+    100214: Cube_1
+    100216: Cube_1 1
+    100218: Cube_2
+    100220: Cube_2 1
+    100222: Cube_3
+    100224: Cube_3 1
+    100226: Cube_4
+    100228: Cube_4 1
+    100230: Cube_5
+    100232: Cube_5 1
+    100234: Cube_6
+    100236: Cube_6 1
+    100238: Cube_7
+    100240: Cube_7 1
+    100242: Cube_8
+    100244: Cube_8 1
+    100246: Cube_9
+    100248: Cube_9 1
+    100250: CUBE_ORANGE
+    100252: CUBE_ORANGE.1
+    100254: CUBE_ORANGE.2
+    100256: CUBE_ORANGE.3
+    100258: CUBE_RED
+    100260: CUBE_WHITE
+    100262: CUBE_WHITE.1
+    100264: CUBE_WHITE.1_0
+    100266: CUBE_WHITE.1_1
+    100268: CUBE_WHITE.1_2
+    100270: CUBE_WHITE.1_3
+    100272: CUBE_WHITE.1_4
+    100274: CUBE_WHITE.1_5
+    100276: CUBE_WHITE.1_6
+    100278: CUBE_WHITE.1_7
+    100280: CUBE_WHITE.1_8
+    100282: CUBE_WHITE.1_9
+    100284: CUBE_WHITE.2
+    100286: CUBE_WHITE.3
+    100288: CUBE_WHITE.4
+    100290: CUBE_WHITE.5
+    100292: CUBE_WHITE.6
+    100294: CUBE_YELLOW
+    100296: CUBE_YELLOW.1
+    100298: CUBE_YELLOW.2
+    100300: CUBE_YELLOW.3
+    100302: CUBE_YELLOW.4
+    100304: CUBE_YELLOW.4 1
+    100306: cubes
+    100308: Cylinder
+    100310: Cylinder 1
+    100312: Cylinder 2
+    100314: Cylinder.1
+    100316: Cylinder.1 1
+    100318: Cylinder.1 2
+    100320: Cylinder.2
+    100322: Cylinder.2 1
+    100324: Cylinder.2 2
+    100326: Cylinder.3
+    100328: Cylinder_0
+    100330: Cylinder_0 1
+    100332: Cylinder_0 2
+    100334: Cylinder_1
+    100336: Cylinder_2
+    100338: Cylinder_3
+    100340: Cylinder_4
+    100342: Cylinder_5
+    100344: Cylinder_6
+    100346: Cylinder_7
+    100348: d
+    100350: e
+    100352: e 1
+    100354: //RootNode
+    100356: g
+    100358: ground
+    100360: Haus
+    100362: house
+    100364: i
+    100366: k
+    100368: letter
+    100370: Light
+    100372: logo
+    100374: M
+    100376: man
+    100378: Markt
+    100380: money
+    100382: MoText
+    100384: Motion_Camera
+    100386: Motion_Camera_Setup
+    100388: n
+    100390: Null.1
+    100392: Null.1 1
+    100394: objects
+    100396: Plane
+    100398: Plane 1
+    100400: Plane 2
+    100402: Plane 3
+    100404: Plane.1
+    100406: Plane.1 1
+    100408: Plane.2
+    100410: Plane.2 1
+    100412: Plane.3
+    100414: Plane.3 1
+    100416: r
+    100418: r 1
+    100420: S
+    100422: scene_01
+    100424: scene_ONE
+    100426: Spline.1
+    100428: stairs
+    100430: Strategie
+    100432: Sweep
+    100434: Symmetry
+    100436: Symmetry.1
+    100438: t
+    100440: t 1
+    100442: t 2
+    100444: Text
+    100446: Tube.1
+    100448: Tube.1 1
+    100450: Tube.1 2
+    100452: Tube.1 3
+    100454: Tube.1_0
+    100456: Tube.1_0 1
+    100458: Tube.1_0 2
+    100460: Tube.1_Instance
+    100462: Tube.1_Instance.1
+    100464: Tube.1_Instance.2
+    100466: Tube.2_0
+    100468: Tube_0
+    100470: Tube_0 1
+    100472: u
+    100474: und
+    100476: wagon
+    100478: wifi
+    100480: wifi._SAVE
+    400000: _1
+    400002: _2
+    400004: a
+    400006: a 1
+    400008: animated_chart
+    400010: animated_chart_object
+    400012: animated_chart_object 1
+    400014: arrow
+    400016: arrow.1
+    400018: arrow01
+    400020: arrow01 1
+    400022: board
+    400024: board.1
+    400026: board.2
+    400028: Boole
+    400030: cake
+    400032: Camera
+    400034: Camera 1
+    400036: Cap_1
+    400038: Cap_1 1
+    400040: Cap_1 10
+    400042: Cap_1 11
+    400044: Cap_1 12
+    400046: Cap_1 13
+    400048: Cap_1 14
+    400050: Cap_1 15
+    400052: Cap_1 16
+    400054: Cap_1 2
+    400056: Cap_1 3
+    400058: Cap_1 4
+    400060: Cap_1 5
+    400062: Cap_1 6
+    400064: Cap_1 7
+    400066: Cap_1 8
+    400068: Cap_1 9
+    400070: Cap_2
+    400072: Cap_2 1
+    400074: Cap_2 10
+    400076: Cap_2 11
+    400078: Cap_2 12
+    400080: Cap_2 13
+    400082: Cap_2 14
+    400084: Cap_2 15
+    400086: Cap_2 16
+    400088: Cap_2 2
+    400090: Cap_2 3
+    400092: Cap_2 4
+    400094: Cap_2 5
+    400096: Cap_2 6
+    400098: Cap_2 7
+    400100: Cap_2 8
+    400102: Cap_2 9
+    400104: chart
+    400106: chart.1
+    400108: chart_2
+    400110: Cloner
+    400112: Cloner 1
+    400114: Cloner 2
+    400116: Cloner 3
+    400118: Cloner 4
+    400120: Cloner.1
+    400122: Cloner.1 1
+    400124: Cloner.2
+    400126: Cloner.2 1
+    400128: Cloner.3
+    400130: Cloner.3 1
+    400132: coins
+    400134: Cube.1
+    400136: Cube.1 1
+    400138: Cube.13
+    400140: Cube.14
+    400142: Cube.15
+    400144: Cube.16
+    400146: Cube.17
+    400148: Cube.18
+    400150: Cube.19
+    400152: Cube.2
+    400154: Cube.20
+    400156: Cube.21
+    400158: Cube.3
+    400160: Cube.4
+    400162: Cube.4 1
+    400164: Cube.4 2
+    400166: Cube.4 3
+    400168: Cube.4 4
+    400170: Cube.4 5
+    400172: Cube.4 6
+    400174: Cube.4 7
+    400176: Cube.4_0
+    400178: Cube.4_1
+    400180: Cube.4_2
+    400182: Cube.4_3
+    400184: Cube.4_4
+    400186: Cube.4_5
+    400188: Cube.4_6
+    400190: Cube.4_7
+    400192: Cube.5
+    400194: Cube.5 1
+    400196: Cube.5 2
+    400198: Cube.5 3
+    400200: Cube.6
+    400202: Cube.6 1
+    400204: Cube.6 2
+    400206: Cube.6 3
+    400208: Cube.7
+    400210: Cube_0
+    400212: Cube_0 1
+    400214: Cube_1
+    400216: Cube_1 1
+    400218: Cube_2
+    400220: Cube_2 1
+    400222: Cube_3
+    400224: Cube_3 1
+    400226: Cube_4
+    400228: Cube_4 1
+    400230: Cube_5
+    400232: Cube_5 1
+    400234: Cube_6
+    400236: Cube_6 1
+    400238: Cube_7
+    400240: Cube_7 1
+    400242: Cube_8
+    400244: Cube_8 1
+    400246: Cube_9
+    400248: Cube_9 1
+    400250: CUBE_ORANGE
+    400252: CUBE_ORANGE.1
+    400254: CUBE_ORANGE.2
+    400256: CUBE_ORANGE.3
+    400258: CUBE_RED
+    400260: CUBE_WHITE
+    400262: CUBE_WHITE.1
+    400264: CUBE_WHITE.1_0
+    400266: CUBE_WHITE.1_1
+    400268: CUBE_WHITE.1_2
+    400270: CUBE_WHITE.1_3
+    400272: CUBE_WHITE.1_4
+    400274: CUBE_WHITE.1_5
+    400276: CUBE_WHITE.1_6
+    400278: CUBE_WHITE.1_7
+    400280: CUBE_WHITE.1_8
+    400282: CUBE_WHITE.1_9
+    400284: CUBE_WHITE.2
+    400286: CUBE_WHITE.3
+    400288: CUBE_WHITE.4
+    400290: CUBE_WHITE.5
+    400292: CUBE_WHITE.6
+    400294: CUBE_YELLOW
+    400296: CUBE_YELLOW.1
+    400298: CUBE_YELLOW.2
+    400300: CUBE_YELLOW.3
+    400302: CUBE_YELLOW.4
+    400304: CUBE_YELLOW.4 1
+    400306: cubes
+    400308: Cylinder
+    400310: Cylinder 1
+    400312: Cylinder 2
+    400314: Cylinder.1
+    400316: Cylinder.1 1
+    400318: Cylinder.1 2
+    400320: Cylinder.2
+    400322: Cylinder.2 1
+    400324: Cylinder.2 2
+    400326: Cylinder.3
+    400328: Cylinder_0
+    400330: Cylinder_0 1
+    400332: Cylinder_0 2
+    400334: Cylinder_1
+    400336: Cylinder_2
+    400338: Cylinder_3
+    400340: Cylinder_4
+    400342: Cylinder_5
+    400344: Cylinder_6
+    400346: Cylinder_7
+    400348: d
+    400350: e
+    400352: e 1
+    400354: //RootNode
+    400356: g
+    400358: ground
+    400360: Haus
+    400362: house
+    400364: i
+    400366: k
+    400368: letter
+    400370: Light
+    400372: logo
+    400374: M
+    400376: man
+    400378: Markt
+    400380: money
+    400382: MoText
+    400384: Motion_Camera
+    400386: Motion_Camera_Setup
+    400388: n
+    400390: Null.1
+    400392: Null.1 1
+    400394: objects
+    400396: Plane
+    400398: Plane 1
+    400400: Plane 2
+    400402: Plane 3
+    400404: Plane.1
+    400406: Plane.1 1
+    400408: Plane.2
+    400410: Plane.2 1
+    400412: Plane.3
+    400414: Plane.3 1
+    400416: r
+    400418: r 1
+    400420: S
+    400422: scene_01
+    400424: scene_ONE
+    400426: Spline.1
+    400428: stairs
+    400430: Strategie
+    400432: Sweep
+    400434: Symmetry
+    400436: Symmetry.1
+    400438: t
+    400440: t 1
+    400442: t 2
+    400444: Text
+    400446: Tube.1
+    400448: Tube.1 1
+    400450: Tube.1 2
+    400452: Tube.1 3
+    400454: Tube.1_0
+    400456: Tube.1_0 1
+    400458: Tube.1_0 2
+    400460: Tube.1_Instance
+    400462: Tube.1_Instance.1
+    400464: Tube.1_Instance.2
+    400466: Tube.2_0
+    400468: Tube_0
+    400470: Tube_0 1
+    400472: u
+    400474: und
+    400476: wagon
+    400478: wifi
+    400480: wifi._SAVE
+    2300000: a
+    2300002: a 1
+    2300004: arrow
+    2300006: arrow.1
+    2300008: arrow01
+    2300010: arrow01 1
+    2300012: cake
+    2300014: Cap_1
+    2300016: Cap_1 1
+    2300018: Cap_1 10
+    2300020: Cap_1 11
+    2300022: Cap_1 12
+    2300024: Cap_1 13
+    2300026: Cap_1 14
+    2300028: Cap_1 15
+    2300030: Cap_1 16
+    2300032: Cap_1 2
+    2300034: Cap_1 3
+    2300036: Cap_1 4
+    2300038: Cap_1 5
+    2300040: Cap_1 6
+    2300042: Cap_1 7
+    2300044: Cap_1 8
+    2300046: Cap_1 9
+    2300048: Cap_2
+    2300050: Cap_2 1
+    2300052: Cap_2 10
+    2300054: Cap_2 11
+    2300056: Cap_2 12
+    2300058: Cap_2 13
+    2300060: Cap_2 14
+    2300062: Cap_2 15
+    2300064: Cap_2 16
+    2300066: Cap_2 2
+    2300068: Cap_2 3
+    2300070: Cap_2 4
+    2300072: Cap_2 5
+    2300074: Cap_2 6
+    2300076: Cap_2 7
+    2300078: Cap_2 8
+    2300080: Cap_2 9
+    2300082: chart_2
+    2300084: Cube.1
+    2300086: Cube.1 1
+    2300088: Cube.13
+    2300090: Cube.14
+    2300092: Cube.15
+    2300094: Cube.16
+    2300096: Cube.17
+    2300098: Cube.18
+    2300100: Cube.19
+    2300102: Cube.2
+    2300104: Cube.20
+    2300106: Cube.21
+    2300108: Cube.3
+    2300110: Cube.4
+    2300112: Cube.4 1
+    2300114: Cube.4 2
+    2300116: Cube.4 3
+    2300118: Cube.4 4
+    2300120: Cube.4 5
+    2300122: Cube.4 6
+    2300124: Cube.4 7
+    2300126: Cube.4_0
+    2300128: Cube.4_1
+    2300130: Cube.4_2
+    2300132: Cube.4_3
+    2300134: Cube.4_4
+    2300136: Cube.4_5
+    2300138: Cube.4_6
+    2300140: Cube.4_7
+    2300142: Cube.5
+    2300144: Cube.5 1
+    2300146: Cube.5 2
+    2300148: Cube.5 3
+    2300150: Cube.6
+    2300152: Cube.6 1
+    2300154: Cube.6 2
+    2300156: Cube.6 3
+    2300158: Cube.7
+    2300160: Cube_0
+    2300162: Cube_0 1
+    2300164: Cube_1
+    2300166: Cube_1 1
+    2300168: Cube_2
+    2300170: Cube_2 1
+    2300172: Cube_3
+    2300174: Cube_3 1
+    2300176: Cube_4
+    2300178: Cube_4 1
+    2300180: Cube_5
+    2300182: Cube_5 1
+    2300184: Cube_6
+    2300186: Cube_6 1
+    2300188: Cube_7
+    2300190: Cube_7 1
+    2300192: Cube_8
+    2300194: Cube_8 1
+    2300196: Cube_9
+    2300198: Cube_9 1
+    2300200: CUBE_ORANGE
+    2300202: CUBE_ORANGE.1
+    2300204: CUBE_ORANGE.2
+    2300206: CUBE_ORANGE.3
+    2300208: CUBE_RED
+    2300210: CUBE_WHITE
+    2300212: CUBE_WHITE.1
+    2300214: CUBE_WHITE.1_0
+    2300216: CUBE_WHITE.1_1
+    2300218: CUBE_WHITE.1_2
+    2300220: CUBE_WHITE.1_3
+    2300222: CUBE_WHITE.1_4
+    2300224: CUBE_WHITE.1_5
+    2300226: CUBE_WHITE.1_6
+    2300228: CUBE_WHITE.1_7
+    2300230: CUBE_WHITE.1_8
+    2300232: CUBE_WHITE.1_9
+    2300234: CUBE_WHITE.2
+    2300236: CUBE_WHITE.3
+    2300238: CUBE_WHITE.4
+    2300240: CUBE_WHITE.5
+    2300242: CUBE_WHITE.6
+    2300244: CUBE_YELLOW
+    2300246: CUBE_YELLOW.1
+    2300248: CUBE_YELLOW.2
+    2300250: CUBE_YELLOW.3
+    2300252: CUBE_YELLOW.4
+    2300254: CUBE_YELLOW.4 1
+    2300256: Cylinder
+    2300258: Cylinder 1
+    2300260: Cylinder 2
+    2300262: Cylinder.1
+    2300264: Cylinder.1 1
+    2300266: Cylinder.1 2
+    2300268: Cylinder.2
+    2300270: Cylinder.2 1
+    2300272: Cylinder.2 2
+    2300274: Cylinder.3
+    2300276: Cylinder_0
+    2300278: Cylinder_0 1
+    2300280: Cylinder_0 2
+    2300282: Cylinder_1
+    2300284: Cylinder_2
+    2300286: Cylinder_3
+    2300288: Cylinder_4
+    2300290: Cylinder_5
+    2300292: Cylinder_6
+    2300294: Cylinder_7
+    2300296: d
+    2300298: e
+    2300300: e 1
+    2300302: g
+    2300304: ground
+    2300306: Haus
+    2300308: i
+    2300310: k
+    2300312: letter
+    2300314: M
+    2300316: n
+    2300318: Plane
+    2300320: Plane 1
+    2300322: Plane 2
+    2300324: Plane 3
+    2300326: Plane.1
+    2300328: Plane.1 1
+    2300330: Plane.2
+    2300332: Plane.2 1
+    2300334: Plane.3
+    2300336: Plane.3 1
+    2300338: r
+    2300340: r 1
+    2300342: S
+    2300344: Sweep
+    2300346: t
+    2300348: t 1
+    2300350: t 2
+    2300352: Tube.1
+    2300354: Tube.1 1
+    2300356: Tube.1 2
+    2300358: Tube.1 3
+    2300360: Tube.1_0
+    2300362: Tube.1_0 1
+    2300364: Tube.1_0 2
+    2300366: Tube.2_0
+    2300368: Tube_0
+    2300370: Tube_0 1
+    2300372: u
+    3300000: a
+    3300002: a 1
+    3300004: arrow
+    3300006: arrow.1
+    3300008: arrow01
+    3300010: arrow01 1
+    3300012: cake
+    3300014: Cap_1
+    3300016: Cap_1 1
+    3300018: Cap_1 10
+    3300020: Cap_1 11
+    3300022: Cap_1 12
+    3300024: Cap_1 13
+    3300026: Cap_1 14
+    3300028: Cap_1 15
+    3300030: Cap_1 16
+    3300032: Cap_1 2
+    3300034: Cap_1 3
+    3300036: Cap_1 4
+    3300038: Cap_1 5
+    3300040: Cap_1 6
+    3300042: Cap_1 7
+    3300044: Cap_1 8
+    3300046: Cap_1 9
+    3300048: Cap_2
+    3300050: Cap_2 1
+    3300052: Cap_2 10
+    3300054: Cap_2 11
+    3300056: Cap_2 12
+    3300058: Cap_2 13
+    3300060: Cap_2 14
+    3300062: Cap_2 15
+    3300064: Cap_2 16
+    3300066: Cap_2 2
+    3300068: Cap_2 3
+    3300070: Cap_2 4
+    3300072: Cap_2 5
+    3300074: Cap_2 6
+    3300076: Cap_2 7
+    3300078: Cap_2 8
+    3300080: Cap_2 9
+    3300082: chart_2
+    3300084: Cube.1
+    3300086: Cube.1 1
+    3300088: Cube.13
+    3300090: Cube.14
+    3300092: Cube.15
+    3300094: Cube.16
+    3300096: Cube.17
+    3300098: Cube.18
+    3300100: Cube.19
+    3300102: Cube.2
+    3300104: Cube.20
+    3300106: Cube.21
+    3300108: Cube.3
+    3300110: Cube.4
+    3300112: Cube.4 1
+    3300114: Cube.4 2
+    3300116: Cube.4 3
+    3300118: Cube.4 4
+    3300120: Cube.4 5
+    3300122: Cube.4 6
+    3300124: Cube.4 7
+    3300126: Cube.4_0
+    3300128: Cube.4_1
+    3300130: Cube.4_2
+    3300132: Cube.4_3
+    3300134: Cube.4_4
+    3300136: Cube.4_5
+    3300138: Cube.4_6
+    3300140: Cube.4_7
+    3300142: Cube.5
+    3300144: Cube.5 1
+    3300146: Cube.5 2
+    3300148: Cube.5 3
+    3300150: Cube.6
+    3300152: Cube.6 1
+    3300154: Cube.6 2
+    3300156: Cube.6 3
+    3300158: Cube.7
+    3300160: Cube_0
+    3300162: Cube_0 1
+    3300164: Cube_1
+    3300166: Cube_1 1
+    3300168: Cube_2
+    3300170: Cube_2 1
+    3300172: Cube_3
+    3300174: Cube_3 1
+    3300176: Cube_4
+    3300178: Cube_4 1
+    3300180: Cube_5
+    3300182: Cube_5 1
+    3300184: Cube_6
+    3300186: Cube_6 1
+    3300188: Cube_7
+    3300190: Cube_7 1
+    3300192: Cube_8
+    3300194: Cube_8 1
+    3300196: Cube_9
+    3300198: Cube_9 1
+    3300200: CUBE_ORANGE
+    3300202: CUBE_ORANGE.1
+    3300204: CUBE_ORANGE.2
+    3300206: CUBE_ORANGE.3
+    3300208: CUBE_RED
+    3300210: CUBE_WHITE
+    3300212: CUBE_WHITE.1
+    3300214: CUBE_WHITE.1_0
+    3300216: CUBE_WHITE.1_1
+    3300218: CUBE_WHITE.1_2
+    3300220: CUBE_WHITE.1_3
+    3300222: CUBE_WHITE.1_4
+    3300224: CUBE_WHITE.1_5
+    3300226: CUBE_WHITE.1_6
+    3300228: CUBE_WHITE.1_7
+    3300230: CUBE_WHITE.1_8
+    3300232: CUBE_WHITE.1_9
+    3300234: CUBE_WHITE.2
+    3300236: CUBE_WHITE.3
+    3300238: CUBE_WHITE.4
+    3300240: CUBE_WHITE.5
+    3300242: CUBE_WHITE.6
+    3300244: CUBE_YELLOW
+    3300246: CUBE_YELLOW.1
+    3300248: CUBE_YELLOW.2
+    3300250: CUBE_YELLOW.3
+    3300252: CUBE_YELLOW.4
+    3300254: CUBE_YELLOW.4 1
+    3300256: Cylinder
+    3300258: Cylinder 1
+    3300260: Cylinder 2
+    3300262: Cylinder.1
+    3300264: Cylinder.1 1
+    3300266: Cylinder.1 2
+    3300268: Cylinder.2
+    3300270: Cylinder.2 1
+    3300272: Cylinder.2 2
+    3300274: Cylinder.3
+    3300276: Cylinder_0
+    3300278: Cylinder_0 1
+    3300280: Cylinder_0 2
+    3300282: Cylinder_1
+    3300284: Cylinder_2
+    3300286: Cylinder_3
+    3300288: Cylinder_4
+    3300290: Cylinder_5
+    3300292: Cylinder_6
+    3300294: Cylinder_7
+    3300296: d
+    3300298: e
+    3300300: e 1
+    3300302: g
+    3300304: ground
+    3300306: Haus
+    3300308: i
+    3300310: k
+    3300312: letter
+    3300314: M
+    3300316: n
+    3300318: Plane
+    3300320: Plane 1
+    3300322: Plane 2
+    3300324: Plane 3
+    3300326: Plane.1
+    3300328: Plane.1 1
+    3300330: Plane.2
+    3300332: Plane.2 1
+    3300334: Plane.3
+    3300336: Plane.3 1
+    3300338: r
+    3300340: r 1
+    3300342: S
+    3300344: Sweep
+    3300346: t
+    3300348: t 1
+    3300350: t 2
+    3300352: Tube.1
+    3300354: Tube.1 1
+    3300356: Tube.1 2
+    3300358: Tube.1 3
+    3300360: Tube.1_0
+    3300362: Tube.1_0 1
+    3300364: Tube.1_0 2
+    3300366: Tube.2_0
+    3300368: Tube_0
+    3300370: Tube_0 1
+    3300372: u
+    4300000: Sweep
+    4300002: arrow01
+    4300004: CUBE_YELLOW.4
+    4300006: Cylinder.2
+    4300008: Cylinder.1
+    4300010: Cylinder
+    4300012: CUBE_WHITE.6
+    4300014: CUBE_WHITE.5
+    4300016: CUBE_WHITE.4
+    4300018: CUBE_WHITE.1
+    4300020: CUBE_WHITE.3
+    4300022: Plane
+    4300024: Cube_0
+    4300026: Cube_1
+    4300028: Cube_2
+    4300030: Cube_3
+    4300032: Cube_4
+    4300034: Cube_5
+    4300036: Cube_6
+    4300038: Cube_7
+    4300040: Cube_8
+    4300042: Cube_9
+    4300044: CUBE_YELLOW.4
+    4300046: CUBE_YELLOW.3
+    4300048: arrow.1
+    4300050: Cube.6
+    4300052: Cube.5
+    4300054: Cube.4
+    4300056: CUBE_ORANGE.3
+    4300058: CUBE_ORANGE.2
+    4300060: CUBE_YELLOW.2
+    4300062: CUBE_ORANGE.1
+    4300064: CUBE_YELLOW.1
+    4300066: S
+    4300068: Cap_1
+    4300070: Cap_2
+    4300072: t
+    4300074: Cap_1
+    4300076: Cap_2
+    4300078: r
+    4300080: Cap_1
+    4300082: Cap_2
+    4300084: a
+    4300086: Cap_1
+    4300088: Cap_2
+    4300090: t
+    4300092: Cap_1
+    4300094: Cap_2
+    4300096: e
+    4300098: Cap_1
+    4300100: Cap_2
+    4300102: g
+    4300104: Cap_1
+    4300106: Cap_2
+    4300108: i
+    4300110: Cap_1
+    4300112: Cap_2
+    4300114: e
+    4300116: Cap_1
+    4300118: Cap_2
+    4300120: u
+    4300122: Cap_1
+    4300124: Cap_2
+    4300126: n
+    4300128: Cap_1
+    4300130: Cap_2
+    4300132: d
+    4300134: Cap_1
+    4300136: Cap_2
+    4300138: M
+    4300140: Cap_1
+    4300142: Cap_2
+    4300144: a
+    4300146: Cap_1
+    4300148: Cap_2
+    4300150: r
+    4300152: Cap_1
+    4300154: Cap_2
+    4300156: k
+    4300158: Cap_1
+    4300160: Cap_2
+    4300162: t
+    4300164: Cap_1
+    4300166: Cap_2
+    4300168: Cylinder.2
+    4300170: Cylinder.1
+    4300172: Cylinder
+    4300174: Cylinder.3
+    4300176: Cylinder.2
+    4300178: Cylinder.1
+    4300180: Cylinder
+    4300182: chart_2
+    4300184: Cube.1
+    4300186: Cube.4
+    4300188: Cube.4
+    4300190: Cube.3
+    4300192: Cube.2
+    4300194: Plane.3
+    4300196: Cylinder_0
+    4300198: Plane.2
+    4300200: Plane.1
+    4300202: Plane
+    4300204: Tube_0
+    4300206: Tube.2_0
+    4300208: Tube.1_0
+    4300210: Cube.1
+    4300212: CUBE_WHITE.2
+    4300214: CUBE_WHITE.1_0
+    4300216: CUBE_WHITE.1_1
+    4300218: CUBE_WHITE.1_2
+    4300220: CUBE_WHITE.1_3
+    4300222: CUBE_WHITE.1_4
+    4300224: CUBE_WHITE.1_5
+    4300226: CUBE_WHITE.1_6
+    4300228: CUBE_WHITE.1_7
+    4300230: CUBE_WHITE.1_8
+    4300232: CUBE_WHITE.1_9
+    4300234: Plane.3
+    4300236: Cylinder_0
+    4300238: Plane.2
+    4300240: Plane.1
+    4300242: Plane
+    4300244: Tube_0
+    4300246: Tube.1_0
+    4300248: Tube.1_0
+    4300250: letter
+    4300252: Plane
+    4300254: Cube_0
+    4300256: Cube_1
+    4300258: Cube_2
+    4300260: Cube_3
+    4300262: Cube_4
+    4300264: Cube_5
+    4300266: Cube_6
+    4300268: Cube_7
+    4300270: Cube_8
+    4300272: Cube_9
+    4300274: arrow
+    4300276: Tube.1
+    4300278: Tube.1
+    4300280: Tube.1
+    4300282: Tube.1
+    4300284: Cube.4
+    4300286: cake
+    4300288: arrow01
+    4300290: Cube.6
+    4300292: Cube.5
+    4300294: Cube.4
+    4300296: Cube.6
+    4300298: Cube.5
+    4300300: Cube.4
+    4300302: Cube.4
+    4300304: Haus
+    4300306: Cylinder_0
+    4300308: Cylinder_1
+    4300310: Cylinder_2
+    4300312: Cylinder_3
+    4300314: Cylinder_4
+    4300316: Cylinder_5
+    4300318: Cylinder_6
+    4300320: Cylinder_7
+    4300322: Cube.4_0
+    4300324: Cube.4_1
+    4300326: Cube.4_2
+    4300328: Cube.4_3
+    4300330: Cube.4_4
+    4300332: Cube.4_5
+    4300334: Cube.4_6
+    4300336: Cube.4_7
+    4300338: Cube.7
+    4300340: Cube.6
+    4300342: Cube.5
+    4300344: Cube.4
+    4300346: Cube.21
+    4300348: Cube.20
+    4300350: Cube.19
+    4300352: Cube.18
+    4300354: Cube.17
+    4300356: Cube.16
+    4300358: Cube.15
+    4300360: Cube.14
+    4300362: Cube.13
+    4300364: ground
+    4300366: CUBE_ORANGE
+    4300368: CUBE_RED
+    4300370: CUBE_WHITE
+    4300372: CUBE_YELLOW
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
