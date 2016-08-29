@@ -24,6 +24,20 @@ public class MainGameController : MonoBehaviour {
 
 	private Vector3 mainCam3DstartPos;
 
+	[Header ("------ chapter headlines ------")]
+
+	public Text strategieTXT;
+	public Text bauTXT;
+	public Text digiTXT;
+	public Text vertriebTXT;
+
+	private float strategieTXTstartPos;
+	private float bauTXTstartPos;
+	private float digiTXTstartPos;
+	private float vertriebTXTstartPos;
+
+	private float animationDuration = 2F;
+
 	[Header ("------ bauchbinde ------")]
 
 	//bauchbinden 
@@ -118,6 +132,17 @@ public class MainGameController : MonoBehaviour {
 		phoneOff.CrossFadeAlpha (0F, 0F, false);
 
 
+		strategieTXTstartPos = strategieTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+		bauTXTstartPos = bauTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+		digiTXTstartPos = digiTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+		vertriebTXTstartPos = vertriebTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+
+
+		// ---- HEADLINES OFF ----
+		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 
 
 		// ---- BAUCHBINDEN ----
@@ -338,6 +363,35 @@ public class MainGameController : MonoBehaviour {
 
 
 
+
+
+	public void moveStrategieIn() { 
+		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", strategieTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveBauIn() { 
+		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", bauTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveDigiIn() { 
+		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", digiTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveVertriebIn() { 
+		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", vertriebTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+
+
+
+	public void moveStrategieOut() { 
+		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveBauOut() { 
+		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveDigiOut() { 
+		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveVertriebOut() { 
+		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
 
 
 
