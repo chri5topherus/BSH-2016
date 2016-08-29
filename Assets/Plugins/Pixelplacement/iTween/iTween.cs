@@ -5195,7 +5195,7 @@ public class iTween : MonoBehaviour{
 	public static Vector3 copyPosition(Transform transform) {
 		RectTransform rectTransform = transform as RectTransform;
 		if (rectTransform != null) {
-			return new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, 0F);
+			return new Vector3(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y, 0F);
 		} else {
 			return new Vector3(transform.position.x, transform.position.y, transform.position.z);
 		}
@@ -5204,7 +5204,7 @@ public class iTween : MonoBehaviour{
 	public static Vector3 getPosition(Transform transform) {
 		RectTransform rectTransform = transform as RectTransform;
 		if (rectTransform != null) {
-			return rectTransform.localPosition;
+			return rectTransform.anchoredPosition;
 		} else {
 			return transform.position;
 		}
@@ -5213,7 +5213,7 @@ public class iTween : MonoBehaviour{
 	public static void setPosition(Transform transform, Vector3 position) {
 		RectTransform rectTransform = transform as RectTransform;
 		if (rectTransform != null) {
-			rectTransform.localPosition = position;
+			rectTransform.anchoredPosition = position;
 		} else {
 			transform.position = position;
 		}

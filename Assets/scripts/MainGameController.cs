@@ -10,6 +10,18 @@ public class MainGameController : MonoBehaviour {
 
 	public GameObject mainCam2D; 
 	public GameObject mainCam3D;
+
+	public GameObject mainCam3D01;
+	public GameObject mainCam3D02;
+	public GameObject mainCam3D03;
+
+	private float mainCam3D01_startPos;
+	private float mainCam3D02_startPos;
+	private float mainCam3D03_startPos;
+
+	public Text rebuildTime; 
+	public Text rebuildDistance;
+
 	private Vector3 mainCam3DstartPos;
 
 	[Header ("------ bauchbinde ------")]
@@ -20,6 +32,9 @@ public class MainGameController : MonoBehaviour {
 	public Text TXT_bauchbinde01;
 	public GameObject bauchbinde;
 	private bool visibleBauchbinde;
+
+
+
 
 	[Header ("------ questions ------")]
 
@@ -35,8 +50,14 @@ public class MainGameController : MonoBehaviour {
 	public Text TXT_answer03; 
 	public Text TXT_answer04; 
 
-	public GameObject questionsGO;
+	public Text TXT_resultAnswer01; 
+	public Text TXT_resultAnswer02; 
+	public Text TXT_resultAnswer03; 
+	public Text TXT_resultAnswer04; 
 
+
+	public GameObject _question;
+	public GameObject _results;
 
 	//questions array
 	private int currentQuestion;
@@ -56,6 +77,10 @@ public class MainGameController : MonoBehaviour {
 	private float result02; 
 	private float result03; 
 	private float result04; 
+
+	public string currentResultString; 
+	public float currentResultFloat;
+	public int currentResultColor;
 
 	public InputField inputResult01;
 	public InputField inputResult02;
@@ -88,6 +113,8 @@ public class MainGameController : MonoBehaviour {
 		visibleBauchbinde = false;
 		hideBauchbinde ();
 
+		fadeOutResults ();
+
 		TXT_currentQuestion.text = "1 / 3";
 
 
@@ -96,17 +123,40 @@ public class MainGameController : MonoBehaviour {
 
 		currentQuestion = 0;
 
+		// 7 questions + 1 reserved
+
 		//set question text
 		questions = new string[,]{
-			{ "Sind Sie gut durch den Verkehr gekommen?", "Bestens", "Ganz gut", "Ging so", "Eher schlecht als recht" }, 
+			{ "Sind Sie gut durch den Verkehr gekommen?", "A Bestens", "B Ganz gut", "C Ging so", "D Eher schlecht als recht" }, 
+			{ "...", "...", "...", "...", "..." }, 
+			{ "...", "...", "...", "...", "..." },
+			{ "...", "...", "...", "...", "..." },
+			{ "...", "...", "...", "...", "..." },
+			{ "...", "...", "...", "...", "..." },
 			{ "...", "...", "...", "...", "..." }, 
 			{ "...", "...", "...", "...", "..." }
 		};
 
+
+
+
 		//set first question in input fields
 		refreshQuestion ();
-		//hideQuestion ();
 		resetCubes ();
+
+
+
+		// ----- QUESTION POSITION ------
+		//out of sight
+		moveQuestionsInOut(false, 0F, 0F);	
+
+
+
+		//camera setup
+		mainCam3D01_startPos = mainCam3D01.transform.position.x;
+		mainCam3D02_startPos = mainCam3D02.transform.position.x;
+		mainCam3D03_startPos = mainCam3D03.transform.position.x;
+
 	}
 	
 	// Update is called once per frame
@@ -115,7 +165,7 @@ public class MainGameController : MonoBehaviour {
 		/*
 		if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			Debug.Log ("up");
-			StartCoroutine (startAnimation ());
+			StartCoroutine (startAnimatioresultsn ());
 			iTween.MoveTo (mainCam3D, iTween.Hash ("position", new Vector3 (mainCam3D.transform.position.x + 1, mainCam3D.transform.position.y, mainCam3D.transform.transform.position.z), "easetype", iTween.EaseType.easeInOutExpo, "time", 1F));
 		}
 */
@@ -128,6 +178,52 @@ public class MainGameController : MonoBehaviour {
 		iTween.MoveTo(mainCam3D, iTween.Hash("x",  -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 6F));
 
 	}
+
+
+
+
+
+
+	#region rebuild
+
+	public void rebuildModus00() {
+		string tmp = rebuildTime.text; 
+		float durationTmp = float.Parse (tmp);
+		iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
+	}
+
+	public void rebuildModus01() {
+		string tmp = rebuildTime.text; 
+		float durationTmp = float.Parse (tmp);
+		string tmp2 = rebuildDistance.text; 
+		float distanceTmp = float.Parse (tmp2);
+		distanceTmp = distanceTmp / 100f;
+		iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+	}
+
+	public void rebuildModus02() {
+		string tmp = rebuildTime.text; 
+		float durationTmp = float.Parse (tmp);
+		string tmp2 = rebuildDistance.text; 
+		float distanceTmp = float.Parse (tmp2);
+		distanceTmp = distanceTmp / 100f;
+		iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
+		iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+	}
+
+	#endregion
+
+
+
+
+
+
+
 
 
 
@@ -167,12 +263,12 @@ public class MainGameController : MonoBehaviour {
 		TXT_answer03.text = inputTextAnswer03.text;
 		TXT_answer04.text = inputTextAnswer04.text;
 
-		questionsGO.SetActive (true);
+		moveQuestionsInOut (true, 2F, 0F);
 
 	}
 
 	public void hideQuestion() {
-		questionsGO.SetActive (false);
+		//questionsGO.SetActive (false);
 
 	}
 
@@ -205,6 +301,18 @@ public class MainGameController : MonoBehaviour {
 		}
 	}
 		
+
+	private void moveQuestionsInOut(bool into, float duration, float delayBetween) {
+		if (into) {
+			iTween.MoveTo (_question, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0));
+			iTween.MoveTo (_results, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
+		} else {
+			iTween.MoveTo (_question, iTween.Hash ("y", -700F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0));
+			iTween.MoveTo (_results, iTween.Hash ("y", -700F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
+		}
+	}
+
+
 	#endregion
 
 
@@ -220,20 +328,20 @@ public class MainGameController : MonoBehaviour {
 	public void displayResults() {
 		string tmp = inputResult01.text;
 		try{
-		result04 = float.Parse (tmp);
-		result04 = result04 / 100;
+		result01 = float.Parse (tmp);
+		result01 = result01 / 100;
 
 		tmp = inputResult02.text;
-		result03 = float.Parse (tmp);
-		result03 = result03 / 100;
-
-		tmp = inputResult03.text;
 		result02 = float.Parse (tmp);
 		result02 = result02 / 100;
 
+		tmp = inputResult03.text;
+		result03 = float.Parse (tmp);
+		result03 = result03/ 100;
+
 		tmp = inputResult04.text;
-		result01 = float.Parse (tmp);
-		result01 = result01 / 100;
+		result04 = float.Parse (tmp);
+		result04 = result04 / 100;
 		} catch(Exception e) {
 			resultError.text = "wrong input";
 			return;
@@ -251,22 +359,64 @@ public class MainGameController : MonoBehaviour {
 				resetCubesAnimation ();
 			else {
 
+
+				//setFinalValues
+				currentResultFloat =  (Math.Max(result01, Math.Max(result02, Math.Max(result03, result04))));
+
+				if (result01 == currentResultFloat) {
+					Debug.Log ("ident");
+					currentResultColor = 0;
+					currentResultString = questions [currentQuestion, 1];
+				} else if (result02 == currentResultFloat) {
+					currentResultColor = 1;
+					currentResultString = questions [currentQuestion, 2];
+				} else if (result03 == currentResultFloat) {
+					currentResultColor = 2;
+					currentResultString = questions [currentQuestion, 3];
+				} else {
+					currentResultColor = 3;
+					currentResultString = questions [currentQuestion, 4];
+				}
+
+				currentResultFloat *= 100F;
+			
+
+
+				//Debug.Log(currentResultFloat);
+
+
+
+
 				//add percentage to answers
-				TXT_answer01.text = inputTextAnswer01.text + "   " + result04*100 + " %";
-				TXT_answer02.text = inputTextAnswer02.text + "   " + result03*100 + " %";
-				TXT_answer03.text = inputTextAnswer03.text + "   " + result02*100 + " %";
-				TXT_answer04.text = inputTextAnswer04.text + "   " + result01*100 + " %";
+				TXT_answer01.text = inputTextAnswer01.text;
+				TXT_answer02.text = inputTextAnswer02.text;
+				TXT_answer03.text = inputTextAnswer03.text;
+				TXT_answer04.text = inputTextAnswer04.text;
 
 
+				TXT_resultAnswer01.text = result01 * 100F + " %";
+				TXT_resultAnswer02.text = result02 * 100F + " %";
+				TXT_resultAnswer03.text = result03 * 100F + " %";
+				TXT_resultAnswer04.text = result04 * 100F + " %";
+
+				fadeInResults ();
+
+
+
+
+
+				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 3F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 				iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + result01 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + result01 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + result01 * scaleIndex + result02 * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 3F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
-				iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, result02, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0.5F));
-				iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, result03, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
-				iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1.5F));
+
+			
+
+				iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1.5F));
+				iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, result03, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
+				iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, result02, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0.5F));
+				iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 			}
 
 
@@ -276,6 +426,29 @@ public class MainGameController : MonoBehaviour {
 		}
 	}
 		
+
+
+
+	private void fadeInResults() {
+		TXT_resultAnswer01.CrossFadeAlpha (1F, 0.5F, false);
+		TXT_resultAnswer02.CrossFadeAlpha (1F, 0.5F, false);
+		TXT_resultAnswer03.CrossFadeAlpha (1F, 0.5F, false);
+		TXT_resultAnswer04.CrossFadeAlpha (1F, 0.5F, false);
+	} 
+
+	private void fadeOutResults() {
+		TXT_resultAnswer01.CrossFadeAlpha (0F, 0F, false);
+		TXT_resultAnswer02.CrossFadeAlpha (0F, 0F, false);
+		TXT_resultAnswer03.CrossFadeAlpha (0F, 0F, false);
+		TXT_resultAnswer04.CrossFadeAlpha (0F, 0F, false);
+	} 
+
+
+
+
+
+
+
 	public void clearResults() {
 		resultError.text = "";
 		showQuestion ();
@@ -338,6 +511,7 @@ public class MainGameController : MonoBehaviour {
 		iTween.MoveTo(mainCam3D, iTween.Hash("position", mainCam3DstartPos, "easetype", iTween.EaseType.easeInOutQuad, "time", 6F));
 
 	}
+
 
 
 
