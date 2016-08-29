@@ -34,6 +34,12 @@ public class MainGameController : MonoBehaviour {
 	private bool visibleBauchbinde;
 
 
+	[Header ("------ phone off ------")]
+
+	//bauchbinden 
+	public Text phoneOff;
+	private bool phoneOffVisible;
+
 
 
 	[Header ("------ questions ------")]
@@ -105,6 +111,13 @@ public class MainGameController : MonoBehaviour {
 
 		mainCam3DstartPos = new Vector3 (mainCam3D.transform.position.x, mainCam3D.transform.position.y, mainCam3D.transform.position.z);
 		testCube1startPosition = testCube1.transform.position;
+
+		// ---- PHONE OFF ----
+
+		phoneOffVisible = false;
+		phoneOff.CrossFadeAlpha (0F, 0F, false);
+
+
 
 
 		// ---- BAUCHBINDEN ----
@@ -180,6 +193,14 @@ public class MainGameController : MonoBehaviour {
 	}
 
 
+	public void showPhoneOff() {
+		if (phoneOffVisible) 
+			phoneOff.CrossFadeAlpha (0F, 1F, false);
+		else 
+			phoneOff.CrossFadeAlpha (1F, 1F, false);
+		
+		phoneOffVisible = !phoneOffVisible;
+	}
 
 
 
