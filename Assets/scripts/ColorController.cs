@@ -18,12 +18,7 @@ public class ColorController : MonoBehaviour {
 	public float positionBlackLeft; 
 	public float positionBlackRight;
 
-
-	private bool greenPlaneInside;
-	private bool purplePlaneInside;
-	private bool bluePlaneInside;
-	private bool redPlaneInside;
-
+	public Text countdownDuration;
 
 	GameObject _mainControllerGO;
 	MainGameController _mainController;
@@ -41,17 +36,10 @@ public class ColorController : MonoBehaviour {
 		positionBlackLeft = blackLeft.GetComponent<RectTransform> ().anchoredPosition.x;
 		positionBlackRight = blackRight.GetComponent<RectTransform> ().anchoredPosition.x;
 
-		greenPlaneInside = false;
-		purplePlaneInside = false;
-		bluePlaneInside = false;
-		redPlaneInside = false;
 
 		//_mainGameController
 		_mainControllerGO = GameObject.Find("_MainGameController");
 		_mainController = _mainControllerGO.GetComponent<MainGameController>();
-
-
-
 
 
 		//start with two planes
@@ -63,7 +51,6 @@ public class ColorController : MonoBehaviour {
 		fadeInOutImage(0F, purplePlane, 0F);
 		fadeInOutImage(0F, bluePlane, 0F);
 		fadeInOutImage(0F, redPlane, 0F);
-
 		fadeInOutTXT (0F, resultTXT, 0F);
 
 
@@ -74,42 +61,16 @@ public class ColorController : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown (KeyCode.G)) {
-			
-			if (greenPlaneInside) {
-				iTween.MoveTo (greenPlane, iTween.Hash ("x", -970F, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
-			} else {
-				iTween.MoveTo (greenPlane, iTween.Hash ("x", -690F, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
-			}
-			greenPlaneInside = !greenPlaneInside;
-		}
-
-		if (Input.GetKeyDown (KeyCode.P)) {
-			
-			if (purplePlaneInside) {
-				iTween.MoveTo (purplePlane, iTween.Hash ("x", -970F, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
-			} else {
-				iTween.MoveTo (purplePlane, iTween.Hash ("x", -690F, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
-			}
-			purplePlaneInside = !purplePlaneInside;
-		}
-
-		if (Input.GetKeyDown (KeyCode.B)) {
-			TranslateBlackIn ();
-		}
-		if (Input.GetKeyDown (KeyCode.N)) {
-			TranslateBlackOut ();
-		}
-
-
-
 
 	}
 
 
 
 
-
+	IEnumerator refreshDuration() {
+		yield return new WaitForSeconds (1F);
+		countdownDuration.text = "20";
+	}
 
 
 
@@ -120,13 +81,13 @@ public class ColorController : MonoBehaviour {
 
 
 	public void TranslateBlackIn() {
-		iTween.MoveTo (blackLeft, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", 20F));
-		iTween.MoveTo (blackRight, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", 20F));
+		iTween.MoveTo (blackLeft, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", float.Parse(countdownDuration.text)));
+		iTween.MoveTo (blackRight, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", float.Parse(countdownDuration.text)));
 	}
 
 	void TranslateBlackOut() {
-		iTween.MoveTo (blackLeft, iTween.Hash ("x", positionBlackLeft, "easetype", iTween.EaseType.easeInOutSine, "time", 4F));
-		iTween.MoveTo (blackRight, iTween.Hash ("x", positionBlackRight, "easetype", iTween.EaseType.easeInOutSine, "time", 4F));
+		iTween.MoveTo (blackLeft, iTween.Hash ("x", positionBlackLeft, "easetype", iTween.EaseType.easeInOutSine, "time", 2F));
+		iTween.MoveTo (blackRight, iTween.Hash ("x", positionBlackRight, "easetype", iTween.EaseType.easeInOutSine, "time", 2F));
 	}
 
 

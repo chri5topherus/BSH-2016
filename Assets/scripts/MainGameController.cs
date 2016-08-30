@@ -102,8 +102,6 @@ public class MainGameController : MonoBehaviour {
 	public GameObject _question06;
 	public GameObject _result06;
 
-
-
 	//questions array
 	private int currentQuestion;
 
@@ -121,7 +119,7 @@ public class MainGameController : MonoBehaviour {
 	private float result01; 
 	private float result02; 
 	private float result03; 
-	private float result04; 
+	//private float result04; 
 
 	public string currentResultString; 
 	public float currentResultFloat;
@@ -132,7 +130,7 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputResult03;
 	public InputField inputResult04;
 
-	[Header ("------ objects ------")]
+	[Header ("------ cube objects ------")]
 
 	//objects
 
@@ -179,11 +177,10 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbinde08.text = "Schüttler";
 		inputTextBauchbinde09.text = "Biermann";
 		inputTextBauchbinde10.text = "empty";
-
 		visibleBauchbinde = false;
 		hideBauchbinde ();
 
-
+		// ---- RESULTS ----
 		fadeOutResults (TXT_01_allresultArray);
 		fadeOutResults (TXT_02_allresultArray);
 		fadeOutResults (TXT_03_allresultArray);
@@ -195,11 +192,7 @@ public class MainGameController : MonoBehaviour {
 
 
 
-		// ----- QUESTION ------
-		currentQuestion = 0;
-
-
-		// get questions from TXT in editor
+	
 		// set question text
 		questions = new string[,]{
 			{ "Braucht die genossenschaftliche FinanzGruppe eine klare Strategie für den Umgang mit Finanzierungs-Plattformen?", "A Ja", "B Nein", "C Weiß nicht" }, 
@@ -211,23 +204,20 @@ public class MainGameController : MonoBehaviour {
 		};
 
 
-
-
+		// ----- QUESTION ------
+		currentQuestion = 0;
 		//set first question in input fields
 		refreshQuestion ();
 		resetCubes ();
+			
 
-
-
-		// ----- QUESTION POSITION ------
-		//out of sight
+		// ----- QUESTION POSITION - NOT VISIBLE ------ 
 		moveQuestionsInOut(_question01, _result01, false, 0F, 0F);	
 		moveQuestionsInOut(_question02, _result02, false, 0F, 0F);	
 		moveQuestionsInOut(_question03, _result03, false, 0F, 0F);	
 		moveQuestionsInOut(_question04, _result04, false, 0F, 0F);	
 		moveQuestionsInOut(_question05, _result05, false, 0F, 0F);	
 		moveQuestionsInOut(_question06, _result06, false, 0F, 0F);	
-
 
 
 		//camera setup
@@ -252,11 +242,8 @@ public class MainGameController : MonoBehaviour {
 
 
 
-	public void moveCam01() {
-		iTween.MoveTo(mainCam3D, iTween.Hash("x",  -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 6F));
 
-	}
-
+	#region phone
 
 	public void showPhoneOff() {
 		if (phoneOffVisible) 
@@ -267,7 +254,7 @@ public class MainGameController : MonoBehaviour {
 		phoneOffVisible = !phoneOffVisible;
 	}
 
-
+	#endregion
 
 
 	#region rebuild
@@ -281,6 +268,7 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
 		} catch(Exception e) { 
+			Debug.Log (e);
 		}
 
 	}
@@ -297,7 +285,8 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
-		} catch(Exception e) { 
+		} catch(Exception e) {
+			Debug.Log (e);
 		}
 
 	}
@@ -315,19 +304,12 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
 		} catch(Exception e) { 
+			Debug.Log (e);
 		}
 
 	}
 
 	#endregion
-
-
-
-
-
-
-
-
 
 
 	#region bauchbinde
@@ -439,9 +421,6 @@ public class MainGameController : MonoBehaviour {
 		}
 
 	}
-		
-
-
 
 	private void refreshQuestion() {
 		inputTextQuestion.text = questions[currentQuestion,0];
@@ -449,8 +428,6 @@ public class MainGameController : MonoBehaviour {
 		inputTextAnswer02.text = questions[currentQuestion,2];
 		inputTextAnswer03.text = questions[currentQuestion,3];
 	}
-
-
 
 	public void showNextQuestion() {
 		if (currentQuestion < 5) {
@@ -495,19 +472,15 @@ public class MainGameController : MonoBehaviour {
 		} else {
 			moveQuestionsInOut (_question06, _result06, false, 2F, delayTmp);
 		}
-
-
 		resultError.text = "";
 		resetCubesAnimated ();
-
 	}
 
 
 	#endregion
 
 
-
-
+	#region headlines animation
 
 	public void moveStrategieIn() { 
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", strategieTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
@@ -537,7 +510,7 @@ public class MainGameController : MonoBehaviour {
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
 	}
 
-
+	#endregion
 
 
 	#region results
@@ -563,6 +536,7 @@ public class MainGameController : MonoBehaviour {
 		result04 = result04 / 100;
 		*/
 		} catch(Exception e) {
+			Debug.Log (e);
 			resultError.text = "wrong input";
 			return;
 		}
@@ -579,9 +553,8 @@ public class MainGameController : MonoBehaviour {
 				//resetCubesAnimated ();
 			} else {
 
-
-				//setFinalValues
-				currentResultFloat =  (Math.Max(result01, Math.Max(result02, Math.Max(result03, result04))));
+				//setFinalValues for SWING
+				currentResultFloat =  (Math.Max(result01, Math.Max(result02, Math.Max(result03, 0F))));
 
 				if (result01 == currentResultFloat) {
 					Debug.Log ("ident");
@@ -634,11 +607,10 @@ public class MainGameController : MonoBehaviour {
 				}
 
 
-
-
-				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 3F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				//CUBE ANIMATION
+				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 3F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 				//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
 				//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
@@ -649,13 +621,10 @@ public class MainGameController : MonoBehaviour {
 
 
 		} else {
-			//resultError.text = "not 100% -> " + (100 - sum*100) + " missing";
-			resultError.text = "not 100%";
+
+			resultError.text = (100 - sum*100) + "% only";
 		}
 	}
-		
-
-	
 
 
 	private void fadeInResults(Text[] txtArray) {
@@ -669,10 +638,6 @@ public class MainGameController : MonoBehaviour {
 		txtArray[1].CrossFadeAlpha(0F, 0F, false);
 		txtArray[2].CrossFadeAlpha(0F, 0F, false);
 	} 
-
-
-
-
 
 
 	private void resetCubes() { 
@@ -706,6 +671,11 @@ public class MainGameController : MonoBehaviour {
 
 
 	#endregion
+
+
+
+
+
 
 
 	public void moveCamLeft() {
