@@ -120,13 +120,13 @@ public class ColorController : MonoBehaviour {
 
 
 	public void TranslateBlackIn() {
-		iTween.MoveTo (blackLeft, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
-		iTween.MoveTo (blackRight, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
+		iTween.MoveTo (blackLeft, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", 20F));
+		iTween.MoveTo (blackRight, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", 20F));
 	}
 
 	void TranslateBlackOut() {
-		iTween.MoveTo (blackLeft, iTween.Hash ("x", positionBlackLeft, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
-		iTween.MoveTo (blackRight, iTween.Hash ("x", positionBlackRight, "easetype", iTween.EaseType.easeInOutExpo, "time", 5F));
+		iTween.MoveTo (blackLeft, iTween.Hash ("x", positionBlackLeft, "easetype", iTween.EaseType.easeInOutSine, "time", 4F));
+		iTween.MoveTo (blackRight, iTween.Hash ("x", positionBlackRight, "easetype", iTween.EaseType.easeInOutSine, "time", 4F));
 	}
 
 
@@ -135,7 +135,7 @@ public class ColorController : MonoBehaviour {
 	}
 
 	IEnumerator showColorResult() {
-		yield return new WaitForSeconds (1F);
+		yield return new WaitForSeconds (0.5F);
 
 
 		//get winner TXT

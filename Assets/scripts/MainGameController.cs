@@ -67,26 +67,42 @@ public class MainGameController : MonoBehaviour {
 
 	[Header ("------ questions ------")]
 
-	//questions
+	//fields for controll interface
 	public InputField inputTextQuestion;
 	public InputField inputTextAnswer01;
 	public InputField inputTextAnswer02;
 	public InputField inputTextAnswer03;
 	public InputField inputTextAnswer04;
-	public Text TXT_question; 
-	public Text TXT_answer01; 
-	public Text TXT_answer02; 
-	public Text TXT_answer03; 
-	public Text TXT_answer04; 
 
-	public Text TXT_resultAnswer01; 
-	public Text TXT_resultAnswer02; 
-	public Text TXT_resultAnswer03; 
-	public Text TXT_resultAnswer04; 
+	public Text[] TXT_01_allresultArray = new Text[3];
+	public Text[] TXT_02_allresultArray = new Text[3];
+	public Text[] TXT_03_allresultArray = new Text[3];
+	public Text[] TXT_04_allresultArray = new Text[3];
+	public Text[] TXT_05_allresultArray = new Text[3];
+	public Text[] TXT_06_allresultArray = new Text[3];
 
 
-	public GameObject _question;
-	public GameObject _results;
+
+	// translation objects
+	public GameObject _question01;
+	public GameObject _result01;
+
+	public GameObject _question02;
+	public GameObject _result02;
+
+	public GameObject _question03;
+	public GameObject _result03;
+
+	public GameObject _question04;
+	public GameObject _result04;
+
+	public GameObject _question05;
+	public GameObject _result05;
+
+	public GameObject _question06;
+	public GameObject _result06;
+
+
 
 	//questions array
 	private int currentQuestion;
@@ -122,7 +138,7 @@ public class MainGameController : MonoBehaviour {
 
 	private Vector3 testCube1startPosition;
 
-	public GameObject testCube1;
+	//public GameObject testCube1;
 	public GameObject testCube2;
 	public GameObject testCube3;
 	public GameObject testCube4;
@@ -133,19 +149,17 @@ public class MainGameController : MonoBehaviour {
 	void Start () {
 
 		mainCam3DstartPos = new Vector3 (mainCam3D.transform.position.x, mainCam3D.transform.position.y, mainCam3D.transform.position.z);
-		testCube1startPosition = testCube1.transform.position;
+		testCube1startPosition = testCube2.transform.position;
 
 		// ---- PHONE OFF ----
-
 		phoneOffVisible = false;
 		phoneOff.CrossFadeAlpha (0F, 0F, false);
 
-
+		// ---- HEADLINES ----
 		strategieTXTstartPos = strategieTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		bauTXTstartPos = bauTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		digiTXTstartPos = digiTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		vertriebTXTstartPos = vertriebTXT.GetComponent<RectTransform> ().anchoredPosition.x;
-
 
 		// ---- HEADLINES OFF ----
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
@@ -153,12 +167,8 @@ public class MainGameController : MonoBehaviour {
 		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 
-
 		// ---- BAUCHBINDEN ----
-
-
 		bauchbindeStartPos = bauchbinde.transform.position.y;
-		Debug.Log ("pos start " + bauchbindeStartPos);
 		inputTextBauchbinde01.text = "Nova ";
 		inputTextBauchbinde02.text = "Herr Hinterberger ";
 		inputTextBauchbinde03.text = "Herr Klein";
@@ -173,28 +183,31 @@ public class MainGameController : MonoBehaviour {
 		visibleBauchbinde = false;
 		hideBauchbinde ();
 
-		fadeOutResults ();
 
-		TXT_currentQuestion.text = "1 / 3";
+		fadeOutResults (TXT_01_allresultArray);
+		fadeOutResults (TXT_02_allresultArray);
+		fadeOutResults (TXT_03_allresultArray);
+		fadeOutResults (TXT_04_allresultArray);
+		fadeOutResults (TXT_05_allresultArray);
+		fadeOutResults (TXT_06_allresultArray);
+
+		TXT_currentQuestion.text = "1 / 6";
 
 
 
 		// ----- QUESTION ------
-
 		currentQuestion = 0;
 
-		// 7 questions + 1 reserved
 
-		//set question text
+		// get questions from TXT in editor
+		// set question text
 		questions = new string[,]{
-			{ "Sind Sie gut durch den Verkehr gekommen?", "A Bestens", "B Ganz gut", "C Ging so", "D Eher schlecht als recht" }, 
-			{ "...", "...", "...", "...", "..." }, 
-			{ "...", "...", "...", "...", "..." },
-			{ "...", "...", "...", "...", "..." },
-			{ "...", "...", "...", "...", "..." },
-			{ "...", "...", "...", "...", "..." },
-			{ "...", "...", "...", "...", "..." }, 
-			{ "...", "...", "...", "...", "..." }
+			{ "Braucht die genossenschaftliche FinanzGruppe eine klare Strategie für den Umgang mit Finanzierungs-Plattformen?", "A Ja", "B Nein", "C Weiß nicht" }, 
+			{ "Frage 4", "nicht gut", "gut", "..."},
+			{ "Welchen Marktanteil können wir gemeinsam in 2021 realisieren?", "A 20% Marktanteil", "B 25% Marktanteil", "C 30% Marktanteil" }, 
+			{ "Bis zu welcher Bonitätsklasse nach der BVR-Masterskala vergeben aus Ihrer Sicht der Großteil der Banken normalerweise Baufinanzierungen?", "A bis 2B", "B bis 2D", "C bis 3B"},
+			{ "Ist das vorgestellte modulare Angebot an Außendienstfunktionen der richtige Weg für die weitere Zusammenarbeit?", "A Ja", "B Nein", "C Weiß nicht" },
+			{ "Setzen Sie die genossenschaftliche Beratung in Ihrer Bank bereits um?", "A Ja, in vollem Umfang", "B Noch nicht - aber in Vorbereitung", "C Nein"}
 		};
 
 
@@ -208,7 +221,12 @@ public class MainGameController : MonoBehaviour {
 
 		// ----- QUESTION POSITION ------
 		//out of sight
-		moveQuestionsInOut(false, 0F, 0F);	
+		moveQuestionsInOut(_question01, _result01, false, 0F, 0F);	
+		moveQuestionsInOut(_question02, _result02, false, 0F, 0F);	
+		moveQuestionsInOut(_question03, _result03, false, 0F, 0F);	
+		moveQuestionsInOut(_question04, _result04, false, 0F, 0F);	
+		moveQuestionsInOut(_question05, _result05, false, 0F, 0F);	
+		moveQuestionsInOut(_question06, _result06, false, 0F, 0F);	
 
 
 
@@ -405,20 +423,23 @@ public class MainGameController : MonoBehaviour {
 	#region question
 
 	public void showQuestion() {
-		TXT_question.text = inputTextQuestion.text;
-		TXT_answer01.text = inputTextAnswer01.text;
-		TXT_answer02.text = inputTextAnswer02.text;
-		TXT_answer03.text = inputTextAnswer03.text;
-		TXT_answer04.text = inputTextAnswer04.text;
-
-		moveQuestionsInOut (true, 2F, 0F);
+		float delayTmp = 1F;
+		if (currentQuestion == 0) {
+			moveQuestionsInOut (_question01, _result01, true, 2F, delayTmp);
+		} else if (currentQuestion == 1) {
+			moveQuestionsInOut (_question02, _result02, true, 2F, delayTmp);
+		} else if (currentQuestion == 2) {
+			moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
+		} else if (currentQuestion == 3) {
+			moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
+		} else if (currentQuestion == 4) {
+			moveQuestionsInOut (_question05, _result05, true, 2F, delayTmp);
+		} else {
+			moveQuestionsInOut (_question06, _result06, true, 2F, delayTmp);
+		}
 
 	}
-
-	public void hideQuestion() {
-		//questionsGO.SetActive (false);
-
-	}
+		
 
 
 
@@ -427,16 +448,14 @@ public class MainGameController : MonoBehaviour {
 		inputTextAnswer01.text = questions[currentQuestion,1];
 		inputTextAnswer02.text = questions[currentQuestion,2];
 		inputTextAnswer03.text = questions[currentQuestion,3];
-		inputTextAnswer04.text = questions[currentQuestion,4];
-
 	}
 
 
 
 	public void showNextQuestion() {
-		if (currentQuestion < 2) {
+		if (currentQuestion < 5) {
 			currentQuestion++;
-			TXT_currentQuestion.text = (currentQuestion+1) + " / 3";
+			TXT_currentQuestion.text = (currentQuestion+1) + " / 6";
 			refreshQuestion ();
 		}
 	}
@@ -444,20 +463,43 @@ public class MainGameController : MonoBehaviour {
 	public void showPreviousQuestion() {
 		if (currentQuestion > 0) {
 			currentQuestion--;
-			TXT_currentQuestion.text = (currentQuestion+1) + " / 3";
+			TXT_currentQuestion.text = (currentQuestion+1) + " / 6";
 			refreshQuestion ();
 		}
 	}
 		
 
-	private void moveQuestionsInOut(bool into, float duration, float delayBetween) {
+	private void moveQuestionsInOut(GameObject ques, GameObject res, bool into, float duration, float delayBetween) {
 		if (into) {
-			iTween.MoveTo (_question, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0));
-			iTween.MoveTo (_results, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
+			iTween.MoveTo (ques, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0F));
+			iTween.MoveTo (res, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
 		} else {
-			iTween.MoveTo (_question, iTween.Hash ("y", -700F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0));
-			iTween.MoveTo (_results, iTween.Hash ("y", -700F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
+			iTween.MoveTo (ques, iTween.Hash ("y", -800F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
+			iTween.MoveTo (res, iTween.Hash ("y", -800F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0F));
 		}
+	}
+
+
+	public void removeResults() {
+		float delayTmp = 0F;
+		if (currentQuestion == 0) {
+			moveQuestionsInOut (_question01, _result01, false, 2F, delayTmp);
+		} else if (currentQuestion == 1) {
+			moveQuestionsInOut (_question02, _result02, false, 2F, delayTmp);
+		} else if (currentQuestion == 2) {
+			moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
+		} else if (currentQuestion == 3) {
+			moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
+		} else if (currentQuestion == 4) {
+			moveQuestionsInOut (_question05, _result05, false, 2F, delayTmp);
+		} else {
+			moveQuestionsInOut (_question06, _result06, false, 2F, delayTmp);
+		}
+
+
+		resultError.text = "";
+		resetCubesAnimated ();
+
 	}
 
 
@@ -515,16 +557,17 @@ public class MainGameController : MonoBehaviour {
 		tmp = inputResult03.text;
 		result03 = float.Parse (tmp);
 		result03 = result03/ 100;
-
+			/*
 		tmp = inputResult04.text;
 		result04 = float.Parse (tmp);
 		result04 = result04 / 100;
+		*/
 		} catch(Exception e) {
 			resultError.text = "wrong input";
 			return;
 		}
 		//check sum
-		float sum = result01 + result02 + result03 + result04;
+		float sum = result01 + result02 + result03;
 
 		if (sum == 1 || sum == 0) {
 			resultError.text = "";
@@ -532,9 +575,9 @@ public class MainGameController : MonoBehaviour {
 			float spaceBetweenCubes = 0.1F;
 			float scaleIndex = 2f;
 
-			if (sum == 0)
-				resetCubesAnimation ();
-			else {
+			if (sum == 0) {
+				//resetCubesAnimated ();
+			} else {
 
 
 				//setFinalValues
@@ -556,28 +599,39 @@ public class MainGameController : MonoBehaviour {
 				}
 
 				currentResultFloat *= 100F;
-			
 
 
-				//Debug.Log(currentResultFloat);
-
-
-
-
-				//add percentage to answers
-				TXT_answer01.text = inputTextAnswer01.text;
-				TXT_answer02.text = inputTextAnswer02.text;
-				TXT_answer03.text = inputTextAnswer03.text;
-				TXT_answer04.text = inputTextAnswer04.text;
-
-
-				TXT_resultAnswer01.text = result01 * 100F + " %";
-				TXT_resultAnswer02.text = result02 * 100F + " %";
-				TXT_resultAnswer03.text = result03 * 100F + " %";
-				TXT_resultAnswer04.text = result04 * 100F + " %";
-
-				fadeInResults ();
-
+				if (currentQuestion == 0) {
+					TXT_01_allresultArray [0].text = result01 * 100F + " %";
+					TXT_01_allresultArray [1].text = result02 * 100F + " %";
+					TXT_01_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_01_allresultArray);
+				} else if (currentQuestion == 1) {
+					TXT_02_allresultArray [0].text = result01 * 100F + " %";
+					TXT_02_allresultArray [1].text = result02 * 100F + " %";
+					TXT_02_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_02_allresultArray);
+				} else if (currentQuestion == 2) {
+					TXT_03_allresultArray [0].text = result01 * 100F + " %";
+					TXT_03_allresultArray [1].text = result02 * 100F + " %";
+					TXT_03_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_03_allresultArray);
+				} else if (currentQuestion == 3) {
+					TXT_04_allresultArray [0].text = result01 * 100F + " %";
+					TXT_04_allresultArray [1].text = result02 * 100F + " %";
+					TXT_04_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_04_allresultArray);
+				} else if (currentQuestion == 4) {
+					TXT_05_allresultArray [0].text = result01 * 100F + " %";
+					TXT_05_allresultArray [1].text = result02 * 100F + " %";
+					TXT_05_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_05_allresultArray);
+				} else if (currentQuestion == 5) {
+					TXT_06_allresultArray [0].text = result01 * 100F + " %";
+					TXT_06_allresultArray [1].text = result02 * 100F + " %";
+					TXT_06_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_06_allresultArray);
+				}
 
 
 
@@ -585,15 +639,12 @@ public class MainGameController : MonoBehaviour {
 				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 3F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + result04 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
-
-			
-
-				iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1.5F));
-				iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, result03, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
+				//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, result03, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 				iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, result02, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0.5F));
-				iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
 			}
 
 
@@ -604,56 +655,48 @@ public class MainGameController : MonoBehaviour {
 	}
 		
 
+	
 
 
-	private void fadeInResults() {
-		TXT_resultAnswer01.CrossFadeAlpha (1F, 0.5F, false);
-		TXT_resultAnswer02.CrossFadeAlpha (1F, 0.5F, false);
-		TXT_resultAnswer03.CrossFadeAlpha (1F, 0.5F, false);
-		TXT_resultAnswer04.CrossFadeAlpha (1F, 0.5F, false);
+	private void fadeInResults(Text[] txtArray) {
+		txtArray[0].CrossFadeAlpha(1F, 0.5F, false);
+		txtArray[1].CrossFadeAlpha(1F, 0.5F, false);
+		txtArray[2].CrossFadeAlpha(1F, 0.5F, false);
 	} 
 
-	private void fadeOutResults() {
-		TXT_resultAnswer01.CrossFadeAlpha (0F, 0F, false);
-		TXT_resultAnswer02.CrossFadeAlpha (0F, 0F, false);
-		TXT_resultAnswer03.CrossFadeAlpha (0F, 0F, false);
-		TXT_resultAnswer04.CrossFadeAlpha (0F, 0F, false);
+	private void fadeOutResults(Text[] txtArray) {
+		txtArray[0].CrossFadeAlpha(0F, 0F, false);
+		txtArray[1].CrossFadeAlpha(0F, 0F, false);
+		txtArray[2].CrossFadeAlpha(0F, 0F, false);
 	} 
 
 
 
 
 
-
-
-	public void clearResults() {
-		resultError.text = "";
-		showQuestion ();
-		resetCubesAnimation ();
-	}
 
 	private void resetCubes() { 
-		testCube1.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
+		//testCube1.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
 		testCube2.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
 		testCube3.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
 		testCube4.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
 
-		testCube1.transform.localScale = new Vector3(1F, 0F, 1F);
+		//testCube1.transform.localScale = new Vector3(1F, 0F, 1F);
 		testCube2.transform.localScale = new Vector3(1F, 0F, 1F);
 		testCube3.transform.localScale = new Vector3(1F, 0F, 1F);
 		testCube4.transform.localScale = new Vector3(1F, 0F, 1F);
 
 	}
 
-	private void resetCubesAnimation() {
+	private void resetCubesAnimated() {
 		
-		iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
 
-		iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
