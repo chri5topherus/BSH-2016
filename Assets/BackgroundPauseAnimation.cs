@@ -11,13 +11,27 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 	public GameObject img06; 
 	public GameObject img07; 
 	public GameObject img08; 
+	public GameObject img09; 
+
+	public float waitFor; 
+	public float duration;
+
+	public bool runningForward; 
+	public bool runningReversed;
+	public bool stopingAnimation;
+
 
 	// Use this for initialization
 	void Start () {
 
-		setAllScaleZero ();
+		waitFor = 0.5F; 
+		duration = 4F;
+		setAllScale (0F);
 
-		startAnimation ();
+		runningForward = false; 
+		runningReversed = false; 
+		stopingAnimation = false;
+
 	}
 	
 	// Update is called once per frame
@@ -25,42 +39,220 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 		
 	}
 
-
-	void startAnimation() {
-
-		//for (int i = 0; i < 30; i++) {
-		iTween.ScaleTo (img01, iTween.Hash ("x", 1F,  "time", 4F, "delay", 0F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img02, iTween.Hash ("x", 1F,  "time", 4F, "delay", 0.5F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img03, iTween.Hash ("x", 1F,  "time", 4F, "delay", 1F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img04, iTween.Hash ("x", 1F,  "time", 4F, "delay", 1.5F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img05, iTween.Hash ("x", 1F,  "time", 4F, "delay", 2F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img06, iTween.Hash ("x", 1F,  "time", 4F, "delay", 2.5F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img07, iTween.Hash ("x", 1F,  "time", 4F, "delay", 3F, "easetype", iTween.EaseType.linear));
-		iTween.ScaleTo (img08, iTween.Hash ("x", 1F,  "time", 4F, "delay", 3.5F, "easetype", iTween.EaseType.linear));
-
-
-		StartCoroutine (changeOrder (4F, img01));
-		StartCoroutine (changeOrder (4.5F, img02));
-		StartCoroutine (changeOrder (5F, img03));
-		StartCoroutine (changeOrder (5.5F, img04));
-		StartCoroutine (changeOrder (6F, img05));
-		StartCoroutine (changeOrder (6.5F, img06));
-		StartCoroutine (changeOrder (7F, img07));
-		StartCoroutine (changeOrder (7.5F, img08));
-
-		StartCoroutine (delayAnimation ());
-		//}
-	
-		//img04.GetComponent<RectTransform> ().SetAsLastSibling ();
-	
+	public void StartAnimation() {
+		setAllScale (0F);
+		runningForward = true;
+		runningReversed = false;
+		stopingAnimation = false;
+		StartCoroutine (animationImg01 ());
 	}
 
-	IEnumerator delayAnimation() {
-		yield return new WaitForSeconds (4F);
-		//setAllScaleZero ();
-		startAnimation ();
-
+	public void StartReversedAnimation() {
+		runningForward = false;
+		runningReversed = true;
+		stopingAnimation = false;
+		sortAllLayers (); 
+		setAllScale (1F);
+		StartCoroutine (animationReversedImg01 ());
 	}
+
+	public void StopAnimation() {
+		stopingAnimation = true;
+	}
+
+	private void sortAllLayers() {
+		img09.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img08.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img07.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img06.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img05.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img04.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img03.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img02.GetComponent<RectTransform> ().SetAsLastSibling ();
+		img01.GetComponent<RectTransform> ().SetAsLastSibling ();
+	}
+
+	IEnumerator sendImgBack(GameObject img, float wait) { 
+		yield return new WaitForSeconds (wait);
+		img.GetComponent<RectTransform> ().SetAsFirstSibling ();
+	}
+
+
+
+	IEnumerator animationReversedImg01() { 
+		yield return new WaitForSeconds (waitFor);
+		img01.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img01, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img01, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg02 ());	
+	}
+
+
+
+	IEnumerator animationReversedImg02() { 
+		yield return new WaitForSeconds (waitFor);
+		img02.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img02, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img02, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg03 ());	
+	}
+
+	IEnumerator animationReversedImg03() { 
+		yield return new WaitForSeconds (waitFor);
+		img03.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img03, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img03, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg04 ());	
+	}
+
+	IEnumerator animationReversedImg04() { 
+		yield return new WaitForSeconds (waitFor);
+		img04.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img04, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img04, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg05 ());	
+	}
+
+	IEnumerator animationReversedImg05() { 
+		yield return new WaitForSeconds (waitFor);
+		img05.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img05, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img05, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg06 ());	
+	}
+
+	IEnumerator animationReversedImg06() { 
+		yield return new WaitForSeconds (waitFor);
+		img06.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img06, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img06, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg07 ());	
+	}
+
+	IEnumerator animationReversedImg07() { 
+		yield return new WaitForSeconds (waitFor);
+		img07.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img07, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img07, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg08 ());	
+	}
+
+	IEnumerator animationReversedImg08() { 
+		yield return new WaitForSeconds (waitFor);
+		img08.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img08, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img08, duration));
+		if(runningReversed)
+			StartCoroutine (animationReversedImg09 ());	
+	}
+
+	IEnumerator animationReversedImg09() { 
+		yield return new WaitForSeconds (waitFor);
+		img09.GetComponent<RectTransform>().localScale = new Vector3(1F, 1F, 1F); 
+		iTween.ScaleTo (img09, iTween.Hash ("x", 0F,  "time", duration, "easetype", iTween.EaseType.linear));
+		StartCoroutine (sendImgBack (img09, duration));
+		if (runningReversed) {
+			if(!stopingAnimation)
+				StartCoroutine (animationReversedImg01 ());	
+		}
+	}
+
+
+
+
+
+
+	IEnumerator animationImg01() { 
+		yield return new WaitForSeconds (waitFor);
+		img01.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img01.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img01, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg02 ());	
+	}
+
+	IEnumerator animationImg02() { 
+		yield return new WaitForSeconds (waitFor);
+		img02.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img02.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img02, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg03 ());	
+	}
+
+	IEnumerator animationImg03() { 
+		yield return new WaitForSeconds (waitFor);
+		img03.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img03.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img03, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg04 ());	
+	}
+
+	IEnumerator animationImg04() { 
+		yield return new WaitForSeconds (waitFor);
+		img04.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img04.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img04, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg05 ());	
+	}
+
+	IEnumerator animationImg05() { 
+		yield return new WaitForSeconds (waitFor);
+		img05.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img05.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img05, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg06 ());	
+	}
+
+	IEnumerator animationImg06() { 
+		yield return new WaitForSeconds (waitFor);
+		img06.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img06.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img06, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg07 ());	
+	}
+
+	IEnumerator animationImg07() { 
+		yield return new WaitForSeconds (waitFor);
+		img07.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img07.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img07, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg08 ());	
+	}
+
+	IEnumerator animationImg08() { 
+		yield return new WaitForSeconds (waitFor);
+		img08.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img08.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img08, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg09 ());	
+	}
+
+	IEnumerator animationImg09() { 
+		yield return new WaitForSeconds (waitFor);
+		img09.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+		img09.GetComponent<RectTransform> ().SetAsLastSibling ();
+		iTween.ScaleTo (img09, iTween.Hash ("x", 1F,  "time", duration, "easetype", iTween.EaseType.linear));
+		if(runningForward)
+		StartCoroutine (animationImg01 ());	
+	}
+
+
+
+
 
 	IEnumerator changeOrder(float wait, GameObject obj) {
 		yield return new WaitForSeconds (wait);
@@ -69,15 +261,16 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 	}
 
 
-	void setAllScaleZero() {
-		img01.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img02.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img03.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img04.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img05.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img06.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img07.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
-		img08.GetComponent<RectTransform>().localScale = new Vector3(0F, 1F, 1F); 
+	void setAllScale(float x) {
+		img01.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img02.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img03.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img04.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img05.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img06.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img07.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img08.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
+		img09.GetComponent<RectTransform>().localScale = new Vector3(x, 1F, 1F); 
 	}
 
 
