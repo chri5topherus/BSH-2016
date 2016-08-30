@@ -43,9 +43,18 @@ public class MainGameController : MonoBehaviour {
 	//bauchbinden 
 	public InputField inputTextBauchbinde01;
 	public InputField inputTextBauchbinde02;
+	public InputField inputTextBauchbinde03;
+	public InputField inputTextBauchbinde04;
+	public InputField inputTextBauchbinde05;
+	public InputField inputTextBauchbinde06;
+	public InputField inputTextBauchbinde07;
+	public InputField inputTextBauchbinde08;
+	public InputField inputTextBauchbinde09;
+	public InputField inputTextBauchbinde10;
 	public Text TXT_bauchbinde01;
 	public GameObject bauchbinde;
 	private bool visibleBauchbinde;
+	private float bauchbindeStartPos;
 
 
 	[Header ("------ phone off ------")]
@@ -147,7 +156,20 @@ public class MainGameController : MonoBehaviour {
 
 		// ---- BAUCHBINDEN ----
 
-		inputTextBauchbinde01.text = TXT_bauchbinde01.text;
+
+		bauchbindeStartPos = bauchbinde.transform.position.y;
+		Debug.Log ("pos start " + bauchbindeStartPos);
+		inputTextBauchbinde01.text = "Nova ";
+		inputTextBauchbinde02.text = "Herr Hinterberger ";
+		inputTextBauchbinde03.text = "Herr Klein";
+		inputTextBauchbinde04.text = "Prof. Dr. Rieck";
+		inputTextBauchbinde05.text = "Jochen Maier";
+		inputTextBauchbinde06.text = "Sabine Baron";
+		inputTextBauchbinde07.text = "Kristin Seyboth";
+		inputTextBauchbinde08.text = "Schüttler";
+		inputTextBauchbinde09.text = "Biermann";
+		inputTextBauchbinde10.text = "empty";
+
 		visibleBauchbinde = false;
 		hideBauchbinde ();
 
@@ -296,22 +318,85 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde01.text;
-			iTween.MoveTo (bauchbinde, iTween.Hash ("y", -300F, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
-
 
 	public void showBauchbinde02() {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde02.text;
-			iTween.MoveTo (bauchbinde, iTween.Hash ("y", -300F, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde03() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde03.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde04() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde04.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde05() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde05.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde06() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde06.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde07() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde07.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde08() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde08.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde09() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde09.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde10() {
+		if (!visibleBauchbinde) {
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde10.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
 
 	public void hideBauchbinde() {
 		visibleBauchbinde = false;
-		iTween.MoveTo(bauchbinde, iTween.Hash("y", -500F, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		iTween.MoveTo(bauchbinde, iTween.Hash("y", 500F , "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 	}
 
 	#endregion
