@@ -11,6 +11,7 @@ public class ColorController : MonoBehaviour {
 	public GameObject greenPlane; 		// #2
 	public GameObject redPlane;			// #3
 
+	private Vector3 startPosResult;
 
 	public GameObject blackLeft;
 	public GameObject blackRight;
@@ -33,9 +34,13 @@ public class ColorController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+//startPosResult = 
+
 		positionBlackLeft = blackLeft.GetComponent<RectTransform> ().anchoredPosition.x;
 		positionBlackRight = blackRight.GetComponent<RectTransform> ().anchoredPosition.x;
 
+
+		startPosResult = resultTXT.GetComponent<RectTransform> ().anchoredPosition;
 
 		//_mainGameController
 		_mainControllerGO = GameObject.Find("_MainGameController");
@@ -62,6 +67,38 @@ public class ColorController : MonoBehaviour {
 
 
 
+	}
+
+
+	public void removeResults() {
+		float translateX = -550F;
+		float duration = 1F;
+
+		if (_mainController.currentResultColor == 0) {
+			iTween.MoveTo (purplePlane, iTween.Hash ("x", translateX, "easetype", iTween.EaseType.easeInOutSine, "time", duration));
+			StartCoroutine (repositionColorPlanes (purplePlane, duration));
+		} else if (_mainController.currentResultColor == 1) {
+			iTween.MoveTo (bluePlane, iTween.Hash ("x", translateX, "easetype", iTween.EaseType.easeInOutSine, "time", duration));
+			StartCoroutine (repositionColorPlanes (bluePlane, duration));
+		} else if (_mainController.currentResultColor == 2) {
+			iTween.MoveTo (greenPlane, iTween.Hash ("x", translateX, "easetype", iTween.EaseType.easeInOutSine, "time", duration));
+			StartCoroutine (repositionColorPlanes (greenPlane, duration));
+		} else {
+			iTween.MoveTo (redPlane, iTween.Hash ("x", translateX, "easetype", iTween.EaseType.easeInOutSine, "time", duration));
+			StartCoroutine (repositionColorPlanes (redPlane, duration));
+		}
+	} 
+
+
+	IEnumerator repositionColorPlanes(GameObject plane, float wait) {
+		iTween.MoveTo (resultTXT.gameObject, iTween.Hash ("x", -400F, "easetype", iTween.EaseType.easeInOutSine, "time", wait));
+		yield return new WaitForSeconds (wait); 
+		//plane invisible
+		fadeInOutImage(0F, plane, 0F);
+		iTween.MoveTo (plane, iTween.Hash ("x", 0, "easetype", iTween.EaseType.linear, "time", 0.01F));
+		//result invisible
+		iTween.MoveTo (resultTXT.gameObject, iTween.Hash ("x", startPosResult.x, "time", 0.01F));
+		fadeInOutTXT (0F, resultTXT, 0F);
 	}
 
 
@@ -117,7 +154,7 @@ public class ColorController : MonoBehaviour {
 			}
 
 			resultTXT.text = _mainController.currentResultString + " " + _mainController.currentResultFloat + " %";
-			;
+
 
 			TranslateBlackOut ();
 		}
