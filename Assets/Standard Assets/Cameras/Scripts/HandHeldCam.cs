@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 namespace UnityStandardAssets.Cameras
 {
@@ -16,17 +18,41 @@ namespace UnityStandardAssets.Cameras
 		private float bx;
 		private float by;
 
+		private float waitingFloat;
+		public Text waitingTimeTXT;
+
+		private bool running;
+
 		void Start () {
+			waitingFloat = float.Parse (waitingTimeTXT.text);
+			running = false;
+		}
+
+		private void startMotion() {
+			waitingFloat = float.Parse (waitingTimeTXT.text);
+			running = true;
 			StartPosition = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
 			counter = 0;
 			waitForReachedPos = false;
 		}
+			
+		public void stopRunning() {
+			running = false;
+			waitingFloat = float.Parse (waitingTimeTXT.text);
+			//StartCoroutine(startRunning());
+		} 
 
+		private IEnumerator startRunning() {
+			//TODO
+			yield return new WaitForSeconds (waitingFloat+0.5F);
+			startMotion ();
+		}
 
         protected override void FollowTarget(float deltaTime)
         {
+			if (running) {
 			
-           // base.FollowTarget(deltaTime);
+				// base.FollowTarget(deltaTime);
 
 
 				bx = (Mathf.PerlinNoise (0, Time.time * m_SwaySpeed) - 0.5f);
@@ -35,46 +61,32 @@ namespace UnityStandardAssets.Cameras
 				bx *= m_BaseSwayAmount;
 				by *= m_BaseSwayAmount;
 
-				//float tx = (Mathf.PerlinNoise(0, Time.time*m_SwaySpeed) - 0.5f) + m_TrackingBias;
-				//float ty = ((Mathf.PerlinNoise(0, (Time.time*m_SwaySpeed) + 100)) - 0.5f) + m_TrackingBias;
 
-				//tx *= -m_TrackingSwayAmount*m_FollowVelocity.x;
-				//ty *= m_TrackingSwayAmount*m_FollowVelocity.y;
+				//if below certain level add value until at startPosition (all 4 axis) 
 
-				//transform.Translate(bx + tx, 0 , by + ty);
-		
-			
+				if (transform.position.x < StartPosition.x - 1F) {
+					Debug.Log ("small");
+					bx = 0.01f;
+				} 
 
+				if (transform.position.x > StartPosition.x + 1F) {
+					Debug.Log ("big");
+					bx = -0.01f;
+				}
 
+				if (transform.position.z < StartPosition.z - 1F) {
+					Debug.Log ("small2");
+					by = 0.01f;
+				} 
 
+				if (transform.position.z > StartPosition.z + 1F) {
+					Debug.Log ("big2");
+					by = -0.01f;
+				}
 
-			//fix position here!!!
-			//if below certain level add value until at startPosition (all 4 axis) 
+				transform.Translate (bx, 0, by);
 
-
-			if (transform.position.x < StartPosition.x - 1F) {
-				Debug.Log ("small");
-				bx = 0.01f;
-			} 
-
-			if (transform.position.x > StartPosition.x + 1F) {
-				Debug.Log ("big");
-				bx = -0.01f;
 			}
-
-			if (transform.position.z < StartPosition.z - 1F) {
-				Debug.Log ("small2");
-				by = 0.01f;
-			} 
-
-			if (transform.position.z > StartPosition.z + 1F) {
-				Debug.Log ("big2");
-				by = -0.01f;
-			}
-
-			transform.Translate (bx, 0, by);
-
-
         }
     }
 }

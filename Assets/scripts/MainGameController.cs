@@ -135,6 +135,9 @@ public class MainGameController : MonoBehaviour {
 	private float result03; 
 	//private float result04; 
 
+	public float spaceBetweenCubes;
+	public float scaleIndex;
+
 	public string currentResultString; 
 	public float currentResultFloat;
 	public int currentResultColor;
@@ -217,7 +220,8 @@ public class MainGameController : MonoBehaviour {
 
 		TXT_currentQuestion.text = "1 / 6";
 
-
+		spaceBetweenCubes = 0.2F;
+		scaleIndex = 8.15f;
 
 	
 		// set question text
@@ -488,8 +492,8 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo (ques, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0F));
 			iTween.MoveTo (res, iTween.Hash ("y", 0, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
 		} else {
-			iTween.MoveTo (ques, iTween.Hash ("y", -800F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
-			iTween.MoveTo (res, iTween.Hash ("y", -800F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0F));
+			iTween.MoveTo (ques, iTween.Hash ("y", -850F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", delayBetween));
+			iTween.MoveTo (res, iTween.Hash ("y", -850F, "easetype", iTween.EaseType.easeInOutExpo, "time", duration, "delay", 0F));
 		}
 	}
 
@@ -583,9 +587,6 @@ public class MainGameController : MonoBehaviour {
 		if (sum == 1 || sum == 0) {
 			resultError.text = "";
 
-			float spaceBetweenCubes = 0.1F;
-			float scaleIndex = 2f;
-
 			if (sum == 0) {
 				//resetCubesAnimated ();
 			} else {
@@ -616,38 +617,62 @@ public class MainGameController : MonoBehaviour {
 					TXT_01_allresultArray [1].text = result02 * 100F + " %";
 					TXT_01_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_01_allresultArray);
+
+					//TODO
+					//animate specific cube
+
 				} else if (currentQuestion == 1) {
 					TXT_02_allresultArray [0].text = result01 * 100F + " %";
 					TXT_02_allresultArray [1].text = result02 * 100F + " %";
 					TXT_02_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_02_allresultArray);
+
+					//TODO
+					//animate specific cube
+
 				} else if (currentQuestion == 2) {
 					TXT_03_allresultArray [0].text = result01 * 100F + " %";
 					TXT_03_allresultArray [1].text = result02 * 100F + " %";
 					TXT_03_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_03_allresultArray);
+
+					//TODO
+					//animate specific cube
+
 				} else if (currentQuestion == 3) {
 					TXT_04_allresultArray [0].text = result01 * 100F + " %";
 					TXT_04_allresultArray [1].text = result02 * 100F + " %";
 					TXT_04_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_04_allresultArray);
+
+					//TODO
+					//animate specific cube
+
 				} else if (currentQuestion == 4) {
 					TXT_05_allresultArray [0].text = result01 * 100F + " %";
 					TXT_05_allresultArray [1].text = result02 * 100F + " %";
 					TXT_05_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_05_allresultArray);
+
+					//TODO
+					//animate specific cube
+
 				} else if (currentQuestion == 5) {
 					TXT_06_allresultArray [0].text = result01 * 100F + " %";
 					TXT_06_allresultArray [1].text = result02 * 100F + " %";
 					TXT_06_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_06_allresultArray);
+
+					//TODO
+					//animate specific cube
+
 				}
 
 
 				//CUBE ANIMATION
-				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 3F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + spaceBetweenCubes * 0F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 				//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
 				//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
@@ -655,7 +680,6 @@ public class MainGameController : MonoBehaviour {
 				iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, result02, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0.5F));
 				iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
 			}
-
 
 		} else {
 
