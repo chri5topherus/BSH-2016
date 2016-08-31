@@ -51,7 +51,21 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputTextBauchbinde08;
 	public InputField inputTextBauchbinde09;
 	public InputField inputTextBauchbinde10;
+
+	public InputField inputTextBauchbindeTitle01;
+	public InputField inputTextBauchbindeTitle02;
+	public InputField inputTextBauchbindeTitle03;
+	public InputField inputTextBauchbindeTitle04;
+	public InputField inputTextBauchbindeTitle05;
+	public InputField inputTextBauchbindeTitle06;
+	public InputField inputTextBauchbindeTitle07;
+	public InputField inputTextBauchbindeTitle08;
+	public InputField inputTextBauchbindeTitle09;
+	public InputField inputTextBauchbindeTitle10;
+
+
 	public Text TXT_bauchbinde01;
+	public Text TXT_bauchbinde02;
 	public GameObject bauchbinde;
 	private bool visibleBauchbinde;
 	private float bauchbindeStartPos;
@@ -177,6 +191,19 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbinde08.text = "Schüttler";
 		inputTextBauchbinde09.text = "Biermann";
 		inputTextBauchbinde10.text = "empty";
+
+		inputTextBauchbindeTitle01.text = "empty1";
+		inputTextBauchbindeTitle02.text = "empty2";
+		inputTextBauchbindeTitle03.text = "empty3";
+		inputTextBauchbindeTitle04.text = "empty4";
+		inputTextBauchbindeTitle05.text = "empty5";
+		inputTextBauchbindeTitle06.text = "empty6";
+		inputTextBauchbindeTitle07.text = "empty7";
+		inputTextBauchbindeTitle08.text = "empty8";
+		inputTextBauchbindeTitle09.text = "empty9";
+		inputTextBauchbindeTitle10.text = "empty10";
+
+
 		visibleBauchbinde = false;
 		hideBauchbinde ();
 
@@ -318,6 +345,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde01.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle01.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -326,6 +354,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde02.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle02.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -334,6 +363,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde03.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle03.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -342,6 +372,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde04.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle04.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -350,6 +381,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde05.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle05.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -358,6 +390,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde06.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle06.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -366,6 +399,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde07.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle07.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -374,6 +408,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde08.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle08.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -382,6 +417,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde09.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle09.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -390,6 +426,7 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde10.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle10.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
