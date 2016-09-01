@@ -45,17 +45,15 @@ namespace UnityStandardAssets.Cameras
 		public void stopRunningWithoutContinue() {
 			running = false;
 		}
-
-
+			
 		private IEnumerator startRunning() {
-			//TODO
 			yield return new WaitForSeconds (waitingFloat+0.5F);
 			startMotion ();
 		}
 
         protected override void FollowTarget(float deltaTime)
         {
-			if (running) {
+			if (false) {
 			
 				// base.FollowTarget(deltaTime);
 
@@ -68,22 +66,18 @@ namespace UnityStandardAssets.Cameras
 
 
 				//if below certain level add value until at startPosition (all 4 axis) 
-
 				if (transform.position.x < StartPosition.x - 1F) {
 					Debug.Log ("small");
 					bx = 0.01f;
 				} 
-
 				if (transform.position.x > StartPosition.x + 1F) {
 					Debug.Log ("big");
 					bx = -0.01f;
 				}
-
 				if (transform.position.z < StartPosition.z - 1F) {
 					Debug.Log ("small2");
 					by = 0.01f;
 				} 
-
 				if (transform.position.z > StartPosition.z + 1F) {
 					Debug.Log ("big2");
 					by = -0.01f;

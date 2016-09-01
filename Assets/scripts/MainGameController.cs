@@ -88,6 +88,7 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputTextAnswer03;
 	public InputField inputTextAnswer04;
 
+	public Text[] TXT_00_allresultArray = new Text[3];
 	public Text[] TXT_01_allresultArray = new Text[3];
 	public Text[] TXT_02_allresultArray = new Text[3];
 	public Text[] TXT_03_allresultArray = new Text[3];
@@ -98,6 +99,9 @@ public class MainGameController : MonoBehaviour {
 
 
 	// translation objects
+	public GameObject _question00;
+	public GameObject _result00;
+
 	public GameObject _question01;
 	public GameObject _result01;
 
@@ -152,11 +156,41 @@ public class MainGameController : MonoBehaviour {
 	//objects
 
 	private Vector3 testCube1startPosition;
+	private Vector3 cubeQ01startPosition;
+	private Vector3 cubeQ02startPosition;
+	private Vector3 cubeQ03startPosition;
+	private Vector3 cubeQ04startPosition;
+	private Vector3 cubeQ05startPosition;
+	private Vector3 cubeQ06startPosition;
 
 	//public GameObject testCube1;
 	public GameObject testCube2;
 	public GameObject testCube3;
 	public GameObject testCube4;
+
+	public GameObject cubeQ01_01;
+	public GameObject cubeQ01_02;
+	public GameObject cubeQ01_03;
+
+	public GameObject cubeQ02_01;
+	public GameObject cubeQ02_02;
+	public GameObject cubeQ02_03;
+
+	public GameObject cubeQ03_01;
+	public GameObject cubeQ03_02;
+	public GameObject cubeQ03_03;
+
+	public GameObject cubeQ04_01;
+	public GameObject cubeQ04_02;
+	public GameObject cubeQ04_03;
+
+	public GameObject cubeQ05_01;
+	public GameObject cubeQ05_02;
+	public GameObject cubeQ05_03;
+
+	public GameObject cubeQ06_01;
+	public GameObject cubeQ06_02;
+	public GameObject cubeQ06_03;
 
 
 
@@ -165,6 +199,13 @@ public class MainGameController : MonoBehaviour {
 
 		mainCam3DstartPos = new Vector3 (mainCam3D.transform.position.x, mainCam3D.transform.position.y, mainCam3D.transform.position.z);
 		testCube1startPosition = testCube2.transform.position;
+		cubeQ01startPosition = cubeQ01_01.transform.position;
+		cubeQ02startPosition = cubeQ02_01.transform.position;
+		cubeQ03startPosition = cubeQ03_01.transform.position;
+		cubeQ04startPosition = cubeQ04_01.transform.position;
+		cubeQ05startPosition = cubeQ05_01.transform.position;
+		cubeQ06startPosition = cubeQ06_01.transform.position;
+
 
 		// ---- PHONE OFF ----
 		phoneOffVisible = false;
@@ -211,6 +252,7 @@ public class MainGameController : MonoBehaviour {
 		hideBauchbinde ();
 
 		// ---- RESULTS ----
+		fadeOutResults (TXT_00_allresultArray);
 		fadeOutResults (TXT_01_allresultArray);
 		fadeOutResults (TXT_02_allresultArray);
 		fadeOutResults (TXT_03_allresultArray);
@@ -218,14 +260,15 @@ public class MainGameController : MonoBehaviour {
 		fadeOutResults (TXT_05_allresultArray);
 		fadeOutResults (TXT_06_allresultArray);
 
-		TXT_currentQuestion.text = "1 / 6";
+		TXT_currentQuestion.text = "0 / 6";
 
 		spaceBetweenCubes = 0.2F;
-		scaleIndex = 8.15f;
+		scaleIndex = 6.12f;
 
 	
 		// set question text
 		questions = new string[,]{
+			{ "Was möchten Sie heute Abend trinken?", "A Bier", "B Wein", "C Wasser" }, 
 			{ "Braucht die genossenschaftliche FinanzGruppe eine klare Strategie für den Umgang mit Finanzierungs-Plattformen?", "A Ja", "B Nein", "C Weiß nicht" }, 
 			{ "Frage 4", "nicht gut", "gut", "..."},
 			{ "Welchen Marktanteil können wir gemeinsam in 2021 realisieren?", "A 20% Marktanteil", "B 25% Marktanteil", "C 30% Marktanteil" }, 
@@ -239,10 +282,18 @@ public class MainGameController : MonoBehaviour {
 		currentQuestion = 0;
 		//set first question in input fields
 		refreshQuestion ();
-		resetCubes ();
+		resetCubes (testCube2, testCube3, testCube4, testCube1startPosition);
+		resetCubes (cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition);
+		resetCubes (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition);
+		resetCubes (cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition);
+		resetCubes (cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition);
+		resetCubes (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
+		resetCubes (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
+
 			
 
 		// ----- QUESTION POSITION - NOT VISIBLE ------ 
+		moveQuestionsInOut(_question00, _result00, false, 0F, 0F);	
 		moveQuestionsInOut(_question01, _result01, false, 0F, 0F);	
 		moveQuestionsInOut(_question02, _result02, false, 0F, 0F);	
 		moveQuestionsInOut(_question03, _result03, false, 0F, 0F);	
@@ -452,14 +503,16 @@ public class MainGameController : MonoBehaviour {
 	public void showQuestion() {
 		float delayTmp = 1F;
 		if (currentQuestion == 0) {
-			moveQuestionsInOut (_question01, _result01, true, 2F, delayTmp);
+			moveQuestionsInOut (_question00, _result00, true, 2F, delayTmp);
 		} else if (currentQuestion == 1) {
-			moveQuestionsInOut (_question02, _result02, true, 2F, delayTmp);
+			moveQuestionsInOut (_question01, _result01, true, 2F, delayTmp);
 		} else if (currentQuestion == 2) {
-			moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
+			moveQuestionsInOut (_question02, _result02, true, 2F, delayTmp);
 		} else if (currentQuestion == 3) {
-			moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
+			moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
 		} else if (currentQuestion == 4) {
+			moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
+		} else if (currentQuestion == 5) {
 			moveQuestionsInOut (_question05, _result05, true, 2F, delayTmp);
 		} else {
 			moveQuestionsInOut (_question06, _result06, true, 2F, delayTmp);
@@ -475,9 +528,9 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void showNextQuestion() {
-		if (currentQuestion < 5) {
+		if (currentQuestion < 6) {
 			currentQuestion++;
-			TXT_currentQuestion.text = (currentQuestion+1) + " / 6";
+			TXT_currentQuestion.text = (currentQuestion) + " / 6";
 			refreshQuestion ();
 		}
 	}
@@ -485,7 +538,7 @@ public class MainGameController : MonoBehaviour {
 	public void showPreviousQuestion() {
 		if (currentQuestion > 0) {
 			currentQuestion--;
-			TXT_currentQuestion.text = (currentQuestion+1) + " / 6";
+			TXT_currentQuestion.text = (currentQuestion) + " / 6";
 			refreshQuestion ();
 		}
 	}
@@ -505,20 +558,41 @@ public class MainGameController : MonoBehaviour {
 	public void removeResults() {
 		float delayTmp = 0F;
 		if (currentQuestion == 0) {
-			moveQuestionsInOut (_question01, _result01, false, 2F, delayTmp);
+			moveQuestionsInOut (_question00, _result00, false, 2F, delayTmp);
 		} else if (currentQuestion == 1) {
-			moveQuestionsInOut (_question02, _result02, false, 2F, delayTmp);
+			moveQuestionsInOut (_question01, _result01, false, 2F, delayTmp);
 		} else if (currentQuestion == 2) {
-			moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
+			moveQuestionsInOut (_question02, _result02, false, 2F, delayTmp);
 		} else if (currentQuestion == 3) {
-			moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
+			moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
 		} else if (currentQuestion == 4) {
+			moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
+		} else if (currentQuestion == 5) {
 			moveQuestionsInOut (_question05, _result05, false, 2F, delayTmp);
 		} else {
 			moveQuestionsInOut (_question06, _result06, false, 2F, delayTmp);
 		}
 		resultError.text = "";
-		resetCubesAnimated ();
+		resetCubesAnimated (testCube2, testCube3, testCube4, testCube1startPosition);
+		resetCubesAnimated (cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition);
+		resetCubesAnimated (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition);
+		resetCubesAnimated (cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition);
+		resetCubesAnimated (cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition);
+		resetCubesAnimated (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
+		resetCubesAnimated (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
+
+		StartCoroutine (removeResultsAfter (2F));
+	}
+
+	IEnumerator removeResultsAfter(float wait) {
+		yield return new WaitForSeconds (wait);
+		fadeOutResults (TXT_00_allresultArray);
+		fadeOutResults (TXT_01_allresultArray);
+		fadeOutResults (TXT_02_allresultArray);
+		fadeOutResults (TXT_03_allresultArray);
+		fadeOutResults (TXT_04_allresultArray);
+		fadeOutResults (TXT_05_allresultArray);
+		fadeOutResults (TXT_06_allresultArray);
 	}
 
 
@@ -562,7 +636,7 @@ public class MainGameController : MonoBehaviour {
 
 
 
-	public void displayResults() {
+	public void showResults() {
 		string tmp = inputResult01.text;
 		try{
 		result01 = float.Parse (tmp);
@@ -617,72 +691,72 @@ public class MainGameController : MonoBehaviour {
 
 
 				if (currentQuestion == 0) {
+					TXT_00_allresultArray [0].text = result01 * 100F + " %";
+					TXT_00_allresultArray [1].text = result02 * 100F + " %";
+					TXT_00_allresultArray [2].text = result03 * 100F + " %";
+					fadeInResults (TXT_00_allresultArray);
+
+					//animate specific cube
+					animateCubesOut(testCube2, testCube3, testCube4, testCube1startPosition.y);
+
+				} else if (currentQuestion == 1) {
 					TXT_01_allresultArray [0].text = result01 * 100F + " %";
 					TXT_01_allresultArray [1].text = result02 * 100F + " %";
 					TXT_01_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_01_allresultArray);
 
-					//TODO
 					//animate specific cube
+					animateCubesOut(cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition.y);
 
-				} else if (currentQuestion == 1) {
+				} else if (currentQuestion == 2) {
 					TXT_02_allresultArray [0].text = result01 * 100F + " %";
 					TXT_02_allresultArray [1].text = result02 * 100F + " %";
 					TXT_02_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_02_allresultArray);
 
-					//TODO
 					//animate specific cube
+					animateCubesOut(cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
 
-				} else if (currentQuestion == 2) {
+				} else if (currentQuestion == 3) {
 					TXT_03_allresultArray [0].text = result01 * 100F + " %";
 					TXT_03_allresultArray [1].text = result02 * 100F + " %";
 					TXT_03_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_03_allresultArray);
 
-					//TODO
 					//animate specific cube
+					animateCubesOut(cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition.y);
 
-				} else if (currentQuestion == 3) {
+				} else if (currentQuestion == 4) {
 					TXT_04_allresultArray [0].text = result01 * 100F + " %";
 					TXT_04_allresultArray [1].text = result02 * 100F + " %";
 					TXT_04_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_04_allresultArray);
 
-					//TODO
 					//animate specific cube
+					animateCubesOut(cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition.y);
 
-				} else if (currentQuestion == 4) {
+				} else if (currentQuestion == 5) {
 					TXT_05_allresultArray [0].text = result01 * 100F + " %";
 					TXT_05_allresultArray [1].text = result02 * 100F + " %";
 					TXT_05_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_05_allresultArray);
 
-					//TODO
 					//animate specific cube
+					animateCubesOut(cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition.y);
 
-				} else if (currentQuestion == 5) {
+				} else if (currentQuestion == 6) {
 					TXT_06_allresultArray [0].text = result01 * 100F + " %";
 					TXT_06_allresultArray [1].text = result02 * 100F + " %";
 					TXT_06_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_06_allresultArray);
 
-					//TODO
 					//animate specific cube
+					animateCubesOut(cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition.y);
 
-				}
+				}  
 
 
-				//CUBE ANIMATION
-				iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y + 0F * scaleIndex + spaceBetweenCubes * 0F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
-				//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, result03, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-				iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, result02, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0.5F));
-				iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
 			}
 
 		} else {
@@ -704,32 +778,63 @@ public class MainGameController : MonoBehaviour {
 		txtArray[2].CrossFadeAlpha(0F, 0F, false);
 	} 
 
+	private void animateCubesOut(GameObject cube01, GameObject cube02, GameObject cube03, float startPos) { 
 
-	private void resetCubes() { 
+		//move result to tight
+		if (currentQuestion == 0) {
+			iTween.MoveTo (_result00, iTween.Hash ("x", _result00.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		} else if (currentQuestion == 1) {
+			iTween.MoveTo (_result01, iTween.Hash ("x", _result01.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		} else if (currentQuestion == 2) {
+			iTween.MoveTo (_result02, iTween.Hash ("x", _result02.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		} else if (currentQuestion == 3) {
+			iTween.MoveTo (_result03, iTween.Hash ("x", _result03.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		} else if (currentQuestion == 4) {
+			iTween.MoveTo (_result04, iTween.Hash ("x", _result04.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		} else if (currentQuestion == 5) {
+			iTween.MoveTo (_result05, iTween.Hash ("x", _result05.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		} else {
+			iTween.MoveTo (_result06, iTween.Hash ("x", _result06.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
+		}
+			
+		//CUBE ANIMATION
+		iTween.MoveTo (cube03, iTween.Hash ("y", startPos + 0F * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.MoveTo (cube02, iTween.Hash ("y", startPos + 0F * scaleIndex + result03 * scaleIndex + spaceBetweenCubes * 1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.MoveTo (cube01, iTween.Hash ("y", startPos + 0F * scaleIndex + spaceBetweenCubes * 0F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+
+		//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, result04, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.ScaleTo (cube01, iTween.Hash ("scale", new Vector3 (1F, result03, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.ScaleTo (cube02, iTween.Hash ("scale", new Vector3 (1F, result02, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0.5F));
+		iTween.ScaleTo (cube03, iTween.Hash ("scale", new Vector3 (1F, result01, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 1F));
+	}
+
+
+	private void resetCubes(GameObject cube01, GameObject cube02, GameObject cube03, Vector3 startPos) { 
 		//testCube1.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
-		testCube2.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
-		testCube3.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
-		testCube4.transform.position = new Vector3 (testCube1startPosition.x, testCube1startPosition.y - 0.1F, testCube1startPosition.z);
+		cube01.transform.position = new Vector3 (startPos.x, startPos.y - 0.1F, startPos.z);
+		cube02.transform.position = new Vector3 (startPos.x, startPos.y - 0.1F, startPos.z);
+		cube03.transform.position = new Vector3 (startPos.x, startPos.y - 0.1F, startPos.z);
 
 		//testCube1.transform.localScale = new Vector3(1F, 0F, 1F);
-		testCube2.transform.localScale = new Vector3(1F, 0F, 1F);
-		testCube3.transform.localScale = new Vector3(1F, 0F, 1F);
-		testCube4.transform.localScale = new Vector3(1F, 0F, 1F);
+		cube01.transform.localScale = new Vector3(1F, 0F, 1F);
+		cube02.transform.localScale = new Vector3(1F, 0F, 1F);
+		cube03.transform.localScale = new Vector3(1F, 0F, 1F);
 
 	}
 
-	private void resetCubesAnimated() {
+	private void resetCubesAnimated(GameObject cube01, GameObject cube02, GameObject cube03, Vector3 startPos) {
 		
 		//iTween.MoveTo (testCube1, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-		iTween.MoveTo (testCube2, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-		iTween.MoveTo (testCube3, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-		iTween.MoveTo (testCube4, iTween.Hash ("y", testCube1startPosition.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.MoveTo (cube01, iTween.Hash ("y", startPos.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.MoveTo (cube02, iTween.Hash ("y", startPos.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.MoveTo (cube03, iTween.Hash ("y", startPos.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 
 
 		//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-		iTween.ScaleTo (testCube2, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-		iTween.ScaleTo (testCube3, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-		iTween.ScaleTo (testCube4, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.ScaleTo (cube01, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.ScaleTo (cube02, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
+		iTween.ScaleTo (cube03, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 	
 	}
 

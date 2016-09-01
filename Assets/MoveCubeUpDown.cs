@@ -5,10 +5,8 @@ using System.Collections;
 public class MoveCubeUpDown : MonoBehaviour {
 
 	private float wait;
-
 	public float duration;
 
-	// Use this for initialization
 	void Start () {
 		wait = Random.value;
 		wait *= 4F;
@@ -16,8 +14,7 @@ public class MoveCubeUpDown : MonoBehaviour {
 		duration = 2F;
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}

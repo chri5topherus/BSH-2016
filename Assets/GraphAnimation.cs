@@ -13,7 +13,7 @@ public class GraphAnimation : MonoBehaviour {
 
 	void Update()
 	{
-		transform.localPosition = new Vector3(_startPosition.x, _startPosition.y * Mathf.Cos(Time.time), _startPosition.z);
+		transform.localPosition = new Vector3(_startPosition.x, _startPosition.y * Mathf.Cos(Time.time/2F), _startPosition.z);
 	}
 
 	// * 

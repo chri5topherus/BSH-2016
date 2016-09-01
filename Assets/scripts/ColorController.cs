@@ -46,7 +46,6 @@ public class ColorController : MonoBehaviour {
 		_mainControllerGO = GameObject.Find("_MainGameController");
 		_mainController = _mainControllerGO.GetComponent<MainGameController>();
 
-
 		//start with two planes
 		//greenPlane.transform.SetParent(_foreground.transform);
 		//purplePlane.transform.SetParent (_background.transform);
@@ -60,13 +59,8 @@ public class ColorController : MonoBehaviour {
 
 
 	}
-
-	// Update is called once per frame
+		
 	void Update () {
-
-
-
-
 	}
 
 
@@ -108,13 +102,6 @@ public class ColorController : MonoBehaviour {
 		yield return new WaitForSeconds (1F);
 		countdownDuration.text = "20";
 	}
-
-
-
-
-
-
-
 
 
 	public void TranslateBlackIn() {
