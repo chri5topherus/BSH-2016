@@ -39,8 +39,13 @@ namespace UnityStandardAssets.Cameras
 		public void stopRunning() {
 			running = false;
 			waitingFloat = float.Parse (waitingTimeTXT.text);
-			//StartCoroutine(startRunning());
+			StartCoroutine(startRunning());
 		} 
+
+		public void stopRunningWithoutContinue() {
+			running = false;
+		}
+
 
 		private IEnumerator startRunning() {
 			//TODO

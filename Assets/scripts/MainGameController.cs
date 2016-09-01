@@ -252,9 +252,9 @@ public class MainGameController : MonoBehaviour {
 
 
 		//camera setup
-		mainCam3D01_startPos = mainCam3D01.transform.position.x;
-		mainCam3D02_startPos = mainCam3D02.transform.position.x;
-		mainCam3D03_startPos = mainCam3D03.transform.position.x;
+		mainCam3D01_startPos = mainCam3D01.transform.localPosition.x;
+		mainCam3D02_startPos = mainCam3D02.transform.localPosition.x;
+		mainCam3D03_startPos = mainCam3D03.transform.localPosition.x;
 
 	}
 	
@@ -291,13 +291,15 @@ public class MainGameController : MonoBehaviour {
 	#region rebuild
 
 	public void rebuildModus00() {
+
+
 		string tmp = rebuildTime.text; 
 		float durationTmp;
 		try{
 			durationTmp = float.Parse (tmp);
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) { 
 			Debug.Log (e);
 		}
@@ -305,6 +307,7 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void rebuildModus01() {
+
 		string tmp = rebuildTime.text; 
 		float durationTmp;
 		float distanceTmp;
@@ -313,9 +316,9 @@ public class MainGameController : MonoBehaviour {
 			string tmp2 = rebuildDistance.text; 
 			distanceTmp = float.Parse (tmp2);
 		distanceTmp = distanceTmp / 100f;
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) {
 			Debug.Log (e);
 		}
@@ -323,6 +326,7 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void rebuildModus02() {
+
 		string tmp = rebuildTime.text; 
 		float durationTmp;
 		float distanceTmp;
@@ -331,9 +335,9 @@ public class MainGameController : MonoBehaviour {
 			string tmp2 = rebuildDistance.text; 
 			distanceTmp = float.Parse (tmp2);
 			distanceTmp = distanceTmp / 100f;
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) { 
 			Debug.Log (e);
 		}
