@@ -58,8 +58,11 @@ namespace UnityStandardAssets.Cameras
 				// base.FollowTarget(deltaTime);
 
 
-				bx = (Mathf.PerlinNoise (0, Time.time * m_SwaySpeed) - 0.5f);
-				by = (Mathf.PerlinNoise (0, (Time.time * m_SwaySpeed) + 100)) - 0.5f;
+				//bx = (Mathf.PerlinNoise (0, Time.time * m_SwaySpeed) - 0.5f);
+				//by = (Mathf.PerlinNoise (0, (Time.time * m_SwaySpeed) + 100)) - 0.5f;
+
+				bx = (Mathf.PerlinNoise (0, 0));
+				by = (Mathf.PerlinNoise (0, 0));
 
 				bx *= m_BaseSwayAmount;
 				by *= m_BaseSwayAmount;

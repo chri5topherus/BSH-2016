@@ -96,6 +96,13 @@ public class MainGameController : MonoBehaviour {
 	public Text[] TXT_05_allresultArray = new Text[3];
 	public Text[] TXT_06_allresultArray = new Text[3];
 
+	public Text[] TXT_00_resultLeftArray = new Text[3];
+	public Text[] TXT_01_resultLeftArray = new Text[3];
+	public Text[] TXT_02_resultLeftArray = new Text[3];
+	public Text[] TXT_03_resultLeftArray = new Text[3];
+	public Text[] TXT_04_resultLeftArray = new Text[3];
+	public Text[] TXT_05_resultLeftArray = new Text[3];
+	public Text[] TXT_06_resultLeftArray = new Text[3];
 
 
 	// translation objects
@@ -131,6 +138,13 @@ public class MainGameController : MonoBehaviour {
 
 
 	[Header ("------ results ------")]
+
+
+	//color of results 
+	public Color color01purple; 
+	public Color color02blue; 
+	public Color color03green; 
+	public Color color00black;
 
 	//results
 	public Text resultError;
@@ -259,6 +273,15 @@ public class MainGameController : MonoBehaviour {
 		fadeOutResults (TXT_04_allresultArray);
 		fadeOutResults (TXT_05_allresultArray);
 		fadeOutResults (TXT_06_allresultArray);
+
+		fadeColorToBlack (TXT_00_resultLeftArray);
+		fadeColorToBlack (TXT_01_resultLeftArray);
+		fadeColorToBlack (TXT_02_resultLeftArray);
+		fadeColorToBlack (TXT_03_resultLeftArray);
+		fadeColorToBlack (TXT_04_resultLeftArray);
+		fadeColorToBlack (TXT_05_resultLeftArray);
+		fadeColorToBlack (TXT_06_resultLeftArray);
+
 
 		TXT_currentQuestion.text = "0 / 6";
 
@@ -581,6 +604,8 @@ public class MainGameController : MonoBehaviour {
 		resetCubesAnimated (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
 		resetCubesAnimated (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
 
+		showNextQuestion ();
+
 		StartCoroutine (removeResultsAfter (2F));
 	}
 
@@ -593,6 +618,31 @@ public class MainGameController : MonoBehaviour {
 		fadeOutResults (TXT_04_allresultArray);
 		fadeOutResults (TXT_05_allresultArray);
 		fadeOutResults (TXT_06_allresultArray);
+
+		fadeColorToBlack (TXT_00_resultLeftArray);
+		fadeColorToBlack (TXT_01_resultLeftArray);
+		fadeColorToBlack (TXT_02_resultLeftArray);
+		fadeColorToBlack (TXT_03_resultLeftArray);
+		fadeColorToBlack (TXT_04_resultLeftArray);
+		fadeColorToBlack (TXT_05_resultLeftArray);
+		fadeColorToBlack (TXT_06_resultLeftArray);
+
+		//reposition results 
+		//if (currentQuestion == 0) {
+			iTween.MoveTo (_result00, iTween.Hash ("x", _result00.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//} else if (currentQuestion == 1) {
+			iTween.MoveTo (_result01, iTween.Hash ("x", _result01.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//} else if (currentQuestion == 2) {
+			iTween.MoveTo (_result02, iTween.Hash ("x", _result02.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//} else if (currentQuestion == 3) {
+			iTween.MoveTo (_result03, iTween.Hash ("x", _result03.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//} else if (currentQuestion == 4) {
+			iTween.MoveTo (_result04, iTween.Hash ("x", _result04.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//} else if (currentQuestion == 5) {
+			iTween.MoveTo (_result05, iTween.Hash ("x", _result05.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//} else {
+			iTween.MoveTo (_result06, iTween.Hash ("x", _result06.GetComponent<RectTransform>().anchoredPosition.x -180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		//}
 	}
 
 
@@ -690,11 +740,15 @@ public class MainGameController : MonoBehaviour {
 				currentResultFloat *= 100F;
 
 
+
+
+
 				if (currentQuestion == 0) {
 					TXT_00_allresultArray [0].text = result01 * 100F + " %";
 					TXT_00_allresultArray [1].text = result02 * 100F + " %";
 					TXT_00_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_00_allresultArray);
+					fadeColorToColor (TXT_00_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(testCube2, testCube3, testCube4, testCube1startPosition.y);
@@ -704,6 +758,7 @@ public class MainGameController : MonoBehaviour {
 					TXT_01_allresultArray [1].text = result02 * 100F + " %";
 					TXT_01_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_01_allresultArray);
+					fadeColorToColor (TXT_01_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition.y);
@@ -713,6 +768,7 @@ public class MainGameController : MonoBehaviour {
 					TXT_02_allresultArray [1].text = result02 * 100F + " %";
 					TXT_02_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_02_allresultArray);
+					fadeColorToColor (TXT_02_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
@@ -722,6 +778,7 @@ public class MainGameController : MonoBehaviour {
 					TXT_03_allresultArray [1].text = result02 * 100F + " %";
 					TXT_03_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_03_allresultArray);
+					fadeColorToColor (TXT_03_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition.y);
@@ -731,6 +788,7 @@ public class MainGameController : MonoBehaviour {
 					TXT_04_allresultArray [1].text = result02 * 100F + " %";
 					TXT_04_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_04_allresultArray);
+					fadeColorToColor (TXT_04_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition.y);
@@ -740,6 +798,7 @@ public class MainGameController : MonoBehaviour {
 					TXT_05_allresultArray [1].text = result02 * 100F + " %";
 					TXT_05_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_05_allresultArray);
+					fadeColorToColor (TXT_05_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition.y);
@@ -749,6 +808,7 @@ public class MainGameController : MonoBehaviour {
 					TXT_06_allresultArray [1].text = result02 * 100F + " %";
 					TXT_06_allresultArray [2].text = result03 * 100F + " %";
 					fadeInResults (TXT_06_allresultArray);
+					fadeColorToColor (TXT_06_resultLeftArray);
 
 					//animate specific cube
 					animateCubesOut(cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition.y);
@@ -778,24 +838,39 @@ public class MainGameController : MonoBehaviour {
 		txtArray[2].CrossFadeAlpha(0F, 0F, false);
 	} 
 
+	private void fadeColorToColor(Text[] txtArray) {
+		txtArray [0].CrossFadeColor (color01purple, 0.5F, false, false);
+		txtArray [1].CrossFadeColor (color02blue, 0.5F, false, false);
+		txtArray [2].CrossFadeColor (color03green, 0.5F, false, false);
+	} 
+
+	private void fadeColorToBlack(Text[] txtArray) {
+		txtArray [0].CrossFadeColor (color00black, 0F, false, false);
+		txtArray [1].CrossFadeColor (color00black, 0F, false, false);
+		txtArray [2].CrossFadeColor (color00black, 0F, false, false);
+	} 
+
+
+
+
 	private void animateCubesOut(GameObject cube01, GameObject cube02, GameObject cube03, float startPos) { 
 
 		//move result to tight
-		if (currentQuestion == 0) {
+		//if (currentQuestion == 0) {
 			iTween.MoveTo (_result00, iTween.Hash ("x", _result00.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		} else if (currentQuestion == 1) {
+		//} else if (currentQuestion == 1) {
 			iTween.MoveTo (_result01, iTween.Hash ("x", _result01.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		} else if (currentQuestion == 2) {
+		//} else if (currentQuestion == 2) {
 			iTween.MoveTo (_result02, iTween.Hash ("x", _result02.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		} else if (currentQuestion == 3) {
+		//} else if (currentQuestion == 3) {
 			iTween.MoveTo (_result03, iTween.Hash ("x", _result03.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		} else if (currentQuestion == 4) {
+		//} else if (currentQuestion == 4) {
 			iTween.MoveTo (_result04, iTween.Hash ("x", _result04.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		} else if (currentQuestion == 5) {
+		//} else if (currentQuestion == 5) {
 			iTween.MoveTo (_result05, iTween.Hash ("x", _result05.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		} else {
+		//} else {
 			iTween.MoveTo (_result06, iTween.Hash ("x", _result06.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
-		}
+		//}
 			
 		//CUBE ANIMATION
 		iTween.MoveTo (cube03, iTween.Hash ("y", startPos + 0F * scaleIndex + result03 * scaleIndex + result02 * scaleIndex + spaceBetweenCubes * 2F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));

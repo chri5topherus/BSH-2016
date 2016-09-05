@@ -13,9 +13,12 @@ public class WordRap : MonoBehaviour {
 	private Text[] tmpTXTArray;
 	private bool running;
 
+	private float leftBGposition;
+
 	// Use this for initialization
 	void Start () {
 	
+		leftBGposition = -550F;
 
 		running = false;
 		waitingTime = 2F;
@@ -23,7 +26,7 @@ public class WordRap : MonoBehaviour {
 		textElements = new List<Text>();
 
 		//move bg out 
-		iTween.MoveTo (_blackBG, iTween.Hash ("x", -570F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0.1F));
+		iTween.MoveTo (_blackBG, iTween.Hash ("x", leftBGposition, "easetype", iTween.EaseType.easeInOutExpo, "time", 0.1F));
 
 		//get all children TXT elements
 		tmpTXTArray = gameObject.GetComponentsInChildren<Text> ();
@@ -58,7 +61,7 @@ public class WordRap : MonoBehaviour {
 		
 	public void StopRap() {
 		//move BG out
-		iTween.MoveTo (_blackBG, iTween.Hash ("x", -570F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1F, "delay" , 3F));
+		iTween.MoveTo (_blackBG, iTween.Hash ("x", leftBGposition, "easetype", iTween.EaseType.easeInOutExpo, "time", 1F, "delay" , 3F));
 		running = false;
 	}
 		
