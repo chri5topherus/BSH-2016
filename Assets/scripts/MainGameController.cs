@@ -30,11 +30,13 @@ public class MainGameController : MonoBehaviour {
 	public Text bauTXT;
 	public Text digiTXT;
 	public Text vertriebTXT;
+	public Text roboterTXT;
 
 	private float strategieTXTstartPos;
 	private float bauTXTstartPos;
 	private float digiTXTstartPos;
 	private float vertriebTXTstartPos;
+	private float roboterTXTstartPos;
 
 	private float animationDuration = 2F;
 
@@ -230,12 +232,14 @@ public class MainGameController : MonoBehaviour {
 		bauTXTstartPos = bauTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		digiTXTstartPos = digiTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		vertriebTXTstartPos = vertriebTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+		roboterTXTstartPos = roboterTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 
 		// ---- HEADLINES OFF ----
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+		iTween.MoveTo (roboterTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 
 		// ---- BAUCHBINDEN ----
 		bauchbindeStartPos = bauchbinde.transform.position.y;
@@ -663,7 +667,9 @@ public class MainGameController : MonoBehaviour {
 	public void moveVertriebIn() { 
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", vertriebTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
 	}
-
+	public void moveRoboterIn() { 
+		iTween.MoveTo (roboterTXT.gameObject, iTween.Hash ("x", roboterTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
 
 
 	public void moveStrategieOut() { 
@@ -677,6 +683,9 @@ public class MainGameController : MonoBehaviour {
 	}
 	public void moveVertriebOut() { 
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+	}
+	public void moveRoboterOut() { 
+		iTween.MoveTo (roboterTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
 	}
 
 	#endregion
