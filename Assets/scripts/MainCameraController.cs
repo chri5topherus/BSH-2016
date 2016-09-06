@@ -5,12 +5,23 @@ using UnityEngine.UI;
 public class MainCameraController : MonoBehaviour {
 
 	public GameObject cameraStativ;
+	public GameObject cameraIntro;
+
+	private float StartDuration;
+
+	public GameObject camera3D01;
+	public GameObject camera3D02;
+	public GameObject camera3D03;
 
 	public GameObject cameraPosNeutral; 
 	public GameObject cameraPos01; 
 	public GameObject cameraPos02; 
 	public GameObject cameraPos03; 
 	public GameObject cameraPos04; 
+	public GameObject cameraPosIntro; 
+	public GameObject cameraPosIntroStart; 
+
+	private float zoomLevel;
 
 	public Text durationTXT;
 
@@ -21,9 +32,23 @@ public class MainCameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		zoomLevel = 0.2F;
+		StartDuration = 10F;
+
+		camera3D01.SetActive (false);
+		camera3D02.SetActive (false);
+		camera3D03.SetActive (false);
+		cameraIntro.SetActive (true);
+
 		saveDuration ();
 		moveToNeutral ();
 		currentPosition = 0;
+
+		//set cam to start position
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 1F));
+
+		//set cam zoom level
+		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevel;
 
 	}
 	
@@ -31,6 +56,39 @@ public class MainCameraController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+
+	void tweenOnUpdateCallBack( float newValue )
+	{
+		zoomLevel = newValue;
+		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevel;
+	}
+
+
+	public void StartGame() {
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntro.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", StartDuration));
+		iTween.ValueTo( cameraIntro, iTween.Hash(
+			"from", zoomLevel,
+			"to", 8f,
+			"time", StartDuration,
+			"onupdatetarget", gameObject,
+			"onupdate", "tweenOnUpdateCallBack",
+			"easetype", iTween.EaseType.easeInOutQuart)	
+		);
+
+		StartCoroutine (switchActiveCams ());
+
+	}
+
+	private IEnumerator switchActiveCams() {
+		yield return new WaitForSeconds (StartDuration);
+		camera3D01.SetActive (true);
+		camera3D02.SetActive (true);
+		camera3D03.SetActive (true);
+		cameraIntro.SetActive (false);
+	}
+
 
 
 	public void moveToNeutral() {
