@@ -83,8 +83,8 @@ public class MainGameController : MonoBehaviour {
 	[Header ("------ pause logos ------")]
 
 	//bauchbinden 
-	public Image pauseOff;
-	private bool pauseVisible;
+	public Image pauseOff01;
+	public Image pauseOff02;
 
 
 
@@ -235,9 +235,9 @@ public class MainGameController : MonoBehaviour {
 		phoneOff.CrossFadeAlpha (0F, 0F, false);
 
 
-		// ---- PAUSE OFF ---- 
-		pauseVisible = false;
-		pauseOff.CrossFadeAlpha (1F, 1F, false);
+		// ---- PAUSE ---- 
+		pauseOff01.CrossFadeAlpha (1F, 0F, false);
+		pauseOff02.CrossFadeAlpha (0F, 0F, false);
 
 
 
@@ -395,13 +395,24 @@ public class MainGameController : MonoBehaviour {
 
 
 	public void showPause() {
-		pauseOff.CrossFadeAlpha (1F, 1F, false);
+		pauseOff02.CrossFadeAlpha (1F, 1F, false);
 	}
 
 	public void hidePause() {
-		pauseOff.CrossFadeAlpha (0F, 1F, false);
+		pauseOff01.CrossFadeAlpha (0F, 0F, false);
+		pauseOff02.CrossFadeAlpha (0F, 1F, false);
 	}
 
+
+	public void switchPause() {
+		pauseOff01.CrossFadeAlpha (0F, 0.5F, false);
+		pauseOff02.CrossFadeAlpha (1F, 0.5F, false);
+	}
+
+	public void resetAll() {
+		pauseOff01.CrossFadeAlpha (1F, 0.5F, false);
+		pauseOff02.CrossFadeAlpha (0F, 0.5F, false);
+	}
 
 
 	#region rebuild

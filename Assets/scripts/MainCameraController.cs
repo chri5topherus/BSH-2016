@@ -63,8 +63,7 @@ public class MainCameraController : MonoBehaviour {
 
 	void tweenOnUpdateCallBack( float newValue )
 	{
-		zoomLevelStart = newValue;
-		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevelStart;
+		cameraIntro.GetComponent<Camera>().orthographicSize = newValue;
 	}
 
 
@@ -85,7 +84,35 @@ public class MainCameraController : MonoBehaviour {
 		);
 
 		StartCoroutine (switchActiveCams ());
+	}
 
+	public void resetAll() {
+		camera3D01.SetActive (false);
+		camera3D02.SetActive (false);
+		camera3D03.SetActive (false);
+		cameraIntro.SetActive (true);
+
+		//set cam to start position
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 1F));
+
+		moveToNeutral (1f);
+
+		StartCoroutine (resetAll02 ());
+
+	}
+
+	IEnumerator resetAll02() {
+		yield return new WaitForSeconds (1f);
+
+		//set cam zoom level
+		iTween.ValueTo( cameraIntro, iTween.Hash(
+			"from", zoomLevelEnd,
+			"to", 0.2f,
+			"time", 1f,
+			"onupdatetarget", gameObject,
+			"onupdate", "tweenOnUpdateCallBack",
+			"easetype", iTween.EaseType.easeInOutQuart)	
+		);
 	}
 
 
@@ -124,6 +151,13 @@ public class MainCameraController : MonoBehaviour {
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
+		currentPosition = 0;
+	}
+
+	public void moveToNeutral(float durationNew) {
+		saveDuration ();
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", durationNew));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", durationNew));
 		currentPosition = 0;
 	}
 
