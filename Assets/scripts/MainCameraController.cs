@@ -53,13 +53,11 @@ public class MainCameraController : MonoBehaviour {
 		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevelStart;
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}
-
-
+		
 
 	void tweenOnUpdateCallBack( float newValue )
 	{
@@ -73,7 +71,9 @@ public class MainCameraController : MonoBehaviour {
 
 	private IEnumerator waitWithStartGame() {
 		yield return new WaitForSeconds (1F);
+
 		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntro.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", StartDuration));
+
 		iTween.ValueTo( cameraIntro, iTween.Hash(
 			"from", zoomLevelStart,
 			"to", 8f,
@@ -85,6 +85,8 @@ public class MainCameraController : MonoBehaviour {
 
 		StartCoroutine (switchActiveCams ());
 	}
+
+
 
 	public void resetAll() {
 		camera3D01.SetActive (false);
