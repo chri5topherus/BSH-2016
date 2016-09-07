@@ -182,7 +182,7 @@ namespace RWDTools
 			if (GUILayout.Button (OverrideTitle)) 
 			{
 				PixelPerfectGameWindow.SetGameWindow(GameSize,GamePosition);
-				PPGWWindow.Focus();
+				//PPGWWindow.Focus();
 			}
 			GUILayout.EndHorizontal ();
 		}

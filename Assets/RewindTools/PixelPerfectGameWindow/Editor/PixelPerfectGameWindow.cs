@@ -107,12 +107,17 @@ public static class PixelPerfectGameWindow
 
 		EditorWindow gameView = GetMainGameView();
 
+
 		Rect newPos = new Rect(position.x, position.y - TabHeight, size.x, size.y + HeightFix + TabHeight);
 		
 		gameView.position = newPos;
 		gameView.minSize = new Vector2(size.x, size.y + HeightFix + TabHeight);
 		gameView.maxSize = gameView.minSize;
 		gameView.position = newPos;	
+
+		//chris
+		gameView.Focus ();
+
 	}
 	
 	static void SaveGameViewSettings()

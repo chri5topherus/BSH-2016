@@ -21,7 +21,8 @@ public class MainCameraController : MonoBehaviour {
 	public GameObject cameraPosIntro; 
 	public GameObject cameraPosIntroStart; 
 
-	private float zoomLevel;
+	private float zoomLevelStart;
+	private float zoomLevelEnd;
 
 	public Text durationTXT;
 
@@ -32,7 +33,8 @@ public class MainCameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		zoomLevel = 0.2F;
+		zoomLevelStart = 0.2F;
+		zoomLevelEnd = 8F;
 		StartDuration = 10F;
 
 		camera3D01.SetActive (false);
@@ -48,7 +50,7 @@ public class MainCameraController : MonoBehaviour {
 		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 1F));
 
 		//set cam zoom level
-		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevel;
+		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevelStart;
 
 	}
 	
@@ -61,15 +63,20 @@ public class MainCameraController : MonoBehaviour {
 
 	void tweenOnUpdateCallBack( float newValue )
 	{
-		zoomLevel = newValue;
-		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevel;
+		zoomLevelStart = newValue;
+		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevelStart;
 	}
 
 
 	public void StartGame() {
+		StartCoroutine (waitWithStartGame ());
+	}
+
+	private IEnumerator waitWithStartGame() {
+		yield return new WaitForSeconds (1F);
 		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntro.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", StartDuration));
 		iTween.ValueTo( cameraIntro, iTween.Hash(
-			"from", zoomLevel,
+			"from", zoomLevelStart,
 			"to", 8f,
 			"time", StartDuration,
 			"onupdatetarget", gameObject,
@@ -80,6 +87,28 @@ public class MainCameraController : MonoBehaviour {
 		StartCoroutine (switchActiveCams ());
 
 	}
+
+
+	public void EndGame() {
+
+		camera3D01.SetActive (false);
+		camera3D02.SetActive (false);
+		camera3D03.SetActive (false);
+		cameraIntro.SetActive (true);
+
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", StartDuration));
+
+		iTween.ValueTo( cameraIntro, iTween.Hash(
+			"from", zoomLevelEnd,
+			"to", 0.2f,
+			"time", StartDuration,
+			"onupdatetarget", gameObject,
+			"onupdate", "tweenOnUpdateCallBack",
+			"easetype", iTween.EaseType.easeInOutQuart)	
+		);
+
+	}
+		
 
 	private IEnumerator switchActiveCams() {
 		yield return new WaitForSeconds (StartDuration);

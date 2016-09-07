@@ -80,6 +80,13 @@ public class MainGameController : MonoBehaviour {
 	private bool phoneOffVisible;
 
 
+	[Header ("------ pause logos ------")]
+
+	//bauchbinden 
+	public Image pauseOff;
+	private bool pauseVisible;
+
+
 
 	[Header ("------ questions ------")]
 
@@ -227,6 +234,13 @@ public class MainGameController : MonoBehaviour {
 		phoneOffVisible = false;
 		phoneOff.CrossFadeAlpha (0F, 0F, false);
 
+
+		// ---- PAUSE OFF ---- 
+		pauseVisible = false;
+		pauseOff.CrossFadeAlpha (1F, 1F, false);
+
+
+
 		// ---- HEADLINES ----
 		strategieTXTstartPos = strategieTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		bauTXTstartPos = bauTXT.GetComponent<RectTransform> ().anchoredPosition.x;
@@ -364,6 +378,30 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	#endregion
+
+
+
+	public void startPauseMode() {
+		StartCoroutine (waitBeforePause ());
+	}
+		
+
+
+	IEnumerator waitBeforePause() {
+		yield return new WaitForSeconds (10F);
+		showPause ();
+	}
+
+
+
+	public void showPause() {
+		pauseOff.CrossFadeAlpha (1F, 1F, false);
+	}
+
+	public void hidePause() {
+		pauseOff.CrossFadeAlpha (0F, 1F, false);
+	}
+
 
 
 	#region rebuild

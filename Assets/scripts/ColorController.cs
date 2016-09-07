@@ -56,12 +56,18 @@ public class ColorController : MonoBehaviour {
 		fadeInOutImage(0F, bluePlane, 0F);
 		fadeInOutImage(0F, redPlane, 0F);
 		fadeInOutTXT (0F, resultTXT, 0F);
-
-
+		TranslateBlackIn (0F);
 	}
 		
 	void Update () {
 	}
+
+
+	public void startSwing() {
+		TranslateBlackOut (3F);
+	}
+
+
 
 
 	public void removeResults() {
@@ -109,9 +115,14 @@ public class ColorController : MonoBehaviour {
 		iTween.MoveTo (blackRight, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", float.Parse(countdownDuration.text)));
 	}
 
-	void TranslateBlackOut() {
-		iTween.MoveTo (blackLeft, iTween.Hash ("x", positionBlackLeft, "easetype", iTween.EaseType.easeInOutSine, "time", 2F));
-		iTween.MoveTo (blackRight, iTween.Hash ("x", positionBlackRight, "easetype", iTween.EaseType.easeInOutSine, "time", 2F));
+	public void TranslateBlackIn(float time) {
+		iTween.MoveTo (blackLeft, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", time));
+		iTween.MoveTo (blackRight, iTween.Hash ("x", 300F, "easetype", iTween.EaseType.linear, "time", time));
+	}
+
+	void TranslateBlackOut(float time) {
+		iTween.MoveTo (blackLeft, iTween.Hash ("x", positionBlackLeft, "easetype", iTween.EaseType.easeInOutSine, "time", time));
+		iTween.MoveTo (blackRight, iTween.Hash ("x", positionBlackRight, "easetype", iTween.EaseType.easeInOutSine, "time", time));
 	}
 
 
@@ -143,7 +154,7 @@ public class ColorController : MonoBehaviour {
 			resultTXT.text = _mainController.currentResultString + " " + _mainController.currentResultFloat + " %";
 
 
-			TranslateBlackOut ();
+			TranslateBlackOut (2F);
 		}
 
 	}
