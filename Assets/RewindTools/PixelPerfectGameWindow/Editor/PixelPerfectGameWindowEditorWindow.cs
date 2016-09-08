@@ -129,7 +129,7 @@ namespace RWDTools
 			GUILayout.Label(PresetTitle, RWDStyles.SubHeading);
 
 			GUILayout.BeginHorizontal();
-			PresetIndex = EditorGUILayout.Popup(PresetIndex, new string[] { "Preset 1", "Preset 2", "Preset 3", "Preset 4", "Preset 5" });
+			PresetIndex = EditorGUILayout.Popup(PresetIndex, new string[] { "WINGS", "WINGS MAC", "STAGE", "STAGE MAC", "Preset 5" });
 			if (GUI.changed)
 			{
 				LoadPreset(PresetIndex);

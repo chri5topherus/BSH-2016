@@ -5,6 +5,7 @@ using System;
 
 public class MainGameController : MonoBehaviour {
 
+	private bool firstStart = true;
 
 	[Header ("------ camera objects ------")]
 
@@ -292,15 +293,16 @@ public class MainGameController : MonoBehaviour {
 		pauseOff01.CrossFadeAlpha (1F, 0F, false);
 		pauseOff02.CrossFadeAlpha (0F, 0F, false);
 
+		if (firstStart) {
 
-		// ---- HEADLINES ----
-		strategieTXTstartPos = strategieTXT.GetComponent<RectTransform> ().anchoredPosition.x;
-		bauTXTstartPos = bauTXT.GetComponent<RectTransform> ().anchoredPosition.x;
-		digiTXTstartPos = digiTXT.GetComponent<RectTransform> ().anchoredPosition.x;
-		vertriebTXTstartPos = vertriebTXT.GetComponent<RectTransform> ().anchoredPosition.x;
-		roboterTXTstartPos = roboterTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+			// ---- HEADLINES ----
+			strategieTXTstartPos = strategieTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+			bauTXTstartPos = bauTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+			digiTXTstartPos = digiTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+			vertriebTXTstartPos = vertriebTXT.GetComponent<RectTransform> ().anchoredPosition.x;
+			roboterTXTstartPos = roboterTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 
-
+		}
 
 		// ---- HEADLINES OFF ----
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
@@ -420,11 +422,14 @@ public class MainGameController : MonoBehaviour {
 		moveQuestionsInOut(_question05, _result05, false, 0F, 0F);	
 		moveQuestionsInOut(_question06, _result06, false, 0F, 0F);	
 
+		if (firstStart) {
+			//camera setup
+			mainCam3D01_startPos = mainCam3D01.transform.localPosition.x;
+			mainCam3D02_startPos = mainCam3D02.transform.localPosition.x;
+			mainCam3D03_startPos = mainCam3D03.transform.localPosition.x;
+		}
 
-		//camera setup
-		mainCam3D01_startPos = mainCam3D01.transform.localPosition.x;
-		mainCam3D02_startPos = mainCam3D02.transform.localPosition.x;
-		mainCam3D03_startPos = mainCam3D03.transform.localPosition.x;
+		firstStart = false;
 
 	}
 	
@@ -531,9 +536,9 @@ public class MainGameController : MonoBehaviour {
 			string tmp2 = rebuildDistance.text; 
 			distanceTmp = float.Parse (tmp2);
 		distanceTmp = distanceTmp / 100f;
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) {
 			Debug.Log (e);
 		}
@@ -554,9 +559,9 @@ public class MainGameController : MonoBehaviour {
 			string tmp2 = rebuildDistance.text; 
 			distanceTmp = float.Parse (tmp2);
 			distanceTmp = distanceTmp / 100f;
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) { 
 			Debug.Log (e);
 		}
@@ -838,6 +843,7 @@ public class MainGameController : MonoBehaviour {
 	#region headlines animation
 
 	public void moveStrategieIn() { 
+		//Debug.Log ("stag IN");
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", strategieTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
 		BTN_strategieON.color = highlightedButtonColor;
 		BTN_strategieOFF.color = standardButtonColor;

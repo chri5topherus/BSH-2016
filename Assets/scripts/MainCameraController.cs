@@ -114,6 +114,12 @@ public class MainCameraController : MonoBehaviour {
 
 		moveToNeutral (1f);
 
+		BTN_neutral.color = standardColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
+
 		StartCoroutine (resetAll02 ());
 
 	}
