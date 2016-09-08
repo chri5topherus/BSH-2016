@@ -17,6 +17,12 @@ public class WordRap : MonoBehaviour {
 	private List<Text> textElements02;
 	private Text[] tmpTXTArray02;
 
+	public Image BTN_rap01; 
+	public Image BTN_rap02; 
+	public Image BTN_off; 
+
+	public Color standardColor; 
+	public Color hightlightedColor; 
 
 	private bool running;
 	private bool running02;
@@ -63,6 +69,8 @@ public class WordRap : MonoBehaviour {
 		for (int i = 0; i < textElements02.Count; i++) {
 			textElements02 [i].CrossFadeAlpha (0F, 0F, false);
 		}
+
+		BTN_off.color = hightlightedColor; 
 			
 	} // end start
 
@@ -81,6 +89,11 @@ public class WordRap : MonoBehaviour {
 
 
 	public void StartRap() {
+
+		BTN_rap01.color = hightlightedColor; 
+		BTN_rap02.color = standardColor; 
+		BTN_off.color = standardColor; 
+
 		//move BG in
 		running = true;
 		running02 = false;
@@ -89,6 +102,11 @@ public class WordRap : MonoBehaviour {
 	}
 
 	public void StartRapPart2() {
+		
+		BTN_rap01.color = standardColor; 
+		BTN_rap02.color = hightlightedColor; 
+		BTN_off.color = standardColor; 
+
 		running = false;
 		running02 = true;
 		StartCoroutine(StartFadingTXT02(0, waitingTime));
@@ -97,6 +115,11 @@ public class WordRap : MonoBehaviour {
 
 		
 	public void StopRap() {
+		
+		BTN_rap01.color = standardColor; 
+		BTN_rap02.color = standardColor; 
+		BTN_off.color = hightlightedColor; 
+
 		running = false;
 		running02 = false;
 		//move BG out

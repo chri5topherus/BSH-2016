@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BackgroundPauseAnimation : MonoBehaviour {
 
@@ -20,12 +21,29 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 	public bool runningReversed;
 	public bool stopingAnimation;
 
+	public Image button01;
+	public Image button02;
+	public Image button03;
+
+	public Color standardColor; 
+	public Color highlightedColor;
+
+	public Image BTN_startingAnimation; 
+	public Image BTN_endingAnimation; 
+	public Image BTN_stopedAnimtion;
 
 	// Use this for initialization
 	void Start () {
 
-		waitFor = 0.5F; 
-		duration = 4F;
+
+		// timingCombis: 
+		// waitFor: 0.5 & duration 4
+		// waitFor: 1 & duration 8
+		// waitFor: 2 & duration 16
+
+		setSpeedMode01 ();
+		BTN_stopedAnimtion.color = highlightedColor;
+
 		setAllScale (0F);
 
 		runningForward = false; 
@@ -33,6 +51,33 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 		stopingAnimation = false;
 
 	}
+
+	public void setSpeedMode01() {
+		button01.color = highlightedColor;
+		button02.color = standardColor;
+		button03.color = standardColor;
+
+		waitFor = 2F;
+		duration = 16F;
+	}
+		
+	public void setSpeedMode02() {
+		button01.color = standardColor; 
+		button02.color = highlightedColor; 
+		button03.color = standardColor; 
+		waitFor = 1f;
+		duration = 8F;
+	}
+
+	public void setSpeedMode03() {
+		button01.color = standardColor; 
+		button02.color = standardColor; 
+		button03.color = highlightedColor;
+		waitFor = 0.5f;
+		duration = 4F;
+	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,6 +85,11 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 	}
 
 	public void StartAnimation() {
+
+		BTN_startingAnimation.color = highlightedColor; 
+		BTN_endingAnimation.color = standardColor; 
+		BTN_stopedAnimtion.color = standardColor;
+
 		setAllScale (0F);
 		runningForward = true;
 		runningReversed = false;
@@ -48,6 +98,11 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 	}
 
 	public void StartReversedAnimation() {
+
+		BTN_startingAnimation.color = standardColor; 
+		BTN_endingAnimation.color = highlightedColor; 
+		BTN_stopedAnimtion.color = standardColor;
+		
 		runningForward = false;
 		runningReversed = true;
 		stopingAnimation = false;
@@ -57,6 +112,11 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 	}
 
 	public void StopAnimation() {
+
+		BTN_startingAnimation.color = standardColor; 
+		BTN_endingAnimation.color = standardColor; 
+		BTN_stopedAnimtion.color = highlightedColor;
+
 		stopingAnimation = true;
 	}
 

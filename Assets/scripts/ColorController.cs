@@ -151,8 +151,13 @@ public class ColorController : MonoBehaviour {
 				fadeInOutImage (1F, redPlane, 0F);
 			}
 
-			resultTXT.text = _mainController.currentResultString + " " + _mainController.currentResultFloat + " %";
+			//only take winner string
+			//resultTXT.text = _mainController.currentResultString + " " + _mainController.currentResultFloat + " %";
+			string tmp = _mainController.currentResultString; 
 
+			tmp = tmp.Substring (2);
+
+			resultTXT.text = tmp;
 
 			TranslateBlackOut (2F);
 		}

@@ -22,6 +22,10 @@ public class MainGameController : MonoBehaviour {
 	public Text rebuildTime; 
 	public Text rebuildDistance;
 
+	public Image BTN_rebuild01;
+	public Image BTN_rebuild02;
+	public Image BTN_rebuild03;
+
 	private Vector3 mainCam3DstartPos;
 
 	[Header ("------ chapter headlines ------")]
@@ -37,6 +41,18 @@ public class MainGameController : MonoBehaviour {
 	private float digiTXTstartPos;
 	private float vertriebTXTstartPos;
 	private float roboterTXTstartPos;
+
+	public Image BTN_strategieON; 
+	public Image BTN_strategieOFF;
+	public Image BTN_baufinanzON; 
+	public Image BTN_baufinanzOFF;
+	public Image BTN_digiON;
+	public Image BTN_digiOFF;
+	public Image BTN_vertriebON;
+	public Image BTN_vertriebOFF;
+	public Image BTN_roboterON; 
+	public Image BTN_roboterOFF; 
+
 
 	private float animationDuration = 2F;
 
@@ -72,12 +88,16 @@ public class MainGameController : MonoBehaviour {
 	private bool visibleBauchbinde;
 	private float bauchbindeStartPos;
 
+	public Image BTN_bauchbinde;
+	public Image BTN_bauchbindeShow;
+
 
 	[Header ("------ phone off ------")]
 
 	//bauchbinden 
 	public Text phoneOff;
 	private bool phoneOffVisible;
+	public Image BTNphone;
 
 
 	[Header ("------ pause logos ------")]
@@ -136,6 +156,8 @@ public class MainGameController : MonoBehaviour {
 	public GameObject _question06;
 	public GameObject _result06;
 
+	private bool showedResults;
+
 	//questions array
 	private int currentQuestion;
 
@@ -173,6 +195,19 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputResult02;
 	public InputField inputResult03;
 	public InputField inputResult04;
+
+	public Image BTNshow;
+	public Image BTNcountdown;
+	public Image BTNresults;
+	public Image BTNremove;
+
+	public Color standardButtonColor; 
+	public Color highlightedButtonColor;
+	public Color highlightedButtonColorYellow;
+	public Color lightGreyButtonColor;
+
+	private int activeButtonCounter;
+
 
 	[Header ("------ cube objects ------")]
 
@@ -220,6 +255,8 @@ public class MainGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		BTN_rebuild01.color = highlightedButtonColor;
+
 		mainCam3DstartPos = new Vector3 (mainCam3D.transform.position.x, mainCam3D.transform.position.y, mainCam3D.transform.position.z);
 		testCube1startPosition = testCube2.transform.position;
 		cubeQ01startPosition = cubeQ01_01.transform.position;
@@ -232,13 +269,13 @@ public class MainGameController : MonoBehaviour {
 
 		// ---- PHONE OFF ----
 		phoneOffVisible = false;
+		BTNphone.color = standardButtonColor;
 		phoneOff.CrossFadeAlpha (0F, 0F, false);
 
 
 		// ---- PAUSE ---- 
 		pauseOff01.CrossFadeAlpha (1F, 0F, false);
 		pauseOff02.CrossFadeAlpha (0F, 0F, false);
-
 
 
 		// ---- HEADLINES ----
@@ -248,12 +285,21 @@ public class MainGameController : MonoBehaviour {
 		vertriebTXTstartPos = vertriebTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 		roboterTXTstartPos = roboterTXT.GetComponent<RectTransform> ().anchoredPosition.x;
 
+
+
 		// ---- HEADLINES OFF ----
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
 		iTween.MoveTo (roboterTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", 0F));
+
+		BTN_strategieOFF.color = highlightedButtonColor;
+		BTN_baufinanzOFF.color = highlightedButtonColor;
+		BTN_digiOFF.color = highlightedButtonColor;
+		BTN_vertriebOFF.color = highlightedButtonColor;
+		BTN_roboterOFF.color = highlightedButtonColor;
+
 
 		// ---- BAUCHBINDEN ----
 		bauchbindeStartPos = bauchbinde.transform.position.y;
@@ -279,7 +325,8 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbindeTitle09.text = "empty9";
 		inputTextBauchbindeTitle10.text = "empty10";
 
-
+		BTN_bauchbinde.color = highlightedButtonColor;
+		BTN_bauchbindeShow.color = lightGreyButtonColor;
 		visibleBauchbinde = false;
 		hideBauchbinde ();
 
@@ -300,6 +347,10 @@ public class MainGameController : MonoBehaviour {
 		fadeColorToBlack (TXT_05_resultLeftArray);
 		fadeColorToBlack (TXT_06_resultLeftArray);
 
+		showedResults = false;
+		activeButtonCounter = 1;
+
+		BTNshow.color = highlightedButtonColorYellow;
 
 		TXT_currentQuestion.text = "0 / 6";
 
@@ -369,11 +420,13 @@ public class MainGameController : MonoBehaviour {
 	#region phone
 
 	public void showPhoneOff() {
-		if (phoneOffVisible) 
+		if (phoneOffVisible) {
 			phoneOff.CrossFadeAlpha (0F, 1F, false);
-		else 
+			BTNphone.color = standardButtonColor;
+		} else {
 			phoneOff.CrossFadeAlpha (1F, 1F, false);
-		
+			BTNphone.color = highlightedButtonColor;
+		}
 		phoneOffVisible = !phoneOffVisible;
 	}
 
@@ -410,6 +463,7 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void resetAll() {
+		Start ();
 		pauseOff01.CrossFadeAlpha (1F, 0.5F, false);
 		pauseOff02.CrossFadeAlpha (0F, 0.5F, false);
 	}
@@ -419,6 +473,9 @@ public class MainGameController : MonoBehaviour {
 
 	public void rebuildModus00() {
 
+		BTN_rebuild01.color = highlightedButtonColor;
+		BTN_rebuild02.color = standardButtonColor;
+		BTN_rebuild03.color = standardButtonColor;
 
 		string tmp = rebuildTime.text; 
 		float durationTmp;
@@ -434,6 +491,10 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void rebuildModus01() {
+
+		BTN_rebuild01.color = standardButtonColor;
+		BTN_rebuild02.color = highlightedButtonColor;
+		BTN_rebuild03.color = standardButtonColor;
 
 		string tmp = rebuildTime.text; 
 		float durationTmp;
@@ -453,6 +514,10 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void rebuildModus02() {
+
+		BTN_rebuild01.color = standardButtonColor;
+		BTN_rebuild02.color = standardButtonColor;
+		BTN_rebuild03.color = highlightedButtonColor;
 
 		string tmp = rebuildTime.text; 
 		float durationTmp;
@@ -478,6 +543,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde01() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde01.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle01.text;
@@ -487,6 +553,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde02() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde02.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle02.text;
@@ -496,6 +563,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde03() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde03.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle03.text;
@@ -505,6 +573,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde04() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde04.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle04.text;
@@ -514,6 +583,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde05() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde05.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle05.text;
@@ -523,6 +593,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde06() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde06.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle06.text;
@@ -532,6 +603,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde07() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde07.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle07.text;
@@ -541,6 +613,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde08() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde08.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle08.text;
@@ -550,6 +623,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde09() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde09.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle09.text;
@@ -559,6 +633,7 @@ public class MainGameController : MonoBehaviour {
 
 	public void showBauchbinde10() {
 		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde10.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle10.text;
@@ -568,7 +643,15 @@ public class MainGameController : MonoBehaviour {
 
 	public void hideBauchbinde() {
 		visibleBauchbinde = false;
+		BTN_bauchbinde.color = highlightedButtonColor;
+		BTN_bauchbindeShow.color = lightGreyButtonColor;
 		iTween.MoveTo(bauchbinde, iTween.Hash("y", 500F , "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+	}
+
+
+	private void changeButtonColorBauchbinde() {
+		BTN_bauchbinde.color = standardButtonColor;
+		BTN_bauchbindeShow.color = highlightedButtonColor;
 	}
 
 	#endregion
@@ -577,6 +660,10 @@ public class MainGameController : MonoBehaviour {
 	#region question
 
 	public void showQuestion() {
+
+		BTNshow.color = standardButtonColor;
+		BTNcountdown.color = highlightedButtonColorYellow;
+
 		float delayTmp = 1F;
 		if (currentQuestion == 0) {
 			moveQuestionsInOut (_question00, _result00, true, 2F, delayTmp);
@@ -632,34 +719,40 @@ public class MainGameController : MonoBehaviour {
 
 
 	public void removeResults() {
-		float delayTmp = 0F;
-		if (currentQuestion == 0) {
-			moveQuestionsInOut (_question00, _result00, false, 2F, delayTmp);
-		} else if (currentQuestion == 1) {
-			moveQuestionsInOut (_question01, _result01, false, 2F, delayTmp);
-		} else if (currentQuestion == 2) {
-			moveQuestionsInOut (_question02, _result02, false, 2F, delayTmp);
-		} else if (currentQuestion == 3) {
-			moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
-		} else if (currentQuestion == 4) {
-			moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
-		} else if (currentQuestion == 5) {
-			moveQuestionsInOut (_question05, _result05, false, 2F, delayTmp);
-		} else {
-			moveQuestionsInOut (_question06, _result06, false, 2F, delayTmp);
+
+		BTNremove.color = standardButtonColor;
+		BTNshow.color = highlightedButtonColorYellow;
+
+			float delayTmp = 0F;
+			if (currentQuestion == 0) {
+				moveQuestionsInOut (_question00, _result00, false, 2F, delayTmp);
+			} else if (currentQuestion == 1) {
+				moveQuestionsInOut (_question01, _result01, false, 2F, delayTmp);
+			} else if (currentQuestion == 2) {
+				moveQuestionsInOut (_question02, _result02, false, 2F, delayTmp);
+			} else if (currentQuestion == 3) {
+				moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
+			} else if (currentQuestion == 4) {
+				moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
+			} else if (currentQuestion == 5) {
+				moveQuestionsInOut (_question05, _result05, false, 2F, delayTmp);
+			} else {
+				moveQuestionsInOut (_question06, _result06, false, 2F, delayTmp);
+			}
+			resultError.text = "";
+			resetCubesAnimated (testCube2, testCube3, testCube4, testCube1startPosition);
+			resetCubesAnimated (cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition);
+			resetCubesAnimated (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition);
+			resetCubesAnimated (cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition);
+			resetCubesAnimated (cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition);
+			resetCubesAnimated (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
+			resetCubesAnimated (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
+
+		if (showedResults) {
+			showNextQuestion ();
+			StartCoroutine (removeResultsAfter (2F));
+			showedResults = false;
 		}
-		resultError.text = "";
-		resetCubesAnimated (testCube2, testCube3, testCube4, testCube1startPosition);
-		resetCubesAnimated (cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition);
-		resetCubesAnimated (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition);
-		resetCubesAnimated (cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition);
-		resetCubesAnimated (cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition);
-		resetCubesAnimated (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
-		resetCubesAnimated (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
-
-		showNextQuestion ();
-
-		StartCoroutine (removeResultsAfter (2F));
 	}
 
 	IEnumerator removeResultsAfter(float wait) {
@@ -706,38 +799,65 @@ public class MainGameController : MonoBehaviour {
 
 	public void moveStrategieIn() { 
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", strategieTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_strategieON.color = highlightedButtonColor;
+		BTN_strategieOFF.color = standardButtonColor;
 	}
 	public void moveBauIn() { 
 		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", bauTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_baufinanzON.color = highlightedButtonColor;
+		BTN_baufinanzOFF.color = standardButtonColor;
 	}
 	public void moveDigiIn() { 
 		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", digiTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_digiON.color = highlightedButtonColor;
+		BTN_digiOFF.color = standardButtonColor;
 	}
 	public void moveVertriebIn() { 
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", vertriebTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_vertriebON.color = highlightedButtonColor;
+		BTN_vertriebOFF.color = standardButtonColor;
 	}
 	public void moveRoboterIn() { 
 		iTween.MoveTo (roboterTXT.gameObject, iTween.Hash ("x", roboterTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_roboterON.color = highlightedButtonColor;
+		BTN_roboterOFF.color = standardButtonColor;
 	}
 
 
 	public void moveStrategieOut() { 
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_strategieOFF.color = highlightedButtonColor;
+		BTN_strategieON.color = standardButtonColor;
 	}
 	public void moveBauOut() { 
 		iTween.MoveTo (bauTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_baufinanzOFF.color = highlightedButtonColor;
+		BTN_baufinanzON.color = standardButtonColor;
 	}
 	public void moveDigiOut() { 
 		iTween.MoveTo (digiTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_digiOFF.color = highlightedButtonColor;
+		BTN_digiON.color = standardButtonColor;
 	}
 	public void moveVertriebOut() { 
 		iTween.MoveTo (vertriebTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_vertriebOFF.color = highlightedButtonColor;
+		BTN_vertriebON.color = standardButtonColor;
 	}
 	public void moveRoboterOut() { 
 		iTween.MoveTo (roboterTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
+		BTN_roboterOFF.color = highlightedButtonColor;
+		BTN_roboterON.color = standardButtonColor;
 	}
 
 	#endregion
+
+
+	public void startCountdown() {
+		BTNcountdown.color = standardButtonColor;
+		BTNresults.color = highlightedButtonColorYellow;
+	}
+
 
 
 	#region results
@@ -745,6 +865,12 @@ public class MainGameController : MonoBehaviour {
 
 
 	public void showResults() {
+
+		BTNresults.color = standardButtonColor;
+		BTNremove.color = highlightedButtonColorYellow;
+
+		showedResults = true;
+
 		string tmp = inputResult01.text;
 		try{
 		result01 = float.Parse (tmp);

@@ -21,6 +21,15 @@ public class MainCameraController : MonoBehaviour {
 	public GameObject cameraPosIntro; 
 	public GameObject cameraPosIntroStart; 
 
+	public Image BTN_neutral; 
+	public Image BTN_strategie; 
+	public Image BTN_baufinanz; 
+	public Image BTN_digitalisierung; 
+	public Image BTN_vertrieb;
+
+	public Color standardColor; 
+	public Color hightlightedColor;
+
 	private float zoomLevelStart;
 	private float zoomLevelEnd;
 
@@ -51,6 +60,12 @@ public class MainCameraController : MonoBehaviour {
 
 		//set cam zoom level
 		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevelStart;
+
+		BTN_neutral.color = standardColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
 
 	}
 
@@ -145,11 +160,25 @@ public class MainCameraController : MonoBehaviour {
 		camera3D02.SetActive (true);
 		camera3D03.SetActive (true);
 		cameraIntro.SetActive (false);
+
+		BTN_neutral.color = hightlightedColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
+
 	}
 
 
 
 	public void moveToNeutral() {
+		
+		BTN_neutral.color = hightlightedColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
+
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
@@ -157,6 +186,13 @@ public class MainCameraController : MonoBehaviour {
 	}
 
 	public void moveToNeutral(float durationNew) {
+		
+		BTN_neutral.color = hightlightedColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
+
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", durationNew));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", durationNew));
@@ -164,6 +200,13 @@ public class MainCameraController : MonoBehaviour {
 	}
 
 	public void moveTo01() {
+		
+		BTN_neutral.color = standardColor;
+		BTN_strategie.color = hightlightedColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
+
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", -90F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
@@ -171,6 +214,13 @@ public class MainCameraController : MonoBehaviour {
 	}
 
 	public void moveTo02() {
+		
+		BTN_neutral.color = standardColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = hightlightedColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = standardColor;
+
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
@@ -178,6 +228,13 @@ public class MainCameraController : MonoBehaviour {
 	}
 
 	public void moveTo03() {
+
+		BTN_neutral.color = standardColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = hightlightedColor; 
+		BTN_vertrieb.color = standardColor;
+
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
@@ -185,6 +242,13 @@ public class MainCameraController : MonoBehaviour {
 	}
 
 	public void moveTo04() {
+
+		BTN_neutral.color = standardColor;
+		BTN_strategie.color = standardColor; 
+		BTN_baufinanz.color = standardColor; 
+		BTN_digitalisierung.color = standardColor; 
+		BTN_vertrieb.color = hightlightedColor;
+
 		saveDuration ();
 		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
 		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 90F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
