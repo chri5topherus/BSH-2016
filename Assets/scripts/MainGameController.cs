@@ -303,26 +303,26 @@ public class MainGameController : MonoBehaviour {
 
 		// ---- BAUCHBINDEN ----
 		bauchbindeStartPos = bauchbinde.transform.position.y;
-		inputTextBauchbinde01.text = "Nova ";
-		inputTextBauchbinde02.text = "Herr Hinterberger ";
-		inputTextBauchbinde03.text = "Herr Klein";
-		inputTextBauchbinde04.text = "Prof. Dr. Rieck";
+		inputTextBauchbinde01.text = "Reinhard Klein";
+		inputTextBauchbinde02.text = "Gerhard Hinterberger";
+		inputTextBauchbinde03.text = "Sabine Baron";
+		inputTextBauchbinde04.text = "Kristin Seyboth";
 		inputTextBauchbinde05.text = "Jochen Maier";
-		inputTextBauchbinde06.text = "Sabine Baron";
-		inputTextBauchbinde07.text = "Kristin Seyboth";
-		inputTextBauchbinde08.text = "Schüttler";
-		inputTextBauchbinde09.text = "Biermann";
+		inputTextBauchbinde06.text = "Thomas Schüttler";
+		inputTextBauchbinde07.text = "Professor Dr. Christian Rieck";
+		inputTextBauchbinde08.text = "Stephan Lohß";
+		inputTextBauchbinde09.text = "Nova Meierhenrich";
 		inputTextBauchbinde10.text = "empty";
 
-		inputTextBauchbindeTitle01.text = "empty1";
-		inputTextBauchbindeTitle02.text = "empty2";
-		inputTextBauchbindeTitle03.text = "empty3";
-		inputTextBauchbindeTitle04.text = "empty4";
-		inputTextBauchbindeTitle05.text = "empty5";
-		inputTextBauchbindeTitle06.text = "empty6";
-		inputTextBauchbindeTitle07.text = "empty7";
-		inputTextBauchbindeTitle08.text = "empty8";
-		inputTextBauchbindeTitle09.text = "empty9";
+		inputTextBauchbindeTitle01.text = "Vorstandsvorsitzender";
+		inputTextBauchbindeTitle02.text = "Vorstandsmitglied";
+		inputTextBauchbindeTitle03.text = "Bereichsleitung Vertrieb";
+		inputTextBauchbindeTitle04.text = "Bereichsleiterin Kredit- und Sparbereiche ";
+		inputTextBauchbindeTitle05.text = "Bereichsleiter Marketing";
+		inputTextBauchbindeTitle06.text = "Bereichsberater Projekte DZ-Bank Konzern";
+		inputTextBauchbindeTitle07.text = "Professor für Finance und Wirtschaftstheorie an der Frankfurt University of Applied Sciences";
+		inputTextBauchbindeTitle08.text = "Bezirksleiter Baufinanzierung";
+		inputTextBauchbindeTitle09.text = "Moderatorin";
 		inputTextBauchbindeTitle10.text = "empty10";
 
 		BTN_bauchbinde.color = highlightedButtonColor;
