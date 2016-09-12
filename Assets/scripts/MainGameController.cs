@@ -57,6 +57,24 @@ public class MainGameController : MonoBehaviour {
 
 	private float animationDuration = 2F;
 
+
+	[Header ("------ retaurant ------")]
+
+	public Image restarantIMG; 
+	private bool restaurantVisible;
+	public Image BTN_restaurant;
+
+
+	[Header ("------ themenräume ------")]
+	public GameObject theme01; 
+	public GameObject theme02; 
+	private bool theme01Visible; 
+	private bool theme02Visible;
+
+	public Image BTN_theme01; 
+	public Image BTN_theme02;
+
+
 	[Header ("------ bauchbinde ------")]
 
 	//bauchbinden 
@@ -106,6 +124,12 @@ public class MainGameController : MonoBehaviour {
 	//bauchbinden 
 	public Image pauseOff01;
 	public Image pauseOff02;
+
+	private bool pause01Visible; 
+	private bool pause02Visible;
+
+	public Image BTN_pause01; 
+	public Image BTN_pause02;
 
 
 
@@ -271,6 +295,18 @@ public class MainGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		restarantIMG.CrossFadeAlpha (0F, 0F, false);
+		restaurantVisible = false;
+		BTN_restaurant.color = standardButtonColor;
+
+
+		fadeInOutAllTextChildren (false, 0F, theme01);
+		fadeInOutAllTextChildren (false, 0F, theme02);
+		theme01Visible = false; 
+		theme02Visible = false; 
+		BTN_theme01.color = standardButtonColor;
+		BTN_theme02.color = standardButtonColor;
+
 		BTN_rebuild01.color = highlightedButtonColor;
 
 		mainCam3DstartPos = new Vector3 (mainCam3D.transform.position.x, mainCam3D.transform.position.y, mainCam3D.transform.position.z);
@@ -290,8 +326,12 @@ public class MainGameController : MonoBehaviour {
 
 
 		// ---- PAUSE ---- 
-		pauseOff01.CrossFadeAlpha (1F, 0F, false);
+		pauseOff01.CrossFadeAlpha (0F, 0F, false);
 		pauseOff02.CrossFadeAlpha (0F, 0F, false);
+		pause01Visible = false; 
+		pause02Visible = false;
+		BTN_pause01.color = standardButtonColor;
+		BTN_pause02.color = standardButtonColor;
 
 		if (firstStart) {
 
@@ -466,38 +506,33 @@ public class MainGameController : MonoBehaviour {
 
 
 
-	public void startPauseMode() {
-		StartCoroutine (waitBeforePause ());
+
+
+	public void showLogo01() {
+		if (pause01Visible) {
+			BTN_pause01.color = standardButtonColor;
+			pauseOff01.CrossFadeAlpha (0F, 1F, false);
+		} else {
+			BTN_pause01.color = highlightedButtonColor;
+			pauseOff01.CrossFadeAlpha (1F, 1F, false);
+		}
+		pause01Visible = !pause01Visible;
+	}
+
+	public void showLogo02() {
+		if (pause02Visible) {
+			BTN_pause02.color = standardButtonColor;
+			pauseOff02.CrossFadeAlpha (0F, 1F, false);
+		} else {
+			BTN_pause02.color = highlightedButtonColor;
+			pauseOff02.CrossFadeAlpha (1F, 1F, false);
+		}
+		pause02Visible = !pause02Visible;
 	}
 		
 
-
-	IEnumerator waitBeforePause() {
-		yield return new WaitForSeconds (10F);
-		showPause ();
-	}
-
-
-
-	public void showPause() {
-		pauseOff02.CrossFadeAlpha (1F, 1F, false);
-	}
-
-	public void hidePause() {
-		pauseOff01.CrossFadeAlpha (0F, 0F, false);
-		pauseOff02.CrossFadeAlpha (0F, 1F, false);
-	}
-
-
-	public void switchPause() {
-		pauseOff01.CrossFadeAlpha (0F, 0.5F, false);
-		pauseOff02.CrossFadeAlpha (1F, 0.5F, false);
-	}
-
 	public void resetAll() {
 		Start ();
-		pauseOff01.CrossFadeAlpha (1F, 0.5F, false);
-		pauseOff02.CrossFadeAlpha (0F, 0.5F, false);
 	}
 
 
@@ -536,9 +571,14 @@ public class MainGameController : MonoBehaviour {
 			string tmp2 = rebuildDistance.text; 
 			distanceTmp = float.Parse (tmp2);
 		distanceTmp = distanceTmp / 100f;
+			/* 
 			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			*/
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*2.88F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*2.88F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*2.88F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) {
 			Debug.Log (e);
 		}
@@ -559,9 +599,14 @@ public class MainGameController : MonoBehaviour {
 			string tmp2 = rebuildDistance.text; 
 			distanceTmp = float.Parse (tmp2);
 			distanceTmp = distanceTmp / 100f;
+			/*
 			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			*/
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*2.88F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*2.88F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) { 
 			Debug.Log (e);
 		}
@@ -1206,6 +1251,56 @@ public class MainGameController : MonoBehaviour {
 
 	}
 
+	public void showRestaurant() {
+
+		if (restaurantVisible) {
+			restarantIMG.CrossFadeAlpha (0F, 0.5F, false); 
+			BTN_restaurant.color = standardButtonColor;
+		} else {
+			restarantIMG.CrossFadeAlpha (1F, 0.5F, false);
+			BTN_restaurant.color = highlightedButtonColor;
+		}
+
+		restaurantVisible = !restaurantVisible;
+	}
+
+	private void fadeInOutAllTextChildren(bool fadeIn, float duration, GameObject parent) {
+
+		Text[] textTMP = parent.GetComponentsInChildren<Text>();
+
+		//Debug.Log (textTMP.Length);
+
+		for (int i = 0; i < textTMP.Length; i++) {
+			if (fadeIn) 
+				textTMP [i].CrossFadeAlpha (1F, duration, false);
+			 else 
+				textTMP [i].CrossFadeAlpha (0F, duration, false);
+		}
+	}
+
+
+	public void showTheme(int number) {
+		if (number == 1) {
+			if (theme01Visible) {
+				fadeInOutAllTextChildren (false, 0.5F, theme01);
+				BTN_theme01.color = standardButtonColor;
+			} else {
+				fadeInOutAllTextChildren (true, 0.5F, theme01);
+				BTN_theme01.color = highlightedButtonColor;
+			}
+			theme01Visible = !theme01Visible;
+		} else {
+			if (theme02Visible) {
+				fadeInOutAllTextChildren (false, 0.5F, theme02);
+				BTN_theme02.color = standardButtonColor;
+			} else {
+				fadeInOutAllTextChildren (true, 0.5F, theme02);
+				BTN_theme02.color = highlightedButtonColor;
+			}
+			theme02Visible = !theme02Visible;
+		}
+
+	}
 
 
 
