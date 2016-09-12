@@ -513,6 +513,8 @@ public class MainGameController : MonoBehaviour {
 			BTN_pause01.color = standardButtonColor;
 			pauseOff01.CrossFadeAlpha (0F, 1F, false);
 		} else {
+			pause02Visible = true; 
+			showLogo02 ();
 			BTN_pause01.color = highlightedButtonColor;
 			pauseOff01.CrossFadeAlpha (1F, 1F, false);
 		}
@@ -524,6 +526,8 @@ public class MainGameController : MonoBehaviour {
 			BTN_pause02.color = standardButtonColor;
 			pauseOff02.CrossFadeAlpha (0F, 1F, false);
 		} else {
+			pause01Visible = true; 
+			showLogo01 ();
 			BTN_pause02.color = highlightedButtonColor;
 			pauseOff02.CrossFadeAlpha (1F, 1F, false);
 		}
@@ -1254,10 +1258,10 @@ public class MainGameController : MonoBehaviour {
 	public void showRestaurant() {
 
 		if (restaurantVisible) {
-			restarantIMG.CrossFadeAlpha (0F, 0.5F, false); 
+			restarantIMG.CrossFadeAlpha (0F, 1F, false); 
 			BTN_restaurant.color = standardButtonColor;
 		} else {
-			restarantIMG.CrossFadeAlpha (1F, 0.5F, false);
+			restarantIMG.CrossFadeAlpha (1F, 1F, false);
 			BTN_restaurant.color = highlightedButtonColor;
 		}
 
@@ -1282,19 +1286,19 @@ public class MainGameController : MonoBehaviour {
 	public void showTheme(int number) {
 		if (number == 1) {
 			if (theme01Visible) {
-				fadeInOutAllTextChildren (false, 0.5F, theme01);
+				fadeInOutAllTextChildren (false, 1F, theme01);
 				BTN_theme01.color = standardButtonColor;
 			} else {
-				fadeInOutAllTextChildren (true, 0.5F, theme01);
+				fadeInOutAllTextChildren (true, 1F, theme01);
 				BTN_theme01.color = highlightedButtonColor;
 			}
 			theme01Visible = !theme01Visible;
 		} else {
 			if (theme02Visible) {
-				fadeInOutAllTextChildren (false, 0.5F, theme02);
+				fadeInOutAllTextChildren (false, 1F, theme02);
 				BTN_theme02.color = standardButtonColor;
 			} else {
-				fadeInOutAllTextChildren (true, 0.5F, theme02);
+				fadeInOutAllTextChildren (true, 1F, theme02);
 				BTN_theme02.color = highlightedButtonColor;
 			}
 			theme02Visible = !theme02Visible;
