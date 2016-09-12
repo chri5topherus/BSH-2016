@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class MainCameraController : MonoBehaviour {
 
+	private iTween.EaseType easyType;
+
 	public GameObject cameraStativ;
 	public GameObject cameraIntro;
 
@@ -41,10 +43,12 @@ public class MainCameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		easyType = iTween.EaseType.easeInOutExpo;
 	
 		zoomLevelStart = 0.2F;
 		zoomLevelEnd = 8F;
-		StartDuration = 10F;
+		StartDuration = 5F;
 
 		camera3D01.SetActive (false);
 		camera3D02.SetActive (false);
@@ -56,7 +60,7 @@ public class MainCameraController : MonoBehaviour {
 		currentPosition = 0;
 
 		//set cam to start position
-		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 1F));
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype",easyType, "time", 1F));
 
 		//set cam zoom level
 		cameraIntro.GetComponent<Camera>().orthographicSize = zoomLevelStart;
@@ -85,9 +89,9 @@ public class MainCameraController : MonoBehaviour {
 	}
 
 	private IEnumerator waitWithStartGame() {
-		yield return new WaitForSeconds (1F);
+		yield return new WaitForSeconds (0F);
 
-		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntro.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", StartDuration));
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntro.transform.position, "easetype", easyType, "time", StartDuration));
 
 		iTween.ValueTo( cameraIntro, iTween.Hash(
 			"from", zoomLevelStart,
@@ -95,7 +99,7 @@ public class MainCameraController : MonoBehaviour {
 			"time", StartDuration,
 			"onupdatetarget", gameObject,
 			"onupdate", "tweenOnUpdateCallBack",
-			"easetype", iTween.EaseType.easeInOutQuart)	
+			"easetype", easyType)	
 		);
 
 		StartCoroutine (switchActiveCams ());
@@ -110,7 +114,7 @@ public class MainCameraController : MonoBehaviour {
 		cameraIntro.SetActive (true);
 
 		//set cam to start position
-		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 1F));
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", easyType, "time", 1F));
 
 		moveToNeutral (1f);
 
@@ -134,7 +138,7 @@ public class MainCameraController : MonoBehaviour {
 			"time", 1f,
 			"onupdatetarget", gameObject,
 			"onupdate", "tweenOnUpdateCallBack",
-			"easetype", iTween.EaseType.easeInOutQuart)	
+			"easetype", easyType)	
 		);
 	}
 
@@ -146,7 +150,7 @@ public class MainCameraController : MonoBehaviour {
 		camera3D03.SetActive (false);
 		cameraIntro.SetActive (true);
 
-		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", StartDuration));
+		iTween.MoveTo (cameraIntro, iTween.Hash ("position", cameraPosIntroStart.transform.position, "easetype", easyType, "time", StartDuration));
 
 		iTween.ValueTo( cameraIntro, iTween.Hash(
 			"from", zoomLevelEnd,
@@ -154,7 +158,7 @@ public class MainCameraController : MonoBehaviour {
 			"time", StartDuration,
 			"onupdatetarget", gameObject,
 			"onupdate", "tweenOnUpdateCallBack",
-			"easetype", iTween.EaseType.easeInOutQuart)	
+			"easetype", easyType)	
 		);
 
 	}
@@ -186,8 +190,8 @@ public class MainCameraController : MonoBehaviour {
 		BTN_vertrieb.color = standardColor;
 
 		saveDuration ();
-		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
-		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", easyType, "time", duration));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", easyType, "time", duration));
 		currentPosition = 0;
 	}
 
@@ -200,8 +204,8 @@ public class MainCameraController : MonoBehaviour {
 		BTN_vertrieb.color = standardColor;
 
 		saveDuration ();
-		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", durationNew));
-		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", durationNew));
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype",easyType, "time", durationNew));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", easyType, "time", durationNew));
 		currentPosition = 0;
 	}
 
@@ -214,8 +218,8 @@ public class MainCameraController : MonoBehaviour {
 		BTN_vertrieb.color = standardColor;
 
 		saveDuration ();
-		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
-		iTween.RotateTo (cameraStativ, iTween.Hash ("y", -90F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", easyType, "time", duration));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", -90F, "easetype", easyType, "time", duration));
 		currentPosition = 1;
 	}
 
@@ -228,8 +232,8 @@ public class MainCameraController : MonoBehaviour {
 		BTN_vertrieb.color = standardColor;
 
 		saveDuration ();
-		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
-		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", easyType, "time", duration));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", easyType, "time", duration));
 		currentPosition = 2;
 	}
 
@@ -242,8 +246,8 @@ public class MainCameraController : MonoBehaviour {
 		BTN_vertrieb.color = standardColor;
 
 		saveDuration ();
-		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
-		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", easyType, "time", duration));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 0F, "easetype", easyType, "time", duration));
 		currentPosition = 3;
 	}
 
@@ -256,8 +260,8 @@ public class MainCameraController : MonoBehaviour {
 		BTN_vertrieb.color = hightlightedColor;
 
 		saveDuration ();
-		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
-		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 90F, "easetype", iTween.EaseType.easeInOutQuart, "time", duration));
+		iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", easyType, "time", duration));
+		iTween.RotateTo (cameraStativ, iTween.Hash ("y", 90F, "easetype", easyType, "time", duration));
 		currentPosition = 4;
 	}
 
@@ -268,15 +272,15 @@ public class MainCameraController : MonoBehaviour {
 
 	public void focusPosition() {
 		if (currentPosition == 0) {
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", easyType, "time", 15F));
 		} else if (currentPosition == 1) {
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", easyType, "time", 15F));
 		} else if (currentPosition == 2) {
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", easyType, "time", 15F));
 		} else if (currentPosition == 3) { 
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", easyType, "time", 15F));
 		} else { 
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", iTween.EaseType.easeInOutQuart, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", easyType, "time", 15F));
 		}
 	}
 

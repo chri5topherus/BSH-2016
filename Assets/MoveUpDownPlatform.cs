@@ -12,6 +12,6 @@ public class MoveUpDownPlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.localPosition = new Vector3(_startPosition.x, _startPosition.y * Mathf.Cos(Time.time/4F) / 4F, _startPosition.z);
+		transform.localPosition = new Vector3(_startPosition.x, _startPosition.y * Mathf.Cos(Time.time/4F) / 2F, _startPosition.z);
 	}
 }

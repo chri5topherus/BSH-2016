@@ -246,9 +246,6 @@ public class MainGameController : MonoBehaviour {
 	public Color highlightedButtonColorYellow;
 	public Color lightGreyButtonColor;
 
-	private int activeButtonCounter;
-
-
 	[Header ("------ cube objects ------")]
 
 	//objects
@@ -300,8 +297,8 @@ public class MainGameController : MonoBehaviour {
 		BTN_restaurant.color = standardButtonColor;
 
 
-		fadeInOutAllTextChildren (false, 0F, theme01);
-		fadeInOutAllTextChildren (false, 0F, theme02);
+		StartCoroutine( fadeInOutAllTextChildren (false, 0F, theme01));
+		StartCoroutine( fadeInOutAllTextChildren (false, 0F, theme02));
 		theme01Visible = false; 
 		theme02Visible = false; 
 		BTN_theme01.color = standardButtonColor;
@@ -411,7 +408,6 @@ public class MainGameController : MonoBehaviour {
 		fadeColorToBlack (TXT_06_resultLeftArray);
 
 		showedResults = false;
-		activeButtonCounter = 1;
 
 		BTNshow.color = highlightedButtonColorYellow;
 
@@ -532,6 +528,11 @@ public class MainGameController : MonoBehaviour {
 			pauseOff02.CrossFadeAlpha (1F, 1F, false);
 		}
 		pause02Visible = !pause02Visible;
+	}
+
+	IEnumerator showLogosDelayed(float waitingDelay, Image img, float alpha) {
+		yield return new WaitForSeconds (waitingDelay); 
+		img.CrossFadeAlpha (alpha, 1F, false);
 	}
 		
 
@@ -1268,7 +1269,8 @@ public class MainGameController : MonoBehaviour {
 		restaurantVisible = !restaurantVisible;
 	}
 
-	private void fadeInOutAllTextChildren(bool fadeIn, float duration, GameObject parent) {
+	private IEnumerator fadeInOutAllTextChildren(bool fadeIn, float duration, GameObject parent) {
+		yield return new WaitForSeconds (1F);
 
 		Text[] textTMP = parent.GetComponentsInChildren<Text>();
 
@@ -1286,19 +1288,19 @@ public class MainGameController : MonoBehaviour {
 	public void showTheme(int number) {
 		if (number == 1) {
 			if (theme01Visible) {
-				fadeInOutAllTextChildren (false, 1F, theme01);
+				StartCoroutine( fadeInOutAllTextChildren (false, 1F, theme01));
 				BTN_theme01.color = standardButtonColor;
 			} else {
-				fadeInOutAllTextChildren (true, 1F, theme01);
+				StartCoroutine( fadeInOutAllTextChildren (true, 1F, theme01));
 				BTN_theme01.color = highlightedButtonColor;
 			}
 			theme01Visible = !theme01Visible;
 		} else {
 			if (theme02Visible) {
-				fadeInOutAllTextChildren (false, 1F, theme02);
+				StartCoroutine( fadeInOutAllTextChildren (false, 1F, theme02));
 				BTN_theme02.color = standardButtonColor;
 			} else {
-				fadeInOutAllTextChildren (true, 1F, theme02);
+				StartCoroutine( fadeInOutAllTextChildren (true, 1F, theme02));
 				BTN_theme02.color = highlightedButtonColor;
 			}
 			theme02Visible = !theme02Visible;
