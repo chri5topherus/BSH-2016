@@ -414,20 +414,20 @@ public class MainGameController : MonoBehaviour {
 		TXT_currentQuestion.text = "0 / 9";
 
 		spaceBetweenCubes = 0.2F;
-		scaleIndex = 6.12f;
+		scaleIndex = 6f;
 
 	
 		// set question text
 		questions = new string[,]{
-			{ "Was möchten Sie heute Abend trinken?", "A Bier", "B Wein", "C Wasser" }, 
-			{ "Braucht die genossenschaftliche FinanzGruppe eine klare Strategie für den Umgang mit Finanzierungs-Plattformen?", "A Ja", "B Nein", "C Weiß nicht" }, 
-			{ "2,1", "nicht gut1", "gut1", "1..."},
-			{ "2,2", "nicht gut2", "gut2", ".2.."},
-			{ "2,3", "nicht gut3", "gut3", ".3.."},
-			{ "2,4", "nicht gut4", "gut4", "4..."},
+			{ "Welches der folgenden Themen beschäftigt Sie zurzeit am meisten?", "A Regulatorik", "B Digitalisierung", "C Zins-Niveau" }, 
+			{ "Sind Sie auch der Meinung, dass wir uns weiter mit Finanzierungsplattformen zur gemeinsamen Nutzung in der genossenschaftliche Finanzgruppe beschäftigen sollen?", "A Ja", "B Nein", "C Weiß nicht" }, 
+			{ "Welche Rolle wird die Beratung durch künstliche Intelligenz künftig spielen?", "A A", "B B", "C C"},
+			{ "Wieso werden eingesessene Unternehmen von Marktneulingen verdrängt?", "A A", "B B", ""},
+			{ "Wann kümmern Sie sich um die digitalen Beratungs- und Kommunikationstechniken?", "A A", "B B", "C C"},
+			{ "EMPTYYY 2.4", "A A", "B B", "C C"},
 			{ "Welchen Marktanteil können wir gemeinsam in 2021 realisieren?", "A 20% Marktanteil", "B 25% Marktanteil", "C 30% Marktanteil" }, 
-			{ "Bis zu welcher Bonitätsklasse nach der BVR-Masterskala vergeben aus Ihrer Sicht der Großteil der Banken normalerweise Baufinanzierungen?", "A bis 2B", "B bis 2D", "C bis 3B"},
-			{ "Ist das vorgestellte modulare Angebot an Außendienstfunktionen der richtige Weg für die weitere Zusammenarbeit?", "A Ja", "B Nein", "C Weiß nicht" },
+			{ "Bis zu welcher mittleren Ausfallwahrscheinlichkeit (Bonitätsklasse) vergeben Banken gewöhnlich Baufinanzierungen?", "A bis 0,75% (2B)", "B bis 1,70% (2D)", "C bis 6,00% (3B)"},
+			{ "Passen die vorgestellten Außendienstfunktionen zu Ihrer Banken-Ausrichtung?", "A Ja", "B Nein", "C Weiß nicht" },
 			{ "Setzen Sie die genossenschaftliche Beratung in Ihrer Bank bereits um?", "A Ja, in vollem Umfang", "B Noch nicht - aber in Vorbereitung", "C Nein"}
 		};
 
@@ -1003,7 +1003,6 @@ public class MainGameController : MonoBehaviour {
 				currentResultFloat =  (Math.Max(result01, Math.Max(result02, Math.Max(result03, 0F))));
 
 				if (result01 == currentResultFloat) {
-					Debug.Log ("ident");
 					currentResultColor = 0;
 					currentResultString = questions [currentQuestion, 1];
 				} else if (result02 == currentResultFloat) {

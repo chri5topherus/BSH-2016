@@ -271,6 +271,7 @@ public class MainCameraController : MonoBehaviour {
 
 
 	public void focusPosition() {
+		/*
 		if (currentPosition == 0) {
 			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", easyType, "time", 15F));
 		} else if (currentPosition == 1) {
@@ -282,6 +283,7 @@ public class MainCameraController : MonoBehaviour {
 		} else { 
 			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", easyType, "time", 15F));
 		}
+		*/
 	}
 
 
