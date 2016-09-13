@@ -124,12 +124,15 @@ public class MainGameController : MonoBehaviour {
 	//bauchbinden 
 	public Image pauseOff01;
 	public Image pauseOff02;
+	public Image pauseOff03;
 
 	private bool pause01Visible; 
 	private bool pause02Visible;
+	private bool pause03Visible;
 
 	public Image BTN_pause01; 
 	public Image BTN_pause02;
+	public Image BTN_pause03;
 
 
 
@@ -325,10 +328,13 @@ public class MainGameController : MonoBehaviour {
 		// ---- PAUSE ---- 
 		pauseOff01.CrossFadeAlpha (0F, 0F, false);
 		pauseOff02.CrossFadeAlpha (0F, 0F, false);
+		pauseOff03.CrossFadeAlpha (0F, 0F, false);
 		pause01Visible = false; 
 		pause02Visible = false;
+		pause03Visible = false;
 		BTN_pause01.color = standardButtonColor;
 		BTN_pause02.color = standardButtonColor;
+		BTN_pause03.color = standardButtonColor;
 
 		if (firstStart) {
 
@@ -511,6 +517,8 @@ public class MainGameController : MonoBehaviour {
 		} else {
 			pause02Visible = true; 
 			showLogo02 ();
+			pause03Visible = true; 
+			showLogo03 ();
 			BTN_pause01.color = highlightedButtonColor;
 			pauseOff01.CrossFadeAlpha (1F, 1F, false);
 		}
@@ -524,11 +532,31 @@ public class MainGameController : MonoBehaviour {
 		} else {
 			pause01Visible = true; 
 			showLogo01 ();
+			pause03Visible = true; 
+			showLogo03 ();
 			BTN_pause02.color = highlightedButtonColor;
 			pauseOff02.CrossFadeAlpha (1F, 1F, false);
 		}
 		pause02Visible = !pause02Visible;
 	}
+
+	public void showLogo03() {
+		if (pause03Visible) {
+			BTN_pause03.color = standardButtonColor;
+			pauseOff03.CrossFadeAlpha (0F, 1F, false);
+		} else {
+			pause01Visible = true; 
+			showLogo01 ();
+			pause02Visible = true; 
+			showLogo02 ();
+			BTN_pause03.color = highlightedButtonColor;
+			pauseOff03.CrossFadeAlpha (1F, 1F, false);
+		}
+		pause03Visible = !pause03Visible;
+	}
+
+
+
 
 	IEnumerator showLogosDelayed(float waitingDelay, Image img, float alpha) {
 		yield return new WaitForSeconds (waitingDelay); 
