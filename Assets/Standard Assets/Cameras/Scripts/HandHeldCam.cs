@@ -24,8 +24,8 @@ namespace UnityStandardAssets.Cameras
 		private bool running;
 
 		void Start () {
-			waitingFloat = float.Parse (waitingTimeTXT.text);
-			running = false;
+			//waitingFloat = float.Parse (waitingTimeTXT.text);
+			running = true;
 		}
 
 		private void startMotion() {
@@ -53,7 +53,7 @@ namespace UnityStandardAssets.Cameras
 
         protected override void FollowTarget(float deltaTime)
         {
-			if (false) {
+			if (running) {
 			
 				// base.FollowTarget(deltaTime);
 
