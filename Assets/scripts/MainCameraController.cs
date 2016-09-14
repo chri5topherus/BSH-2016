@@ -273,17 +273,17 @@ public class MainCameraController : MonoBehaviour {
 	public void focusPosition() {
 		/*
 		if (currentPosition == 0) {
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", easyType, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPosNeutral.transform.position, "easetype", easyType, "time", 10F));
 		} else if (currentPosition == 1) {
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", easyType, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos01.transform.position, "easetype", easyType, "time", 10F));
 		} else if (currentPosition == 2) {
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", easyType, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos02.transform.position, "easetype", easyType, "time", 10F));
 		} else if (currentPosition == 3) { 
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", easyType, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos03.transform.position, "easetype", easyType, "time", 10F));
 		} else { 
-			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", easyType, "time", 15F));
+			iTween.MoveTo (cameraStativ, iTween.Hash ("position", cameraPos04.transform.position, "easetype", easyType, "time", 10F));
 		}
-		*/
+*/
 	}
 
 
