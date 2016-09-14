@@ -109,7 +109,7 @@ public class WordRap : MonoBehaviour {
 
 		running = false;
 		running02 = true;
-		StartCoroutine(StartFadingTXT02(0, waitingTime));
+		StartCoroutine(StartFadingTXT02(0, 4F));
 	}
 
 

@@ -22,6 +22,9 @@ public class HoveringCam : MonoBehaviour {
 	private float xZero; 
 	private float yZero;
 
+	private float currentSpeed;
+	public Slider mainSlider;
+
 	private bool running;
 
 	private bool atZero;
@@ -38,8 +41,12 @@ public class HoveringCam : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		mainSlider.onValueChanged.AddListener (delegate {ValueChangeCheck ();});
+
 		runningMaster = true;
 		BTN_running.color = highlightedColor;
+
+		currentSpeed = 0.001F;
 
 		atZero = false;
 		atZeroX = false;
@@ -80,7 +87,7 @@ public class HoveringCam : MonoBehaviour {
 				xTMP = getX ();
 				if (xTMP < 0.01F && xTMP > -0.01) {
 					atZeroX = true;
-					xCurrent = xCurrent - 0.002F;
+					xCurrent = xCurrent - currentSpeed;
 					xZero = xCurrent; 
 				}
 			}
@@ -88,7 +95,7 @@ public class HoveringCam : MonoBehaviour {
 				yTMP = getY ();
 				if (yTMP < 0.01F && yTMP > -0.01) {
 					atZeroY = true;
-					yCurrent = yCurrent - 0.002F;
+					yCurrent = yCurrent - currentSpeed;
 					yZero = yCurrent;
 				}
 			}
@@ -100,8 +107,23 @@ public class HoveringCam : MonoBehaviour {
 	}
 
 
+	public void setSpeed(float inputValue) {
+		currentSpeed = RemapRange (inputValue, 0F, 1F, 0.001F, 0.006F);
+		//Debug.Log (currentSpeed);
+	}
+
+	public void ValueChangeCheck()
+	{
+		setSpeed(mainSlider.value);
+	}
+
+	private float RemapRange (float value, float from1, float to1, float from2, float to2) {
+		return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+	}
+
+
 	float getX() {
-		xCurrent = xCurrent + 0.002F;
+		xCurrent = xCurrent + currentSpeed;
 		if(xCurrent == 1F)
 			xCurrent = 0F;
 		return (Mathf.PerlinNoise(xCurrent, 0.5F) - 0.5F) * 5F;
@@ -109,7 +131,7 @@ public class HoveringCam : MonoBehaviour {
 
 
 	float getY() {
-		yCurrent = yCurrent + 0.002F;
+		yCurrent = yCurrent + currentSpeed;
 			if(yCurrent == 1F) 
 				yCurrent = 0F;
 		return (Mathf.PerlinNoise(0.1F, yCurrent)-0.5F) * 5F;
