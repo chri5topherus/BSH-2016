@@ -145,7 +145,6 @@ public class HoveringCam : MonoBehaviour {
 	}
 
 
-
 	public void stopHoveringAndContinue() {
 		running = false;
 	}
