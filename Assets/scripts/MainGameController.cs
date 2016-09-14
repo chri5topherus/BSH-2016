@@ -431,7 +431,7 @@ public class MainGameController : MonoBehaviour {
 			{ "Wieso werden eingesessene Unternehmen von Marktneulingen verdrängt?", "A A", "B B", ""},
 			{ "Wann kümmern Sie sich um die digitalen Beratungs- und Kommunikationstechniken?", "A A", "B B", "C C"},
 			{ "EMPTYYY 2.4", "A A", "B B", "C C"},
-			{ "Welchen Marktanteil können wir gemeinsam in 2021 realisieren?", "A 20% Marktanteil", "B 25% Marktanteil", "C 30% Marktanteil" }, 
+			{ "Welchen Marktanteil können wir gemeinsam in 2021 realisieren?", "A 23% Marktanteil", "B 27% Marktanteil", "C 30% Marktanteil" }, 
 			{ "Bis zu welcher mittleren Ausfallwahrscheinlichkeit (Bonitätsklasse) vergeben Banken gewöhnlich Baufinanzierungen?", "A bis 0,75% (2B)", "B bis 1,70% (2D)", "C bis 6,00% (3B)"},
 			{ "Passen die vorgestellten Außendienstfunktionen zu Ihrer Banken-Ausrichtung?", "A Ja", "B Nein", "C Weiß nicht" },
 			{ "Setzen Sie die genossenschaftliche Beratung in Ihrer Bank bereits um?", "A Ja, in vollem Umfang", "B Noch nicht - aber in Vorbereitung", "C Nein"}

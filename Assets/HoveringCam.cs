@@ -46,4 +46,18 @@ public class HoveringCam : MonoBehaviour {
 	}
 
 
+	public void startHovering() {
+		StartCoroutine (startHoveringDelay ());
+	}
+
+	public void stopHovering() {
+		running = false;
+	}
+
+	private IEnumerator startHoveringDelay() {
+		yield return new WaitForSeconds (5F);
+		running = true;
+	}
+
+
 }
