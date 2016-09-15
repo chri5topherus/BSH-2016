@@ -66,6 +66,7 @@ public class MainGameController : MonoBehaviour {
 
 
 	[Header ("------ themenräume ------")]
+
 	public GameObject theme01; 
 	public GameObject theme02; 
 	private bool theme01Visible; 
@@ -90,6 +91,7 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputTextBauchbinde10;
 	public InputField inputTextBauchbinde11;
 	public InputField inputTextBauchbinde12;
+	public InputField inputTextBauchbinde13;
 
 	public InputField inputTextBauchbindeTitle01;
 	public InputField inputTextBauchbindeTitle02;
@@ -103,6 +105,7 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputTextBauchbindeTitle10;
 	public InputField inputTextBauchbindeTitle11;
 	public InputField inputTextBauchbindeTitle12;
+	public InputField inputTextBauchbindeTitle13;
 
 	public Text TXT_bauchbinde01;
 	public Text TXT_bauchbinde02;
@@ -207,6 +210,8 @@ public class MainGameController : MonoBehaviour {
 
 	private bool showedResults;
 
+	private int currentStatusSequence;
+
 	//questions array
 	private int currentQuestion;
 
@@ -301,6 +306,7 @@ public class MainGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		currentStatusSequence = 0;
 
 		restarantIMG.CrossFadeAlpha (0F, 0F, false);
 		restaurantVisible = false;
@@ -382,6 +388,7 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbinde10.text = "empty";
 		inputTextBauchbinde11.text = "empty";
 		inputTextBauchbinde12.text = "empty";
+		inputTextBauchbinde13.text = "empty";
 
 		inputTextBauchbindeTitle01.text = "Vorstandsvorsitzender";
 		inputTextBauchbindeTitle02.text = "Vorstandsmitglied";
@@ -395,6 +402,7 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbindeTitle10.text = "empty10";
 		inputTextBauchbindeTitle11.text = "empty11";
 		inputTextBauchbindeTitle12.text = "empty12";
+		inputTextBauchbindeTitle13.text = "empty13";
 
 		BTN_bauchbinde.color = highlightedButtonColor;
 		BTN_bauchbindeShow.color = lightGreyButtonColor;
@@ -795,6 +803,17 @@ public class MainGameController : MonoBehaviour {
 		}
 	}
 
+	public void showBauchbinde13() {
+		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde13.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle13.text;
+			hide2Rows ();
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
 	public void hideBauchbinde() {
 		visibleBauchbinde = false;
 		BTN_bauchbinde.color = highlightedButtonColor;
@@ -820,30 +839,35 @@ public class MainGameController : MonoBehaviour {
 
 	public void showQuestion() {
 
-		BTNshow.color = standardButtonColor;
-		BTNcountdown.color = highlightedButtonColorYellow;
+		if (currentStatusSequence == 0) {
+			currentStatusSequence = 1;
 
-		float delayTmp = 1F;
-		if (currentQuestion == 0) {
-			moveQuestionsInOut (_question00, _result00, true, 2F, delayTmp);
-		} else if (currentQuestion == 1) {
-			moveQuestionsInOut (_question01, _result01, true, 2F, delayTmp);
-		} else if (currentQuestion == 2) {
-			moveQuestionsInOut (_question02_1, _result02_1, true, 2F, delayTmp);
-		}else if (currentQuestion == 3) {
-			moveQuestionsInOut (_question02_2, _result02_2, true, 2F, delayTmp);
-		}else if (currentQuestion == 4) {
-			moveQuestionsInOut (_question02_3, _result02_3, true, 2F, delayTmp);
-		}else if (currentQuestion == 5) {
-			moveQuestionsInOut (_question02_4, _result02_4, true, 2F, delayTmp);
-		} else if (currentQuestion == 6) {
-			moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
-		} else if (currentQuestion == 7) {
-			moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
-		} else if (currentQuestion == 8) {
-			moveQuestionsInOut (_question05, _result05, true, 2F, delayTmp);
-		} else {
-			moveQuestionsInOut (_question06, _result06, true, 2F, delayTmp);
+			BTNshow.color = standardButtonColor;
+			BTNcountdown.color = highlightedButtonColorYellow;
+
+			float delayTmp = 1F;
+			if (currentQuestion == 0) {
+				moveQuestionsInOut (_question00, _result00, true, 2F, delayTmp);
+			} else if (currentQuestion == 1) {
+				moveQuestionsInOut (_question01, _result01, true, 2F, delayTmp);
+			} else if (currentQuestion == 2) {
+				moveQuestionsInOut (_question02_1, _result02_1, true, 2F, delayTmp);
+			} else if (currentQuestion == 3) {
+				moveQuestionsInOut (_question02_2, _result02_2, true, 2F, delayTmp);
+			} else if (currentQuestion == 4) {
+				moveQuestionsInOut (_question02_3, _result02_3, true, 2F, delayTmp);
+			} else if (currentQuestion == 5) {
+				moveQuestionsInOut (_question02_4, _result02_4, true, 2F, delayTmp);
+			} else if (currentQuestion == 6) {
+				moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
+			} else if (currentQuestion == 7) {
+				moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
+			} else if (currentQuestion == 8) {
+				moveQuestionsInOut (_question05, _result05, true, 2F, delayTmp);
+			} else {
+				moveQuestionsInOut (_question06, _result06, true, 2F, delayTmp);
+			}
+
 		}
 
 	}
@@ -885,8 +909,11 @@ public class MainGameController : MonoBehaviour {
 
 	public void removeResults() {
 
-		BTNremove.color = standardButtonColor;
-		BTNshow.color = highlightedButtonColorYellow;
+		if (currentStatusSequence == 3) {
+			currentStatusSequence = 0;
+
+			BTNremove.color = standardButtonColor;
+			BTNshow.color = highlightedButtonColorYellow;
 
 			float delayTmp = 0F;
 			if (currentQuestion == 0) {
@@ -895,11 +922,11 @@ public class MainGameController : MonoBehaviour {
 				moveQuestionsInOut (_question01, _result01, false, 2F, delayTmp);
 			} else if (currentQuestion == 2) {
 				moveQuestionsInOut (_question02_1, _result02_1, false, 2F, delayTmp);
-			}else if (currentQuestion == 3) {
+			} else if (currentQuestion == 3) {
 				moveQuestionsInOut (_question02_2, _result02_2, false, 2F, delayTmp);
-			}else if (currentQuestion == 4) {
+			} else if (currentQuestion == 4) {
 				moveQuestionsInOut (_question02_3, _result02_3, false, 2F, delayTmp);
-			}else if (currentQuestion == 5) {
+			} else if (currentQuestion == 5) {
 				moveQuestionsInOut (_question02_4, _result02_4, false, 2F, delayTmp);
 			} else if (currentQuestion == 6) {
 				moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
@@ -919,10 +946,11 @@ public class MainGameController : MonoBehaviour {
 			resetCubesAnimated (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
 			resetCubesAnimated (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
 
-		if (showedResults) {
-			showNextQuestion ();
-			StartCoroutine (removeResultsAfter (2F));
-			showedResults = false;
+			if (showedResults) {
+				showNextQuestion ();
+				StartCoroutine (removeResultsAfter (2F));
+				showedResults = false;
+			}
 		}
 	}
 
@@ -1028,8 +1056,11 @@ public class MainGameController : MonoBehaviour {
 
 	#region button countdown highlighted
 	public void startCountdown() {
-		BTNcountdown.color = standardButtonColor;
-		BTNresults.color = highlightedButtonColorYellow;
+		if (currentStatusSequence == 1) {
+			currentStatusSequence = 2;
+			BTNcountdown.color = standardButtonColor;
+			BTNresults.color = highlightedButtonColorYellow;
+		}
 	}
 	#endregion
 
@@ -1040,179 +1071,177 @@ public class MainGameController : MonoBehaviour {
 
 	public void showResults() {
 
-		BTNresults.color = standardButtonColor;
-		BTNremove.color = highlightedButtonColorYellow;
+		if (currentStatusSequence == 2) {
+			currentStatusSequence = 3;
 
-		showedResults = true;
+			BTNresults.color = standardButtonColor;
+			BTNremove.color = highlightedButtonColorYellow;
 
-		string tmp = inputResult01.text;
-		try{
-		result01 = float.Parse (tmp);
-		result01 = result01 / 100;
+			showedResults = true;
 
-		tmp = inputResult02.text;
-		result02 = float.Parse (tmp);
-		result02 = result02 / 100;
+			string tmp = inputResult01.text;
+			try {
+				result01 = float.Parse (tmp);
+				result01 = result01 / 100;
 
-		tmp = inputResult03.text;
-		result03 = float.Parse (tmp);
-		result03 = result03/ 100;
-			/*
+				tmp = inputResult02.text;
+				result02 = float.Parse (tmp);
+				result02 = result02 / 100;
+
+				tmp = inputResult03.text;
+				result03 = float.Parse (tmp);
+				result03 = result03 / 100;
+				/*
 		tmp = inputResult04.text;
 		result04 = float.Parse (tmp);
 		result04 = result04 / 100;
 		*/
-		} catch(Exception e) {
-			Debug.Log (e);
-			resultError.text = "wrong input";
-			return;
-		}
-		//check sum
-		float sum = result01 + result02 + result03;
+			} catch (Exception e) {
+				Debug.Log (e);
+				resultError.text = "wrong input";
+				return;
+			}
+			//check sum
+			float sum = result01 + result02 + result03;
 
-		if (sum == 1 || sum == 0) {
-			resultError.text = "";
+			if (sum == 1 || sum == 0) {
+				resultError.text = "";
 
-			if (sum == 0) {
-				//resetCubesAnimated ();
-			} else {
-
-				//setFinalValues for SWING
-				currentResultFloat =  (Math.Max(result01, Math.Max(result02, Math.Max(result03, 0F))));
-
-				if (result01 == currentResultFloat) {
-					currentResultColor = 0;
-					currentResultString = questions [currentQuestion, 1];
-				} else if (result02 == currentResultFloat) {
-					currentResultColor = 1;
-					currentResultString = questions [currentQuestion, 2];
-				} else if (result03 == currentResultFloat) {
-					currentResultColor = 2;
-					currentResultString = questions [currentQuestion, 3];
+				if (sum == 0) {
+					//resetCubesAnimated ();
 				} else {
-					currentResultColor = 3;
-					currentResultString = questions [currentQuestion, 4];
+
+					//setFinalValues for SWING
+					currentResultFloat = (Math.Max (result01, Math.Max (result02, Math.Max (result03, 0F))));
+
+					if (result01 == currentResultFloat) {
+						currentResultColor = 0;
+						currentResultString = questions [currentQuestion, 1];
+					} else if (result02 == currentResultFloat) {
+						currentResultColor = 1;
+						currentResultString = questions [currentQuestion, 2];
+					} else if (result03 == currentResultFloat) {
+						currentResultColor = 2;
+						currentResultString = questions [currentQuestion, 3];
+					} else {
+						currentResultColor = 3;
+						currentResultString = questions [currentQuestion, 4];
+					}
+
+					currentResultFloat *= 100F;
+
+
+
+
+
+					if (currentQuestion == 0) {
+						TXT_00_allresultArray [0].text = result01 * 100F + " %";
+						TXT_00_allresultArray [1].text = result02 * 100F + " %";
+						TXT_00_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_00_allresultArray);
+						fadeColorToColor (TXT_00_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (testCube2, testCube3, testCube4, testCube1startPosition.y);
+
+					} else if (currentQuestion == 1) {
+						TXT_01_allresultArray [0].text = result01 * 100F + " %";
+						TXT_01_allresultArray [1].text = result02 * 100F + " %";
+						TXT_01_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_01_allresultArray);
+						fadeColorToColor (TXT_01_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition.y);
+
+					} else if (currentQuestion == 2) {
+						TXT_02_1_allresultArray [0].text = result01 * 100F + " %";
+						TXT_02_1_allresultArray [1].text = result02 * 100F + " %";
+						TXT_02_1_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_02_1_allresultArray);
+						fadeColorToColor (TXT_02_1_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
+
+					} else if (currentQuestion == 3) {
+						TXT_02_2_allresultArray [0].text = result01 * 100F + " %";
+						TXT_02_2_allresultArray [1].text = result02 * 100F + " %";
+						TXT_02_2_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_02_2_allresultArray);
+						fadeColorToColor (TXT_02_2_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
+
+					} else if (currentQuestion == 4) {
+						TXT_02_3_allresultArray [0].text = result01 * 100F + " %";
+						TXT_02_3_allresultArray [1].text = result02 * 100F + " %";
+						TXT_02_3_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_02_3_allresultArray);
+						fadeColorToColor (TXT_02_3_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
+
+					} else if (currentQuestion == 5) {
+						TXT_02_4_allresultArray [0].text = result01 * 100F + " %";
+						TXT_02_4_allresultArray [1].text = result02 * 100F + " %";
+						TXT_02_4_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_02_4_allresultArray);
+						fadeColorToColor (TXT_02_4_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
+
+					} else if (currentQuestion == 6) {
+						TXT_03_allresultArray [0].text = result01 * 100F + " %";
+						TXT_03_allresultArray [1].text = result02 * 100F + " %";
+						TXT_03_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_03_allresultArray);
+						fadeColorToColor (TXT_03_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition.y);
+
+					} else if (currentQuestion == 7) {
+						TXT_04_allresultArray [0].text = result01 * 100F + " %";
+						TXT_04_allresultArray [1].text = result02 * 100F + " %";
+						TXT_04_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_04_allresultArray);
+						fadeColorToColor (TXT_04_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition.y);
+
+					} else if (currentQuestion == 8) {
+						TXT_05_allresultArray [0].text = result01 * 100F + " %";
+						TXT_05_allresultArray [1].text = result02 * 100F + " %";
+						TXT_05_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_05_allresultArray);
+						fadeColorToColor (TXT_05_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition.y);
+
+					} else if (currentQuestion == 9) {
+						TXT_06_allresultArray [0].text = result01 * 100F + " %";
+						TXT_06_allresultArray [1].text = result02 * 100F + " %";
+						TXT_06_allresultArray [2].text = result03 * 100F + " %";
+						fadeInResults (TXT_06_allresultArray);
+						fadeColorToColor (TXT_06_resultLeftArray);
+
+						//animate specific cube
+						animateCubesOut (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition.y);
+
+					}  
+
 				}
 
-				currentResultFloat *= 100F;
+			} else {
 
-
-
-
-
-				if (currentQuestion == 0) {
-					TXT_00_allresultArray [0].text = result01 * 100F + " %";
-					TXT_00_allresultArray [1].text = result02 * 100F + " %";
-					TXT_00_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_00_allresultArray);
-					fadeColorToColor (TXT_00_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(testCube2, testCube3, testCube4, testCube1startPosition.y);
-
-				} else if (currentQuestion == 1) {
-					TXT_01_allresultArray [0].text = result01 * 100F + " %";
-					TXT_01_allresultArray [1].text = result02 * 100F + " %";
-					TXT_01_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_01_allresultArray);
-					fadeColorToColor (TXT_01_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ01_01, cubeQ01_02, cubeQ01_03, cubeQ01startPosition.y);
-
-				} else if (currentQuestion == 2) {
-					TXT_02_1_allresultArray [0].text = result01 * 100F + " %";
-					TXT_02_1_allresultArray [1].text = result02 * 100F + " %";
-					TXT_02_1_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_02_1_allresultArray);
-					fadeColorToColor (TXT_02_1_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
-
-				} else if (currentQuestion == 3) {
-					TXT_02_2_allresultArray [0].text = result01 * 100F + " %";
-					TXT_02_2_allresultArray [1].text = result02 * 100F + " %";
-					TXT_02_2_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_02_2_allresultArray);
-					fadeColorToColor (TXT_02_2_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
-
-				} else if (currentQuestion == 4) {
-					TXT_02_3_allresultArray [0].text = result01 * 100F + " %";
-					TXT_02_3_allresultArray [1].text = result02 * 100F + " %";
-					TXT_02_3_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_02_3_allresultArray);
-					fadeColorToColor (TXT_02_3_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
-
-				} else if (currentQuestion == 5) {
-					TXT_02_4_allresultArray [0].text = result01 * 100F + " %";
-					TXT_02_4_allresultArray [1].text = result02 * 100F + " %";
-					TXT_02_4_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_02_4_allresultArray);
-					fadeColorToColor (TXT_02_4_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ02_01, cubeQ02_02, cubeQ02_03, cubeQ02startPosition.y);
-
-				} 
-
-
-
-				else if (currentQuestion == 6) {
-					TXT_03_allresultArray [0].text = result01 * 100F + " %";
-					TXT_03_allresultArray [1].text = result02 * 100F + " %";
-					TXT_03_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_03_allresultArray);
-					fadeColorToColor (TXT_03_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ03_01, cubeQ03_02, cubeQ03_03, cubeQ03startPosition.y);
-
-				} else if (currentQuestion == 7) {
-					TXT_04_allresultArray [0].text = result01 * 100F + " %";
-					TXT_04_allresultArray [1].text = result02 * 100F + " %";
-					TXT_04_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_04_allresultArray);
-					fadeColorToColor (TXT_04_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ04_01, cubeQ04_02, cubeQ04_03, cubeQ04startPosition.y);
-
-				} else if (currentQuestion == 8) {
-					TXT_05_allresultArray [0].text = result01 * 100F + " %";
-					TXT_05_allresultArray [1].text = result02 * 100F + " %";
-					TXT_05_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_05_allresultArray);
-					fadeColorToColor (TXT_05_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition.y);
-
-				} else if (currentQuestion == 9) {
-					TXT_06_allresultArray [0].text = result01 * 100F + " %";
-					TXT_06_allresultArray [1].text = result02 * 100F + " %";
-					TXT_06_allresultArray [2].text = result03 * 100F + " %";
-					fadeInResults (TXT_06_allresultArray);
-					fadeColorToColor (TXT_06_resultLeftArray);
-
-					//animate specific cube
-					animateCubesOut(cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition.y);
-
-				}  
-
-
-
+				resultError.text = (100 - sum * 100) + "% only";
 			}
-
-		} else {
-
-			resultError.text = (100 - sum*100) + "% only";
 		}
 	}
 

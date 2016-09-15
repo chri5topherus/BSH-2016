@@ -10,6 +10,11 @@ public class HoveringCam : MonoBehaviour {
 	public Text durationWorldChangeTXT;
 	private float durationWorldChange;
 
+	public Image hoveringReady;
+
+	public Color colorRed; 
+	public Color colorOrange;
+
 	private float xMax; 
 	private float yMax; 
 
@@ -40,6 +45,8 @@ public class HoveringCam : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		hoveringReady.color = colorRed;
 
 		mainSlider.onValueChanged.AddListener (delegate {ValueChangeCheck ();});
 
@@ -109,7 +116,7 @@ public class HoveringCam : MonoBehaviour {
 	//speed adjust
 
 	public void setSpeed(float inputValue) {
-		currentSpeed = RemapRange (inputValue, 0F, 1F, 0.0005F, 0.004F);
+		currentSpeed = RemapRange (inputValue, 0F, 1F, 0.0001F, 0.002F);
 		//Debug.Log (currentSpeed);
 	}
 
@@ -140,7 +147,8 @@ public class HoveringCam : MonoBehaviour {
 
 
 	public void startHoveringAtBeginning() {
-		//added 2 sec
+		//onlocation
+		//added 2 sec 
 		StartCoroutine (startHoveringDelay (10F));
 	}
 
@@ -163,8 +171,15 @@ public class HoveringCam : MonoBehaviour {
 
 	public void focusCamera() {
 		if (focus) {
+			hoveringReady.color = colorOrange;
+			StartCoroutine (waitBeforeReady ());
 			iTween.MoveTo (this.gameObject, iTween.Hash ("position", startPosition, "easetype", iTween.EaseType.easeInOutQuad, "time", 10F, "islocal", true));
 		}
+	}
+
+	private IEnumerator waitBeforeReady() {
+		yield return new WaitForSeconds (10F);
+		hoveringReady.color = highlightedColor;
 	}
 
 
@@ -180,6 +195,7 @@ public class HoveringCam : MonoBehaviour {
 
 	private IEnumerator startHoveringDelay(float delay) {
 		yield return new WaitForSeconds (delay);
+		hoveringReady.color = colorRed;
 		focus = true;
 		startPosition = transform.localPosition;
 		running = true;

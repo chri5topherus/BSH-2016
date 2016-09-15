@@ -48,7 +48,9 @@ public class MainCameraController : MonoBehaviour {
 	
 		zoomLevelStart = 0.2F;
 		zoomLevelEnd = 8F;
-		StartDuration = 5F;
+
+		//onlocation
+		StartDuration = 8F;
 
 		camera3D01.SetActive (false);
 		camera3D02.SetActive (false);

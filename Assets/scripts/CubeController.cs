@@ -19,6 +19,8 @@ public class CubeController : MonoBehaviour {
 	public GameObject cubeLogo03; 
 	public GameObject cubeLogo04; 
 
+	private bool logoVisible;
+
 	private Vector3 startPositionCubeLogo01;
 	private Vector3 startPositionCubeLogo02;
 	private Vector3 startPositionCubeLogo03;
@@ -28,7 +30,6 @@ public class CubeController : MonoBehaviour {
 	public Color highlightedColor;
 
 	public Image BTN_showLogo; 
-	public Image BTN_hideLogo;
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +46,8 @@ public class CubeController : MonoBehaviour {
 		startPositionCubeLogo03 = cubeLogo03.transform.localPosition;
 		startPositionCubeLogo04 = cubeLogo04.transform.localPosition;
 
-		hideLogo ();
+		logoVisible = true;
+		showLogo ();
 	}
 
 	//theme cubes
@@ -87,36 +89,32 @@ public class CubeController : MonoBehaviour {
 	}
 
 	public void showLogo() {
+		if (!logoVisible) {
+			BTN_showLogo.color = highlightedColor;
 
-		BTN_showLogo.color = highlightedColor;
-		BTN_hideLogo.color = standardColor;
+			iTween.MoveTo (cubeLogo01, iTween.Hash ("z", startPositionCubeLogo01.z, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0F));
+			iTween.MoveTo (cubeLogo02, iTween.Hash ("z", startPositionCubeLogo02.z, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0.5F));
+			iTween.MoveTo (cubeLogo03, iTween.Hash ("z", startPositionCubeLogo03.z, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1F));
+			iTween.MoveTo (cubeLogo04, iTween.Hash ("z", startPositionCubeLogo04.z, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1.5F));
 
-		iTween.MoveTo(cubeLogo01, iTween.Hash("z",  startPositionCubeLogo01.z, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0F));
-		iTween.MoveTo(cubeLogo02, iTween.Hash("z",  startPositionCubeLogo02.z, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0.5F));
-		iTween.MoveTo(cubeLogo03, iTween.Hash("z",  startPositionCubeLogo03.z, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1F));
-		iTween.MoveTo(cubeLogo04, iTween.Hash("z",  startPositionCubeLogo04.z, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1.5F));
+			iTween.RotateTo (cubeLogo01, iTween.Hash ("x", 1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0F));
+			iTween.RotateTo (cubeLogo02, iTween.Hash ("x", 1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0.5F));
+			iTween.RotateTo (cubeLogo03, iTween.Hash ("x", 1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1F));
+			iTween.RotateTo (cubeLogo04, iTween.Hash ("x", 1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1.5F));
+		} else {
+			BTN_showLogo.color = standardColor;
 
-		iTween.RotateBy(cubeLogo01, iTween.Hash("x",  1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0F));
-		iTween.RotateBy(cubeLogo02, iTween.Hash("x",  1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0.5F));
-		iTween.RotateBy(cubeLogo03, iTween.Hash("x",  1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1F));
-		iTween.RotateBy(cubeLogo04, iTween.Hash("x",  1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1.5F));
-	}
+			iTween.MoveTo(cubeLogo04, iTween.Hash("z",  startPositionCubeLogo01.z-50F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0F));
+			iTween.MoveTo(cubeLogo03, iTween.Hash("z",  startPositionCubeLogo02.z-50F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0.5F));
+			iTween.MoveTo(cubeLogo02, iTween.Hash("z",  startPositionCubeLogo03.z-50F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1F));
+			iTween.MoveTo(cubeLogo01, iTween.Hash("z",  startPositionCubeLogo04.z-50F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1.5F));
 
-
-	public void hideLogo() {
-
-		BTN_showLogo.color = standardColor;
-		BTN_hideLogo.color = highlightedColor;
-
-		iTween.MoveTo(cubeLogo04, iTween.Hash("z",  startPositionCubeLogo01.z-15F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0F));
-		iTween.MoveTo(cubeLogo03, iTween.Hash("z",  startPositionCubeLogo02.z-15F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0.5F));
-		iTween.MoveTo(cubeLogo02, iTween.Hash("z",  startPositionCubeLogo03.z-15F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1F));
-		iTween.MoveTo(cubeLogo01, iTween.Hash("z",  startPositionCubeLogo04.z-15F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 1.5F));
-
-		iTween.RotateBy(cubeLogo04, iTween.Hash("x",  -1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0F));
-		iTween.RotateBy(cubeLogo03, iTween.Hash("x",  -1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0.5F));
-		iTween.RotateBy(cubeLogo02, iTween.Hash("x",  -1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1F));
-		iTween.RotateBy(cubeLogo01, iTween.Hash("x",  -1F, "time", 3F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1.5F));
+			iTween.RotateTo(cubeLogo04, iTween.Hash("x",  -1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0F));
+			iTween.RotateTo(cubeLogo03, iTween.Hash("x",  -1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 0.5F));
+			iTween.RotateTo(cubeLogo02, iTween.Hash("x",  -1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1F));
+			iTween.RotateTo(cubeLogo01, iTween.Hash("x",  -1440F, "time", 5F, "easetype", iTween.EaseType.easeInOutQuart, "delay", 1.5F));
+		}
+		logoVisible = !logoVisible;
 	}
 
 
