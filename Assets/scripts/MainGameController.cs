@@ -88,6 +88,8 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputTextBauchbinde08;
 	public InputField inputTextBauchbinde09;
 	public InputField inputTextBauchbinde10;
+	public InputField inputTextBauchbinde11;
+	public InputField inputTextBauchbinde12;
 
 	public InputField inputTextBauchbindeTitle01;
 	public InputField inputTextBauchbindeTitle02;
@@ -99,7 +101,8 @@ public class MainGameController : MonoBehaviour {
 	public InputField inputTextBauchbindeTitle08;
 	public InputField inputTextBauchbindeTitle09;
 	public InputField inputTextBauchbindeTitle10;
-
+	public InputField inputTextBauchbindeTitle11;
+	public InputField inputTextBauchbindeTitle12;
 
 	public Text TXT_bauchbinde01;
 	public Text TXT_bauchbinde02;
@@ -376,6 +379,8 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbinde08.text = "Stephan Lohß";
 		inputTextBauchbinde09.text = "Nova Meierhenrich";
 		inputTextBauchbinde10.text = "empty";
+		inputTextBauchbinde11.text = "empty";
+		inputTextBauchbinde12.text = "empty";
 
 		inputTextBauchbindeTitle01.text = "Vorstandsvorsitzender";
 		inputTextBauchbindeTitle02.text = "Vorstandsmitglied";
@@ -387,6 +392,8 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbindeTitle08.text = "Bezirksleiter Baufinanzierung";
 		inputTextBauchbindeTitle09.text = "Moderatorin";
 		inputTextBauchbindeTitle10.text = "empty10";
+		inputTextBauchbindeTitle11.text = "empty11";
+		inputTextBauchbindeTitle12.text = "empty12";
 
 		BTN_bauchbinde.color = highlightedButtonColor;
 		BTN_bauchbindeShow.color = lightGreyButtonColor;
@@ -749,6 +756,26 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde10.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle10.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde11() {
+		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde11.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle11.text;
+			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+		}
+	}
+
+	public void showBauchbinde12() {
+		if (!visibleBauchbinde) {
+			changeButtonColorBauchbinde ();
+			visibleBauchbinde = true;
+			TXT_bauchbinde01.text = inputTextBauchbinde12.text;
+			TXT_bauchbinde02.text = inputTextBauchbindeTitle12.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
