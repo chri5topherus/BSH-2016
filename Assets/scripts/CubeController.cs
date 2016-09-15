@@ -48,7 +48,7 @@ public class CubeController : MonoBehaviour {
 		hideLogo ();
 	}
 
-
+	//theme cubes
 	public void showSetting01() {
 		if (setting01Visible) {
 			iTween.MoveTo(cubeYellow, iTween.Hash("y",  startPositionBottom.y+10F, "time", 2F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0.5F));
@@ -67,6 +67,7 @@ public class CubeController : MonoBehaviour {
 		setting01Visible = !setting01Visible;
 	}
 
+	//theme cubes
 	public void showSetting02() {
 		if (setting02Visible) {
 			iTween.MoveTo(cubeRed, iTween.Hash("y",  startPositionBottom.y+10F, "time", 2F, "easetype", iTween.EaseType.easeInOutQuart, "islocal", true, "delay", 0.5F));

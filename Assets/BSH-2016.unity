@@ -2196,8 +2196,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1383, y: 1285}
-  m_SizeDelta: {x: 809, y: 395}
+  m_AnchoredPosition: {x: 838, y: 1207}
+  m_SizeDelta: {x: 496, y: 483}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &105113806
 MonoBehaviour:
@@ -13731,6 +13731,7 @@ MonoBehaviour:
   - {fileID: 2041405910}
   - {fileID: 719541046}
   - {fileID: 1631788572}
+  baufiGraphic: {fileID: 1428884277}
   _question00: {fileID: 196554446}
   _result00: {fileID: 961287886}
   _question01: {fileID: 1795284545}
@@ -23986,12 +23987,12 @@ GameObject:
   - 222: {fileID: 1016578634}
   - 114: {fileID: 1016578633}
   m_Layer: 5
-  m_Name: TEST Image (1)
+  m_Name: TEST Color Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1016578632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29615,7 +29616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1239694609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31950,7 +31951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1351992112
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33161,7 +33162,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1746, y: 1046}
+  m_AnchoredPosition: {x: 1771, y: 1146}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1399532982
@@ -33341,6 +33342,74 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1428167709}
+--- !u!1 &1428884275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1428884276}
+  - 222: {fileID: 1428884278}
+  - 114: {fileID: 1428884277}
+  m_Layer: 5
+  m_Name: Grafik Baufi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1428884276
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1428884275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1464199400}
+  m_RootOrder: 36
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1973.7, y: 952.2}
+  m_SizeDelta: {x: 237.9, y: 458.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1428884277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1428884275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1428884278
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1428884275}
 --- !u!1 &1430247244
 GameObject:
   m_ObjectHideFlags: 0
@@ -33420,12 +33489,12 @@ GameObject:
   - 222: {fileID: 1432020611}
   - 114: {fileID: 1432020610}
   m_Layer: 5
-  m_Name: TEST Image
+  m_Name: TEST Color Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1432020609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34259,6 +34328,7 @@ RectTransform:
   - {fileID: 975371614}
   - {fileID: 179235393}
   - {fileID: 155807037}
+  - {fileID: 1428884276}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
@@ -35823,7 +35893,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1646, y: 936}
+  m_AnchoredPosition: {x: 1671, y: 1036}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1524097765
@@ -41168,7 +41238,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1646, y: 1016}
+  m_AnchoredPosition: {x: 1671, y: 1116}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1720825046
@@ -53314,7 +53384,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1383, y: 1040}
+  m_AnchoredPosition: {x: 1408, y: 1140}
   m_SizeDelta: {x: 818.5, y: 80}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2132203305

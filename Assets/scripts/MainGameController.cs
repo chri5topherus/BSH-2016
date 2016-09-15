@@ -167,6 +167,7 @@ public class MainGameController : MonoBehaviour {
 	public Text[] TXT_05_resultLeftArray = new Text[3];
 	public Text[] TXT_06_resultLeftArray = new Text[3];
 
+	public Image baufiGraphic;
 
 	// translation objects
 	public GameObject _question00;
@@ -294,6 +295,8 @@ public class MainGameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		baufiGraphic.CrossFadeAlpha(0F,0F, false);
 
 		restarantIMG.CrossFadeAlpha (0F, 0F, false);
 		restaurantVisible = false;
@@ -507,7 +510,7 @@ public class MainGameController : MonoBehaviour {
 	#endregion
 
 
-
+	#region logoAnimation
 
 
 	public void showLogo01() {
@@ -556,17 +559,16 @@ public class MainGameController : MonoBehaviour {
 	}
 
 
+	#endregion
 
 
-	IEnumerator showLogosDelayed(float waitingDelay, Image img, float alpha) {
-		yield return new WaitForSeconds (waitingDelay); 
-		img.CrossFadeAlpha (alpha, 1F, false);
-	}
-		
+	#region reset
 
 	public void resetAll() {
 		Start ();
 	}
+
+	#endregion
 
 
 	#region rebuild
@@ -790,6 +792,8 @@ public class MainGameController : MonoBehaviour {
 		} else if (currentQuestion == 6) {
 			moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
 		} else if (currentQuestion == 7) {
+			//add image
+			baufiGraphic.CrossFadeAlpha(1F,0.5F, false);
 			moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
 		} else if (currentQuestion == 8) {
 			moveQuestionsInOut (_question05, _result05, true, 2F, delayTmp);
@@ -855,6 +859,7 @@ public class MainGameController : MonoBehaviour {
 			} else if (currentQuestion == 6) {
 				moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
 			} else if (currentQuestion == 7) {
+				baufiGraphic.CrossFadeAlpha (0F, 0.5F, false);
 				moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
 			} else if (currentQuestion == 8) {
 				moveQuestionsInOut (_question05, _result05, false, 2F, delayTmp);
@@ -918,7 +923,7 @@ public class MainGameController : MonoBehaviour {
 	#endregion
 
 
-	#region headlines animation
+	#region headlines animation on WINGS
 
 	public void moveStrategieIn() { 
 		//Debug.Log ("stag IN");
@@ -977,11 +982,12 @@ public class MainGameController : MonoBehaviour {
 	#endregion
 
 
+	#region button countdown highlighted
 	public void startCountdown() {
 		BTNcountdown.color = standardButtonColor;
 		BTNresults.color = highlightedButtonColorYellow;
 	}
-
+	#endregion
 
 
 	#region results
@@ -1254,34 +1260,7 @@ public class MainGameController : MonoBehaviour {
 	#endregion
 
 
-
-
-
-
-
-	public void moveCamLeft() {
-		iTween.MoveTo(mainCam3D, iTween.Hash("x", mainCam3D.transform.position.x - 3, "easetype", iTween.EaseType.easeInOutQuad, "time", 6F));
-	}
-
-	public void moveCamRight() {
-		iTween.MoveTo(mainCam3D, iTween.Hash("x", mainCam3D.transform.position.x + 3, "easetype", iTween.EaseType.easeInOutQuad, "time", 6F));
-
-	}
-
-	public void moveCamTop() {
-		iTween.MoveTo(mainCam3D, iTween.Hash("z", mainCam3D.transform.position.z + 3, "easetype", iTween.EaseType.easeInOutQuad, "time", 6F));
-
-	}
-
-	public void moveCamBottom() {
-		iTween.MoveTo(mainCam3D, iTween.Hash("z", mainCam3D.transform.position.z - 3, "easetype", iTween.EaseType.easeInOutQuad, "time", 6F));
-
-	}
-
-	public void moveCamCenter() {
-		iTween.MoveTo(mainCam3D, iTween.Hash("position", mainCam3DstartPos, "easetype", iTween.EaseType.easeInOutQuad, "time", 6F));
-
-	}
+	#region rössle
 
 	public void showRestaurant() {
 
@@ -1296,21 +1275,10 @@ public class MainGameController : MonoBehaviour {
 		restaurantVisible = !restaurantVisible;
 	}
 
-	private IEnumerator fadeInOutAllTextChildren(bool fadeIn, float duration, GameObject parent) {
-		yield return new WaitForSeconds (1F);
+	#endregion
 
-		Text[] textTMP = parent.GetComponentsInChildren<Text>();
 
-		//Debug.Log (textTMP.Length);
-
-		for (int i = 0; i < textTMP.Length; i++) {
-			if (fadeIn) 
-				textTMP [i].CrossFadeAlpha (1F, duration, false);
-			 else 
-				textTMP [i].CrossFadeAlpha (0F, duration, false);
-		}
-	}
-
+	#region themenräume
 
 	public void showTheme(int number) {
 		if (number == 1) {
@@ -1332,8 +1300,25 @@ public class MainGameController : MonoBehaviour {
 			}
 			theme02Visible = !theme02Visible;
 		}
-
 	}
+
+
+	private IEnumerator fadeInOutAllTextChildren(bool fadeIn, float duration, GameObject parent) {
+		yield return new WaitForSeconds (1F);
+
+		Text[] textTMP = parent.GetComponentsInChildren<Text>();
+
+		//Debug.Log (textTMP.Length);
+
+		for (int i = 0; i < textTMP.Length; i++) {
+			if (fadeIn) 
+				textTMP [i].CrossFadeAlpha (1F, duration, false);
+			else 
+				textTMP [i].CrossFadeAlpha (0F, duration, false);
+		}
+	}
+
+	#endregion
 
 
 
