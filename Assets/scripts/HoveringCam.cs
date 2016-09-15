@@ -46,7 +46,7 @@ public class HoveringCam : MonoBehaviour {
 		runningMaster = true;
 		BTN_running.color = highlightedColor;
 
-		currentSpeed = 0.001F;
+		currentSpeed = 0.0005F;
 
 		atZero = false;
 		atZeroX = false;
@@ -106,9 +106,10 @@ public class HoveringCam : MonoBehaviour {
 		}
 	}
 
+	//speed adjust
 
 	public void setSpeed(float inputValue) {
-		currentSpeed = RemapRange (inputValue, 0F, 1F, 0.001F, 0.006F);
+		currentSpeed = RemapRange (inputValue, 0F, 1F, 0.0005F, 0.004F);
 		//Debug.Log (currentSpeed);
 	}
 

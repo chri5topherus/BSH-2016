@@ -106,6 +106,10 @@ public class MainGameController : MonoBehaviour {
 
 	public Text TXT_bauchbinde01;
 	public Text TXT_bauchbinde02;
+
+	public Text TXT_bauchbinde02_01;
+	public Text TXT_bauchbinde02_02;
+
 	public GameObject bauchbinde;
 	private bool visibleBauchbinde;
 	private float bauchbindeStartPos;
@@ -169,8 +173,6 @@ public class MainGameController : MonoBehaviour {
 	public Text[] TXT_04_resultLeftArray = new Text[3];
 	public Text[] TXT_05_resultLeftArray = new Text[3];
 	public Text[] TXT_06_resultLeftArray = new Text[3];
-
-	public Image baufiGraphic;
 
 	// translation objects
 	public GameObject _question00;
@@ -299,7 +301,6 @@ public class MainGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		baufiGraphic.CrossFadeAlpha(0F,0F, false);
 
 		restarantIMG.CrossFadeAlpha (0F, 0F, false);
 		restaurantVisible = false;
@@ -399,6 +400,7 @@ public class MainGameController : MonoBehaviour {
 		BTN_bauchbindeShow.color = lightGreyButtonColor;
 		visibleBauchbinde = false;
 		hideBauchbinde ();
+		hide2Rows ();
 
 		// ---- RESULTS ----
 		fadeOutResults (TXT_00_allresultArray);
@@ -666,6 +668,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde01.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle01.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -676,6 +679,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde02.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle02.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -686,6 +690,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde03.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle03.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -696,6 +701,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde04.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle04.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -706,6 +712,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde05.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle05.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -716,6 +723,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde06.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle06.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -724,8 +732,10 @@ public class MainGameController : MonoBehaviour {
 		if (!visibleBauchbinde) {
 			changeButtonColorBauchbinde ();
 			visibleBauchbinde = true;
-			TXT_bauchbinde01.text = inputTextBauchbinde07.text;
-			TXT_bauchbinde02.text = inputTextBauchbindeTitle07.text;
+			TXT_bauchbinde01.text = "";
+			TXT_bauchbinde02.text = "";
+			TXT_bauchbinde02_01.text = inputTextBauchbinde07.text;
+			TXT_bauchbinde02_02.text = inputTextBauchbindeTitle07.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -736,6 +746,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde08.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle08.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -746,6 +757,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde09.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle09.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -756,6 +768,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde10.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle10.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -766,6 +779,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde11.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle11.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -776,6 +790,7 @@ public class MainGameController : MonoBehaviour {
 			visibleBauchbinde = true;
 			TXT_bauchbinde01.text = inputTextBauchbinde12.text;
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle12.text;
+			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
 		}
 	}
@@ -785,6 +800,11 @@ public class MainGameController : MonoBehaviour {
 		BTN_bauchbinde.color = highlightedButtonColor;
 		BTN_bauchbindeShow.color = lightGreyButtonColor;
 		iTween.MoveTo(bauchbinde, iTween.Hash("y", 500F , "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+	}
+
+	public void hide2Rows() {
+		TXT_bauchbinde02_01.text = "";
+		TXT_bauchbinde02_02.text = "";
 	}
 
 
@@ -819,8 +839,6 @@ public class MainGameController : MonoBehaviour {
 		} else if (currentQuestion == 6) {
 			moveQuestionsInOut (_question03, _result03, true, 2F, delayTmp);
 		} else if (currentQuestion == 7) {
-			//add image
-			baufiGraphic.CrossFadeAlpha(1F,0.5F, false);
 			moveQuestionsInOut (_question04, _result04, true, 2F, delayTmp);
 		} else if (currentQuestion == 8) {
 			moveQuestionsInOut (_question05, _result05, true, 2F, delayTmp);
@@ -886,7 +904,6 @@ public class MainGameController : MonoBehaviour {
 			} else if (currentQuestion == 6) {
 				moveQuestionsInOut (_question03, _result03, false, 2F, delayTmp);
 			} else if (currentQuestion == 7) {
-				baufiGraphic.CrossFadeAlpha (0F, 0.5F, false);
 				moveQuestionsInOut (_question04, _result04, false, 2F, delayTmp);
 			} else if (currentQuestion == 8) {
 				moveQuestionsInOut (_question05, _result05, false, 2F, delayTmp);
