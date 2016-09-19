@@ -28,7 +28,13 @@ public class HoveringCam : MonoBehaviour {
 	private float yZero;
 
 	private float currentSpeed;
+
+	private float currentSpeedRunning;
+
+	public float currentDistance;
 	public Slider mainSlider;
+	public Image currentlyRunning;
+	private float counter;
 
 	private bool running;
 
@@ -46,6 +52,10 @@ public class HoveringCam : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		currentlyRunning.CrossFadeAlpha (0F, 0F, false);
+
+		counter = 0F;
+
 		hoveringReady.color = colorRed;
 
 		mainSlider.onValueChanged.AddListener (delegate {ValueChangeCheck ();});
@@ -54,6 +64,10 @@ public class HoveringCam : MonoBehaviour {
 		BTN_running.color = highlightedColor;
 
 		currentSpeed = 0.0005F;
+
+		currentSpeedRunning = 10F;
+
+		currentDistance = 3F;
 
 		atZero = false;
 		atZeroX = false;
@@ -79,11 +93,21 @@ public class HoveringCam : MonoBehaviour {
 
 		if (runningMaster) {
 			if (running) {
+				rotateRunning ();
 				xTMP = getX ();
 				yTMP = getY ();
 				transform.localPosition = new Vector3 (startPosition.x + xTMP, startPosition.y + yTMP, startPosition.z + yTMP); 
 			}
 		}
+	}
+
+	private void rotateRunning() {
+		if (counter > currentSpeedRunning) {
+			currentlyRunning.transform.Rotate(0,0, -45);
+			counter = 0F;
+		}
+
+		counter++;
 	}
 		
 
@@ -109,7 +133,7 @@ public class HoveringCam : MonoBehaviour {
 
 			if (atZeroX && atZeroY) {
 				atZero = true;
-			}
+			}currentlyRunning.CrossFadeAlpha (0F, 0F, false);
 		}
 	}
 
@@ -117,6 +141,9 @@ public class HoveringCam : MonoBehaviour {
 
 	public void setSpeed(float inputValue) {
 		currentSpeed = RemapRange (inputValue, 0F, 1F, 0.0001F, 0.002F);
+
+		currentSpeedRunning = RemapRange (inputValue, 0F, 1F, 20F, 5F);
+
 		//Debug.Log (currentSpeed);
 	}
 
@@ -134,7 +161,7 @@ public class HoveringCam : MonoBehaviour {
 		xCurrent = xCurrent + currentSpeed;
 		if(xCurrent == 1F)
 			xCurrent = 0F;
-		return (Mathf.PerlinNoise(xCurrent, 0.5F) - 0.5F) * 5F;
+		return (Mathf.PerlinNoise(xCurrent, 0.5F) - 0.5F) * currentDistance;
 	}
 
 
@@ -142,7 +169,7 @@ public class HoveringCam : MonoBehaviour {
 		yCurrent = yCurrent + currentSpeed;
 			if(yCurrent == 1F) 
 				yCurrent = 0F;
-		return (Mathf.PerlinNoise(0.1F, yCurrent)-0.5F) * 5F;
+		return (Mathf.PerlinNoise(0.1F, yCurrent)-0.5F) * currentDistance;
 	}
 
 
@@ -165,6 +192,7 @@ public class HoveringCam : MonoBehaviour {
 	public void stopHovering() {
 		focus = false;
 		running = false;
+		currentlyRunning.CrossFadeAlpha (0F, 0F, false);
 		xCurrent = xZero; 
 		yCurrent = yZero;
 	}
@@ -185,11 +213,12 @@ public class HoveringCam : MonoBehaviour {
 
 	public void stopHoveringAndContinue() {
 		running = false;
+		currentlyRunning.CrossFadeAlpha (0F, 0.5F, false);
 	}
 
 	public void continueHovering() {
 		running = true;
-
+		currentlyRunning.CrossFadeAlpha (1F, 0.5F, false);
 	}
 
 
@@ -199,14 +228,17 @@ public class HoveringCam : MonoBehaviour {
 		focus = true;
 		startPosition = transform.localPosition;
 		running = true;
+		currentlyRunning.CrossFadeAlpha (1F, 0.5F, false);
 	}
 
 	public void setMasterRunning() {
 		if (runningMaster) {
 			runningMaster = false;
+			currentlyRunning.CrossFadeAlpha (0F, 0F, false);
 			BTN_running.color = standardColor;
 		} else {
 			runningMaster = true;
+			currentlyRunning.CrossFadeAlpha (1F, 0.5F, false);
 			BTN_running.color = highlightedColor;
 		}
 	}

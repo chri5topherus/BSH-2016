@@ -54,7 +54,6 @@ public class MainGameController : MonoBehaviour {
 	public Image BTN_roboterON; 
 	public Image BTN_roboterOFF; 
 
-
 	private float animationDuration = 2F;
 
 
@@ -145,7 +144,6 @@ public class MainGameController : MonoBehaviour {
 	public Image BTN_pause03;
 
 
-
 	[Header ("------ questions ------")]
 
 	//fields for controll interface
@@ -221,9 +219,7 @@ public class MainGameController : MonoBehaviour {
 	private string [,] questions;
 
 
-
 	[Header ("------ results ------")]
-
 
 	//color of results 
 	public Color color01purple; 
@@ -575,7 +571,6 @@ public class MainGameController : MonoBehaviour {
 		pause03Visible = !pause03Visible;
 	}
 
-
 	#endregion
 
 
@@ -628,9 +623,9 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			*/
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 		} catch(Exception e) {
 			Debug.Log (e);
 		}
