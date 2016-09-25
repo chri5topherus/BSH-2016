@@ -7,11 +7,15 @@ public class MainGameController : MonoBehaviour {
 
 	private bool firstStart = true;
 
+	[Header ("------ allBlack ------")]
+
+	public Image allBlack; 
+	public Image BTN_allBlack;
+
 	[Header ("------ camera objects ------")]
 
 	public GameObject mainCam2D; 
 	public GameObject mainCam3D;
-
 	public GameObject mainCam3D01;
 	public GameObject mainCam3D02;
 	public GameObject mainCam3D03;
@@ -127,6 +131,10 @@ public class MainGameController : MonoBehaviour {
 	private bool phoneOffVisible;
 	public Image BTNphone;
 
+	public Text phoneOff2;
+	private bool phoneOffVisible2;
+	public Image BTNphone2;
+
 
 	[Header ("------ pause logos ------")]
 
@@ -208,7 +216,7 @@ public class MainGameController : MonoBehaviour {
 
 	private bool showedResults;
 
-	private int currentStatusSequence;
+	public int currentStatusSequence;
 
 	//questions array
 	private int currentQuestion;
@@ -302,6 +310,9 @@ public class MainGameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		allBlack.CrossFadeAlpha (0F, 0F, false);
+		BTN_allBlack.color = standardButtonColor;
+
 		currentStatusSequence = 0;
 
 		restarantIMG.CrossFadeAlpha (0F, 0F, false);
@@ -332,6 +343,10 @@ public class MainGameController : MonoBehaviour {
 		phoneOffVisible = false;
 		BTNphone.color = standardButtonColor;
 		phoneOff.CrossFadeAlpha (0F, 0F, false);
+
+		phoneOffVisible2 = false;
+		BTNphone2.color = standardButtonColor;
+		phoneOff2.CrossFadeAlpha (0F, 0F, false);
 
 
 		// ---- PAUSE ---- 
@@ -442,7 +457,7 @@ public class MainGameController : MonoBehaviour {
 		// set question text
 		questions = new string[,]{
 			{ "Welches der folgenden Themen beschäftigt Sie zurzeit am meisten?", "A Regulatorik", "B Digitalisierung", "C Zins-Niveau" }, 
-			{ "Sind Sie auch der Meinung, dass wir uns weiter mit Finanzierungsplattformen zur gemeinsamen Nutzung in der genossenschaftliche Finanzgruppe beschäftigen sollen?", "A Ja", "B Nein", "C Weiß nicht" }, 
+			{ "Sind Sie auch der Meinung, dass wir uns weiter mit Finanzierungsplattformen zur gemeinsamen Nutzung in der genossenschaftliche FinanzGruppe beschäftigen sollen?", "A Ja", "B Nein", "C Weiß nicht" }, 
 			{ "Welche Rolle wird die Beratung durch künstliche Intelligenz künftig spielen?", "A A", "B B", "C C"},
 			{ "Wieso werden eingesessene Unternehmen von Marktneulingen verdrängt?", "A A", "B B", ""},
 			{ "Wann kümmern Sie sich um die digitalen Beratungs- und Kommunikationstechniken?", "A A", "B B", "C C"},
@@ -505,6 +520,16 @@ public class MainGameController : MonoBehaviour {
 	}
 
 
+	public void toAllBlack() {
+		if (BTN_allBlack.color == standardButtonColor) {
+			allBlack.CrossFadeAlpha (1F, 0.5F, false);
+			BTN_allBlack.color = highlightedButtonColor;
+		} else { 
+			allBlack.CrossFadeAlpha (0F, 0.5F, false);
+			BTN_allBlack.color = standardButtonColor;
+		}
+	}
+
 
 
 	#region phone
@@ -518,6 +543,18 @@ public class MainGameController : MonoBehaviour {
 			BTNphone.color = highlightedButtonColor;
 		}
 		phoneOffVisible = !phoneOffVisible;
+	}
+
+
+	public void showPhoneOff2() {
+		if (phoneOffVisible2) {
+			phoneOff2.CrossFadeAlpha (0F, 1F, false);
+			BTNphone2.color = standardButtonColor;
+		} else {
+			phoneOff2.CrossFadeAlpha (1F, 1F, false);
+			BTNphone2.color = highlightedButtonColor;
+		}
+		phoneOffVisible2 = !phoneOffVisible2;
 	}
 
 	#endregion
@@ -673,6 +710,8 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle01.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
 		}
 	}
 
@@ -684,6 +723,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle02.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -695,6 +737,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle03.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -706,6 +751,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle04.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -717,6 +765,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle05.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -728,6 +779,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle06.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -740,6 +794,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02_01.text = inputTextBauchbinde07.text;
 			TXT_bauchbinde02_02.text = inputTextBauchbindeTitle07.text;
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -751,6 +808,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle08.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -762,6 +822,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle09.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -773,6 +836,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle10.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -784,6 +850,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle11.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -795,6 +864,9 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle12.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
@@ -806,10 +878,21 @@ public class MainGameController : MonoBehaviour {
 			TXT_bauchbinde02.text = inputTextBauchbindeTitle13.text;
 			hide2Rows ();
 			iTween.MoveTo (bauchbinde, iTween.Hash ("y", bauchbindeStartPos, "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+
+			StartCoroutine (hideBauchbindeAfter5Sec ());
+
 		}
 	}
 
 	public void hideBauchbinde() {
+		visibleBauchbinde = false;
+		BTN_bauchbinde.color = highlightedButtonColor;
+		BTN_bauchbindeShow.color = lightGreyButtonColor;
+		iTween.MoveTo(bauchbinde, iTween.Hash("y", 500F , "easetype", iTween.EaseType.easeInOutCubic, "time", 2F));
+	}
+
+	private IEnumerator hideBauchbindeAfter5Sec() {
+		yield return new WaitForSeconds(5F);
 		visibleBauchbinde = false;
 		BTN_bauchbinde.color = highlightedButtonColor;
 		BTN_bauchbindeShow.color = lightGreyButtonColor;
@@ -992,6 +1075,7 @@ public class MainGameController : MonoBehaviour {
 
 	#region headlines animation on WINGS
 
+
 	public void moveStrategieIn() { 
 		//Debug.Log ("stag IN");
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", strategieTXTstartPos, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
@@ -1020,6 +1104,7 @@ public class MainGameController : MonoBehaviour {
 	}
 
 
+
 	public void moveStrategieOut() { 
 		iTween.MoveTo (strategieTXT.gameObject, iTween.Hash ("x", -5F, "easetype", iTween.EaseType.easeInOutExpo, "time", animationDuration));
 		BTN_strategieOFF.color = highlightedButtonColor;
@@ -1045,7 +1130,6 @@ public class MainGameController : MonoBehaviour {
 		BTN_roboterOFF.color = highlightedButtonColor;
 		BTN_roboterON.color = standardButtonColor;
 	}
-
 	#endregion
 
 
@@ -1061,8 +1145,6 @@ public class MainGameController : MonoBehaviour {
 
 
 	#region results
-
-
 
 	public void showResults() {
 
@@ -1094,6 +1176,9 @@ public class MainGameController : MonoBehaviour {
 			} catch (Exception e) {
 				Debug.Log (e);
 				resultError.text = "wrong input";
+				currentStatusSequence = 2;
+				BTNresults.color = highlightedButtonColorYellow;
+				BTNremove.color = standardButtonColor;
 				return;
 			}
 			//check sum
@@ -1124,10 +1209,6 @@ public class MainGameController : MonoBehaviour {
 					}
 
 					currentResultFloat *= 100F;
-
-
-
-
 
 					if (currentQuestion == 0) {
 						TXT_00_allresultArray [0].text = result01 * 100F + " %";
@@ -1234,8 +1315,10 @@ public class MainGameController : MonoBehaviour {
 				}
 
 			} else {
-
 				resultError.text = (100 - sum * 100) + "% only";
+				currentStatusSequence = 2;
+				BTNresults.color = highlightedButtonColorYellow;
+				BTNremove.color = standardButtonColor;
 			}
 		}
 	}
@@ -1269,8 +1352,7 @@ public class MainGameController : MonoBehaviour {
 
 
 	private void animateCubesOut(GameObject cube01, GameObject cube02, GameObject cube03, float startPos) { 
-
-
+		
 		iTween.MoveTo (_result00, iTween.Hash ("x", _result00.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
 		iTween.MoveTo (_result01, iTween.Hash ("x", _result01.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
 		iTween.MoveTo (_result02_1, iTween.Hash ("x", _result02_1.GetComponent<RectTransform>().anchoredPosition.x +180F, "easetype", iTween.EaseType.easeInOutExpo, "time", 1.5F));
@@ -1314,7 +1396,6 @@ public class MainGameController : MonoBehaviour {
 		iTween.MoveTo (cube01, iTween.Hash ("y", startPos.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.MoveTo (cube02, iTween.Hash ("y", startPos.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.MoveTo (cube03, iTween.Hash ("y", startPos.y - 0.1F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
-
 
 		//iTween.ScaleTo (testCube1, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));
 		iTween.ScaleTo (cube01, iTween.Hash ("scale", new Vector3 (1F, 0F, 1F), "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay", 0F));

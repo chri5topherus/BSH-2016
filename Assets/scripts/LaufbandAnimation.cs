@@ -35,7 +35,10 @@ public class LaufbandAnimation : MonoBehaviour {
 	public void ShowTXT(int i) {
 		if (i != currentTXT) {
 			StartCoroutine(showTXTdelayed(i));
-			textElements [currentTXT].CrossFadeAlpha (0F, 0.5F, false);
+
+			for(int j = 0 ; j < textElements.Count ; j++) {
+				textElements [j].CrossFadeAlpha (0F, 0.5F, false);
+			}
 			currentTXT = i;
 		}
 	}

@@ -166,28 +166,37 @@ public class ColorController : MonoBehaviour
 		//get winner TXT
 
 		if (_mainController.currentResultFloat != 0F) {
-			fadeInOutTXT (1F, resultTXT, 0F);
 
-			//getWinnerColor
-			if (_mainController.currentResultColor == 0) {
-				fadeInOutImage (1F, purplePlane, 0F);
-			} else if (_mainController.currentResultColor == 1) {
-				fadeInOutImage (1F, bluePlane, 0F);
-			} else if (_mainController.currentResultColor == 2) {
-				fadeInOutImage (1F, greenPlane, 0F);
-			} else {
-				fadeInOutImage (1F, redPlane, 0F);
+			if (_mainController.currentStatusSequence == 3) {
+
+				fadeInOutTXT (1F, resultTXT, 0F);
+
+				//getWinnerColor
+				if (_mainController.currentResultColor == 0) {
+					fadeInOutImage (1F, purplePlane, 0F);
+				} else if (_mainController.currentResultColor == 1) {
+					fadeInOutImage (1F, bluePlane, 0F);
+				} else if (_mainController.currentResultColor == 2) {
+					fadeInOutImage (1F, greenPlane, 0F);
+				} else {
+					fadeInOutImage (1F, redPlane, 0F);
+				}
+
+				//only take winner string
+				//resultTXT.text = _mainController.currentResultString + " " + _mainController.currentResultFloat + " %";
+				string tmp = _mainController.currentResultString; 
+
+				string tmpFloat = _mainController.currentResultFloat.ToString ("0");
+
+				tmp = tmp.Substring (0, 1);
+
+				tmp = tmp + ": " + tmpFloat + " %";
+
+				resultTXT.text = tmp;
+
+				TranslateBlackOut (2F);
+
 			}
-
-			//only take winner string
-			//resultTXT.text = _mainController.currentResultString + " " + _mainController.currentResultFloat + " %";
-			string tmp = _mainController.currentResultString; 
-
-			tmp = tmp.Substring (2);
-
-			resultTXT.text = tmp;
-
-			TranslateBlackOut (2F);
 		}
 
 	}
