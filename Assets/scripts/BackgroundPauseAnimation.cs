@@ -41,7 +41,7 @@ public class BackgroundPauseAnimation : MonoBehaviour {
 		// waitFor: 1 & duration 8
 		// waitFor: 2 & duration 16
 
-		setSpeedMode01 ();
+		setSpeedMode02 ();
 		BTN_stopedAnimtion.color = highlightedColor;
 
 		setAllScale (0F);

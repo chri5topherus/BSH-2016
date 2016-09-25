@@ -568,10 +568,12 @@ public class MainGameController : MonoBehaviour {
 			BTN_pause01.color = standardButtonColor;
 			pauseOff01.CrossFadeAlpha (0F, 1F, false);
 		} else {
+			/*
 			pause02Visible = true; 
 			showLogo02 ();
 			pause03Visible = true; 
 			showLogo03 ();
+			*/
 			BTN_pause01.color = highlightedButtonColor;
 			pauseOff01.CrossFadeAlpha (1F, 1F, false);
 		}
@@ -579,16 +581,29 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	public void showLogo02() {
+
 		if (pause02Visible) {
+			//pause
 			BTN_pause02.color = standardButtonColor;
 			pauseOff02.CrossFadeAlpha (0F, 1F, false);
+			//phone
+			phoneOff2.CrossFadeAlpha (0F, 1F, false);
+			BTNphone2.color = standardButtonColor;
 		} else {
+			//phone on
+			phoneOff2.CrossFadeAlpha (1F, 1F, false);
+			BTNphone2.color = highlightedButtonColor;
+			//logo on
+			BTN_pause02.color = highlightedButtonColor;
+			pauseOff02.CrossFadeAlpha (1F, 1F, false);
+
+			/*
 			pause01Visible = true; 
 			showLogo01 ();
 			pause03Visible = true; 
 			showLogo03 ();
-			BTN_pause02.color = highlightedButtonColor;
-			pauseOff02.CrossFadeAlpha (1F, 1F, false);
+			*/
+
 		}
 		pause02Visible = !pause02Visible;
 	}
@@ -597,11 +612,20 @@ public class MainGameController : MonoBehaviour {
 		if (pause03Visible) {
 			BTN_pause03.color = standardButtonColor;
 			pauseOff03.CrossFadeAlpha (0F, 1F, false);
+			//phone
+			phoneOff2.CrossFadeAlpha (0F, 1F, false);
+			BTNphone2.color = standardButtonColor;
 		} else {
+			//phone on
+			phoneOff2.CrossFadeAlpha (1F, 1F, false);
+			BTNphone2.color = highlightedButtonColor;
+			//logo on
+			/*
 			pause01Visible = true; 
 			showLogo01 ();
 			pause02Visible = true; 
 			showLogo02 ();
+			*/
 			BTN_pause03.color = highlightedButtonColor;
 			pauseOff03.CrossFadeAlpha (1F, 1F, false);
 		}

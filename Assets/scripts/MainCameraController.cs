@@ -44,7 +44,7 @@ public class MainCameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		easyType = iTween.EaseType.easeInOutExpo;
+		easyType = iTween.EaseType.easeInOutQuart;
 	
 		zoomLevelStart = 0.2F;
 		zoomLevelEnd = 8F;

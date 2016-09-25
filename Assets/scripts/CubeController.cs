@@ -47,7 +47,8 @@ public class CubeController : MonoBehaviour {
 		startPositionCubeLogo04 = cubeLogo04.transform.localPosition;
 
 		logoVisible = true;
-		showLogo ();
+		BTN_showLogo.color = highlightedColor;
+		//showLogo ();
 	}
 
 	//theme cubes

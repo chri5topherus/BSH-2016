@@ -90,12 +90,26 @@ public class ColorController : MonoBehaviour
 	}
 
 
+	public void openCloseSwing() {
+		if (BTN_openSwing.color == standardColor) {
+			BTN_openSwing.color = highlightedColor; 
+			BTN_closeSwing.color = standardColor;
+			TranslateBlackOut (2F);
+		} else {
+			BTN_openSwing.color = standardColor; 
+			BTN_closeSwing.color = highlightedColor;
+			TranslateBlackIn (2F);
+		}
+
+	}
+
+
 
 
 	public void removeResults ()
 	{
 		float translateX = -550F;
-		float duration = 1F;
+		float duration = 3F;
 
 		if (_mainController.currentResultColor == 0) {
 			iTween.MoveTo (purplePlane, iTween.Hash ("x", translateX, "easetype", iTween.EaseType.easeInOutSine, "time", duration));

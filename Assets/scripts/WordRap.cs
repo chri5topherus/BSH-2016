@@ -96,7 +96,7 @@ public class WordRap : MonoBehaviour {
 		//move BG in
 		running = true;
 		running02 = false;
-		iTween.MoveTo (_blackBG, iTween.Hash ("x", 0F, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F));
+		iTween.MoveTo (_blackBG, iTween.Hash ("x", 0F, "easetype", iTween.EaseType.easeInOutExpo, "time", 3F));
 
 		StartCoroutine(StartFadingTXT(0, 2F));
 	}
@@ -123,7 +123,7 @@ public class WordRap : MonoBehaviour {
 		running = false;
 		running02 = false;
 		//move BG out
-		iTween.MoveTo (_blackBG, iTween.Hash ("x", leftBGposition, "easetype", iTween.EaseType.easeInOutExpo, "time", 2F, "delay" , 5F));
+		iTween.MoveTo (_blackBG, iTween.Hash ("x", leftBGposition, "easetype", iTween.EaseType.easeInOutExpo, "time", 3F, "delay" , 5F));
 	}
 		
 	IEnumerator StartFadingTXT(int currentTXT, float wait) {
