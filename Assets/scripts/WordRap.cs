@@ -98,7 +98,7 @@ public class WordRap : MonoBehaviour {
 		running02 = false;
 		iTween.MoveTo (_blackBG, iTween.Hash ("x", 0F, "easetype", iTween.EaseType.easeInOutExpo, "time", 3F));
 
-		StartCoroutine(StartFadingTXT(0, 2F));
+		StartCoroutine(StartFadingTXT(0, 0F));
 	}
 
 	public void StartRapPart2() {

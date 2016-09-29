@@ -68,6 +68,9 @@ public class ColorController : MonoBehaviour
 		fadeInOutImage (0F, redPlane, 0F);
 		fadeInOutTXT (0F, resultTXT, 0F);
 		TranslateBlackIn (0F);
+
+		startSwing ();
+
 	}
 
 	void Update ()
@@ -110,6 +113,10 @@ public class ColorController : MonoBehaviour
 	{
 		float translateX = -550F;
 		float duration = 3F;
+
+		//if (_mainController.currentStatusSequence == 0) {
+			TranslateBlackOut (2F);
+		//}
 
 		if (_mainController.currentResultColor == 0) {
 			iTween.MoveTo (purplePlane, iTween.Hash ("x", translateX, "easetype", iTween.EaseType.easeInOutSine, "time", duration));
@@ -210,7 +217,7 @@ public class ColorController : MonoBehaviour
 
 				TranslateBlackOut (2F);
 
-			}
+			} 
 		}
 
 	}

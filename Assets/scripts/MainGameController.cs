@@ -404,7 +404,7 @@ public class MainGameController : MonoBehaviour {
 		inputTextBauchbindeTitle01.text = "Vorstandsvorsitzender";
 		inputTextBauchbindeTitle02.text = "Vorstandsmitglied";
 		inputTextBauchbindeTitle03.text = "Bereichsleitung Vertrieb";
-		inputTextBauchbindeTitle04.text = "Bereichsleiterin Kredit- und Sparbereiche ";
+		inputTextBauchbindeTitle04.text = "Bereichsleiterin Kredit- und Sparbereiche";
 		inputTextBauchbindeTitle05.text = "Bereichsleiter Marketing";
 		inputTextBauchbindeTitle06.text = "Bereichsberater Projekte DZ-Bank Konzern";
 		inputTextBauchbindeTitle07.text = "Professor für Finance und Wirtschaftstheorie an der Frankfurt University of Applied Sciences";
@@ -458,12 +458,12 @@ public class MainGameController : MonoBehaviour {
 		questions = new string[,]{
 			{ "Welches der folgenden Themen beschäftigt Sie zurzeit am meisten?", "A Regulatorik", "B Digitalisierung", "C Zins-Niveau" }, 
 			{ "Sind Sie auch der Meinung, dass wir uns weiter mit Finanzierungsplattformen zur gemeinsamen Nutzung in der genossenschaftliche FinanzGruppe beschäftigen sollen?", "A Ja", "B Nein", "C Weiß nicht" }, 
-			{ "Welche Rolle wird die Beratung durch künstliche Intelligenz künftig spielen?", "A A", "B B", "C C"},
-			{ "Wieso werden eingesessene Unternehmen von Marktneulingen verdrängt?", "A A", "B B", ""},
+			{ "Welche Rolle wird die Beratung durch künstliche Intelligenz künftig spielen?", "A A", "B B", ""},
+			{ "EMPTYYY", "A A", "B B", ""},
 			{ "Wann kümmern Sie sich um die digitalen Beratungs- und Kommunikationstechniken?", "A A", "B B", "C C"},
 			{ "EMPTYYY 2.4", "A A", "B B", "C C"},
-			{ "Welchen Marktanteil können wir gemeinsam in 2021 realisieren?", "A 23% Marktanteil", "B 27% Marktanteil", "C 30% Marktanteil" }, 
-			{ "Bis zu welcher mittleren Ausfallwahrscheinlichkeit (Bonitätsklasse) vergeben Banken gewöhnlich Baufinanzierungen?", "A bis 0,75% (2B)", "B bis 1,70% (2D)", "C bis 6,00% (3B)"},
+			{ "Welchen Marktanteil können wir gemeinsam in 2020 realisieren?", "A 23% Marktanteil", "B 27% Marktanteil", "C 30% Marktanteil" }, 
+			{ "EMPTYYY", "A bis 0,75% (2B)", "B bis 1,70% (2D)", "C bis 6,00% (3B)"},
 			{ "Passen die vorgestellten Außendienstfunktionen zu Ihrer Banken-Ausrichtung?", "A Ja", "B Nein", "C Weiß nicht" },
 			{ "Setzen Sie die genossenschaftliche Beratung in Ihrer Bank bereits um?", "A Ja, in vollem Umfang", "B Noch nicht - aber in Vorbereitung", "C Nein"}
 		};
@@ -587,22 +587,22 @@ public class MainGameController : MonoBehaviour {
 			BTN_pause02.color = standardButtonColor;
 			pauseOff02.CrossFadeAlpha (0F, 1F, false);
 			//phone
-			phoneOff2.CrossFadeAlpha (0F, 1F, false);
-			BTNphone2.color = standardButtonColor;
+			//phoneOff2.CrossFadeAlpha (0F, 1F, false);
+			//BTNphone2.color = standardButtonColor;
 		} else {
 			//phone on
-			phoneOff2.CrossFadeAlpha (1F, 1F, false);
-			BTNphone2.color = highlightedButtonColor;
+			//phoneOff2.CrossFadeAlpha (1F, 1F, false);
+			//BTNphone2.color = highlightedButtonColor;
 			//logo on
 			BTN_pause02.color = highlightedButtonColor;
 			pauseOff02.CrossFadeAlpha (1F, 1F, false);
 
-			/*
+
 			pause01Visible = true; 
 			showLogo01 ();
 			pause03Visible = true; 
 			showLogo03 ();
-			*/
+
 
 		}
 		pause02Visible = !pause02Visible;
@@ -613,19 +613,19 @@ public class MainGameController : MonoBehaviour {
 			BTN_pause03.color = standardButtonColor;
 			pauseOff03.CrossFadeAlpha (0F, 1F, false);
 			//phone
-			phoneOff2.CrossFadeAlpha (0F, 1F, false);
-			BTNphone2.color = standardButtonColor;
+			//phoneOff2.CrossFadeAlpha (0F, 1F, false);
+			//BTNphone2.color = standardButtonColor;
 		} else {
 			//phone on
-			phoneOff2.CrossFadeAlpha (1F, 1F, false);
-			BTNphone2.color = highlightedButtonColor;
+			//phoneOff2.CrossFadeAlpha (1F, 1F, false);
+			//BTNphone2.color = highlightedButtonColor;
 			//logo on
-			/*
+
 			pause01Visible = true; 
 			showLogo01 ();
 			pause02Visible = true; 
 			showLogo02 ();
-			*/
+
 			BTN_pause03.color = highlightedButtonColor;
 			pauseOff03.CrossFadeAlpha (1F, 1F, false);
 		}
@@ -656,9 +656,9 @@ public class MainGameController : MonoBehaviour {
 		float durationTmp;
 		try{
 			durationTmp = float.Parse (tmp);
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
 		} catch(Exception e) { 
 			Debug.Log (e);
 		}
@@ -684,9 +684,9 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			*/
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
+			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos + distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3.04F/4F, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
 		} catch(Exception e) {
 			Debug.Log (e);
 		}
@@ -712,9 +712,9 @@ public class MainGameController : MonoBehaviour {
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
 			*/
-			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D01, iTween.Hash("x",  mainCam3D01_startPos - distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
 			iTween.MoveTo(mainCam3D02, iTween.Hash("x",  mainCam3D02_startPos, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
-			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.linear, "islocal", true));
+			iTween.MoveTo(mainCam3D03, iTween.Hash("x",  mainCam3D03_startPos + distanceTmp*3.04F/2F, "time", durationTmp, "easetype", iTween.EaseType.easeInOutSine, "islocal", true));
 		} catch(Exception e) { 
 			Debug.Log (e);
 		}
@@ -916,7 +916,7 @@ public class MainGameController : MonoBehaviour {
 	}
 
 	private IEnumerator hideBauchbindeAfter5Sec() {
-		yield return new WaitForSeconds(5F);
+		yield return new WaitForSeconds(7F);
 		visibleBauchbinde = false;
 		BTN_bauchbinde.color = highlightedButtonColor;
 		BTN_bauchbindeShow.color = lightGreyButtonColor;
@@ -1011,9 +1011,10 @@ public class MainGameController : MonoBehaviour {
 
 	public void removeResults() {
 
-		if (currentStatusSequence == 3) {
+		if (currentStatusSequence == 3 || currentStatusSequence == 2) {
 			currentStatusSequence = 0;
 
+			BTNresults.color = standardButtonColor;
 			BTNremove.color = standardButtonColor;
 			BTNshow.color = highlightedButtonColorYellow;
 
@@ -1048,11 +1049,11 @@ public class MainGameController : MonoBehaviour {
 			resetCubesAnimated (cubeQ05_01, cubeQ05_02, cubeQ05_03, cubeQ05startPosition);
 			resetCubesAnimated (cubeQ06_01, cubeQ06_02, cubeQ06_03, cubeQ06startPosition);
 
-			if (showedResults) {
+			//if (showedResults) {
 				showNextQuestion ();
 				StartCoroutine (removeResultsAfter (2F));
 				showedResults = false;
-			}
+			//}
 		}
 	}
 

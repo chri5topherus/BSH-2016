@@ -44,7 +44,7 @@ public class LaufbandAnimation : MonoBehaviour {
 	}
 
 	private IEnumerator showTXTdelayed(int i) {
-		yield return new WaitForSeconds (0.5F); 
+		yield return new WaitForSeconds (1F); 
 		textElements [i].CrossFadeAlpha (1F, 0.5F, false);
 	}
 
